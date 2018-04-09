@@ -1,0 +1,61 @@
+.header-wrapper{
+	position: relative;
+	margin-left:10px;
+	padding-top: 0;
+
+	@include mq(leftCol){
+		margin-left:170px;
+
+	}
+
+	@include mq(wide){
+		margin-left:250px;
+	}
+}
+
+
+.gren-floors{
+	position: relative;
+	width:130px;
+
+	@include mq(tablet){
+		width:260px;
+	}
+
+
+}
+
+.gren-floor{
+	position: relative;
+	height:8px;
+	margin-bottom:10px;
+	background-color: #000;
+
+	@include mq(tablet){
+		height:12px;
+		margin-bottom:20px;
+	}
+	
+	&:first-child{
+		margin-left: 40px;
+	}
+}
+
+.gren-header-txt{
+	position:relative;
+
+	@include mq(desktop){
+		position: absolute;
+		top: -5px;
+		left: 330px;
+	}
+
+}
+
+.gren-standy{
+	font-family: 'Guardian Headline Full', Georgia, serif;
+	font-size:20px;
+	line-height: 24px;
+	font-weight: 200;
+	max-width: 300px;
+}

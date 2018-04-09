@@ -1,0 +1,63 @@
+@import "mq";
+@import "fonts";
+@import "palette";
+@import "header";
+@import "list";
+
+// Uncomment for embeds
+//@import "embed";
+
+// Uncomment for full screen (including immersive article main media)
+//@import "fullscreen";
+
+
+.element-atom,
+.interactive-atom {
+    margin: 0 !important;
+}
+
+
+.page-wrapper {
+    max-width: 1300px;
+    background-color: #fff;
+    margin: 80px auto 0;
+    position: relative;
+
+    @include mq(leftCol){
+    	margin-top: 120px;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 0;
+        position: absolute;
+
+        @include mq(leftCol) {
+            left: 160px;
+            border-right: 1px solid #000 ; 
+            top: 32px;
+
+        }
+        @include mq(wide) {
+            left: 240px;
+        }
+    }
+}
+
+.show-mobile{
+	display:block;
+
+	@include mq(tablet){
+		display: none;
+	}
+}
+
+.show-desktop{
+	display:none;
+
+	@include mq(tablet){
+		display: block;
+	}
+}
