@@ -30,7 +30,19 @@
 	font-style: italic;
 	line-height: 43px;
 	font-weight: bold;
+	visibility: hidden;
 	cursor:pointer;
+	color:white;
+
+	&.animated{
+		visibility:visible;
+		 -webkit-animation-name: text-white-to-black; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */ 
+		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	    animation-name: text-white-to-black;
+	    animation-duration: 1s;	   
+		animation-fill-mode: forwards;
+	}
 }
 
 .gren-list-biog{

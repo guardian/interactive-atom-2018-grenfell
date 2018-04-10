@@ -1,14 +1,63 @@
 @import "mq";
 @import "fonts";
 @import "palette";
+
+@-webkit-keyframes white-to-black {
+          from {    background-color:white; }
+          40%  {  background-color:white;}
+          to   { background-color:black;}
+      }
+
+@keyframes white-to-black {
+          from { background-color:white;}
+          40%  { background-color:white; }
+          to   {  background-color:black;}
+      }
+
+@-webkit-keyframes  opacity-ani {
+          from {  opacity:0; animation-timing-function: ease-in;}
+          
+          to   { opacity:1; animation-timing-function: ease-out;}
+      }
+
+@keyframes opacity-ani {
+          from { opacity:0; animation-timing-function: ease-in;}
+         
+          to   {  opacity:1; animation-timing-function: ease-out;}
+      }
+
+
+@-webkit-keyframes text-white-to-black {
+          from {    color:white; }         
+          40%  {  color:white;}
+          to   { color:black;}
+      }
+
+@keyframes  text-white-to-black {
+          from { color:white;}
+          40%  { color:white; }
+          to   {  color:black;}
+      }
+
+
+
+
+
+
+
+
 @import "header";
 @import "list";
+
+
 
 // Uncomment for embeds
 //@import "embed";
 
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
+
+
 
 
 .element-atom,
