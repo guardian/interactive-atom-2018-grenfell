@@ -59,7 +59,7 @@ function compileListHTML(dataIn) {
 
 function addListeners() {
     document.querySelectorAll(".gren-list-name").forEach((el) => {
-        el.addEventListener('mouseover', function() { showLinkedInfo(this.getAttribute("key-ref")) });
+        el.addEventListener('click', function() { showLinkedInfo(this.getAttribute("key-ref")) });
     })
 
     document.querySelectorAll(".short-bio-expand").forEach((el) =>{
