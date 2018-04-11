@@ -18,7 +18,7 @@
 	position: relative;
 	width:130px;
 
-	@include mq(tablet){
+	@include mq(desktop){
 		width:260px;
 	}
 }
@@ -30,7 +30,7 @@
 	background-color:white;
 	visibility: hidden;
 
-	@include mq(tablet){
+	@include mq(desktop){
 		height:12px;
 		margin-bottom:20px;
 	}
@@ -73,15 +73,15 @@
 #Headline, #Headline_L, #of_Grenfell, #of_Grenfell_L, .gren-standy{
 	 opacity:0;
 	 fill:black;
-	&.animated{
-		-webkit-animation-name:  opacity-ani; /* Safari 4.0 - 8.0 */
-		-webkit-animation-duration: 0.75s; /* Safari 4.0 - 8.0 */
-		-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-		
-	    animation-name:  opacity-ani;
-	    animation-duration: 0.75s;
-		animation-fill-mode: forwards;	
-	}
+		&.animated{
+			-webkit-animation-name:  opacity-ani; /* Safari 4.0 - 8.0 */
+			-webkit-animation-duration: 0.75s; /* Safari 4.0 - 8.0 */
+			-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+			
+		    animation-name:  opacity-ani;
+		    animation-duration: 0.75s;
+			animation-fill-mode: forwards;	
+		}
 }
 
 

@@ -65,6 +65,31 @@
 	}
 }
 
+.short-bio-expand{
+	display: inline-block;
+	margin-left: 6px;
+	border-radius: 100px;
+	background-color: black;
+	height:18px;
+	width:18px;
+}
+
+.biog-pic{
+	float: left;
+	width: 86px;
+	height: 86px;
+	margin: 0 4px 0 0;
+	border: 1px solid black;
+	background-size: contain;
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+
+	img{
+		width:100%;
+		height: 100%;
+	}
+}
+
 .hide{
 	display: none;
 }

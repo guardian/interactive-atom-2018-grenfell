@@ -10,19 +10,31 @@ const floors = 24;
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
 
-var previousSelection;
+var previousShortBio, previousBio;
 
 function init() {
     axios.get(`${process.env.PATH}/assets/data/grenfell-test-data.json`).then((resp) => {
-        buildView(resp.data);
+        var data = setData(resp.data);
+        buildView(data);
     });
 }
+
+function setData(data){
+    data.forEach((d) => {
+        console.log(d);
+        d.shortBio = "a Grenfell veteran – a resident for almost 40 years who would bring food downstairs and share it with his neighbours, picnicking outside.";
+    })
+
+    return data;
+
+}
+
 
 function buildView(data) {
     const listHTML = compileListHTML(data);
     document.querySelector('.gren-list-wrapper').innerHTML = listHTML;
     addListeners();
-    floorsAni()
+    headlineAni()
 }
 
 
@@ -49,6 +61,10 @@ function addListeners() {
     document.querySelectorAll(".gren-list-name").forEach((el) => {
         el.addEventListener('mouseover', function() { showLinkedInfo(this.getAttribute("key-ref")) });
     })
+
+    document.querySelectorAll(".short-bio-expand").forEach((el) =>{
+        el.addEventListener('click', function() { showLinkedBio(this.getAttribute("key-ref")) });
+    })
 }
 
 function headlineAni() {
@@ -61,31 +77,39 @@ function headlineAni() {
         elTwo = document.querySelector("#of_Grenfell_L");
     }
 
-    let elThree = document.querySelector(".gren-standy");
+    
     elOne.classList.add("animated");
     elTwo.classList.add("animated");
 
 
     elOne.addEventListener('animationend', function(event) {
-        elThree.classList.add("animated");
+        standyAni()
     }, false);
 
-    elThree.addEventListener('animationend', function(event) {
-        listAni();
-    }, false);
+    
 }
 
 function floorsAni() {
-    var finalEl;
+    var finalEl = document.querySelector(".floor-13");
     document.querySelectorAll(".gren-floor").forEach((el) => {
         var delay = ((floors - el.getAttribute("floor-ref")) / 15) + "s";
         el.classList.add("floor-ani");
         el.style.animationDelay = delay;
-        finalEl = el;
+  
     })
 
     finalEl.addEventListener('animationend', function(event) {
-        headlineAni() 
+       listAni()
+   
+    }, false);
+}
+
+function standyAni(){
+    let elThree = document.querySelector(".gren-standy");
+    elThree.classList.add("animated");
+
+    elThree.addEventListener('animationend', function(event) {
+        floorsAni();
     }, false);
 }
 
@@ -100,16 +124,40 @@ function listAni() {
 
 function showLinkedInfo(n) {
 
-    if (previousSelection) {
-        previousSelection.classList.add("hide");
+    if (previousShortBio) {
+        previousShortBio.classList.add("hide");
     }
 
-    document.querySelectorAll(".gren-list-biog").forEach((el) => {
+    if (previousBio) {
+        previousBio.classList.add("hide");
+    }
+
+    document.querySelectorAll(".short-biog").forEach((el) => {
         let nn = el.getAttribute("key-ref");
         console.log(el)
         if (n == nn) {
             el.classList.remove("hide");
-            previousSelection = el;
+            previousShortBio = el;
+        }
+
+    })
+}
+
+function showLinkedBio(n){
+    if (previousBio) {
+        previousBio.classList.add("hide");
+    }
+
+    if (previousShortBio) {
+        previousShortBio.classList.add("hide");
+    }
+
+    document.querySelectorAll(".long-biog").forEach((el) => {
+        let nn = el.getAttribute("key-ref");
+        console.log(el)
+        if (n == nn) {
+            el.classList.remove("hide");
+            previousBio = el;
         }
 
     })
