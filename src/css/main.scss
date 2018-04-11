@@ -27,6 +27,19 @@
       }
 
 
+@-webkit-keyframes  opacity-ani-fortypc {
+          from { opacity:0; animation-timing-function: ease-in;}
+          40%  { opacity:1; animation-timing-function: ease-out;}
+          to   { opacity:1; }
+      }
+
+@keyframes opacity-ani-fortypc {
+          from { opacity:0; animation-timing-function: ease-in;}
+          40%  { opacity:1; animation-timing-function: ease-out;}
+          to   {  opacity:1; }
+      }
+
+
 @-webkit-keyframes text-white-to-black {
           from {    color:white; }         
           40%  {  color:white;}

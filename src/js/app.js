@@ -63,7 +63,7 @@ function addListeners() {
     })
 
     document.querySelectorAll(".short-bio-expand").forEach((el) =>{
-        el.addEventListener('click', function() { showLinkedBio(this.getAttribute("key-ref")) });
+        el.addEventListener('click', function() { showFullBio(this.getAttribute("key-ref")) });
     })
 }
 
@@ -90,7 +90,7 @@ function headlineAni() {
 }
 
 function floorsAni() {
-    var finalEl = document.querySelector(".floor-13");
+    var finalEl = document.querySelector(".floor-6");
     document.querySelectorAll(".gren-floor").forEach((el) => {
         var delay = ((floors - el.getAttribute("floor-ref")) / 15) + "s";
         el.classList.add("floor-ani");
@@ -114,7 +114,7 @@ function standyAni(){
 }
 
 function listAni() {
-    document.querySelectorAll(".gren-list-name").forEach((el) => {
+    document.querySelectorAll(".gren-list-item").forEach((el) => {
         var delay = ((el.getAttribute("key-ref")) / 10 )+ "s";
         //console.log(delay)
         el.classList.add("animated");
@@ -143,14 +143,24 @@ function showLinkedInfo(n) {
     })
 }
 
-function showLinkedBio(n){
+function showFullBio(n){
     if (previousBio) {
         previousBio.classList.add("hide");
     }
 
     if (previousShortBio) {
-        previousShortBio.classList.add("hide");
+        previousShortBio.classList.remove("hide");
     }
+
+    document.querySelectorAll(".short-biog").forEach((el) => {
+        let nn = el.getAttribute("key-ref");
+        console.log(el)
+        if (n == nn) {
+            el.classList.add("hide");
+            previousShortBio = el;
+        }
+
+    })
 
     document.querySelectorAll(".long-biog").forEach((el) => {
         let nn = el.getAttribute("key-ref");

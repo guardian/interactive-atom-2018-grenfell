@@ -1,7 +1,9 @@
 {{#each this}}
-<div class="gren-list-item">
-	<div class="gren-list-name"  key-ref="{{@key}}">{{{name}}}</div>
-	<div class="gren-list-biog short-biog hide"  key-ref="{{@key}}">&ldquo;{{{shortBio}}}&rdquo;<div class="short-bio-expand"  key-ref="{{@key}}"><svg width="18px" height="18px" viewBox="0 0 18 18">
+<div class="gren-list-item" key-ref="{{@key}}">
+	
+	<div class="gren-list-biog short-biog"  key-ref="{{@key}}">
+		<div class="gren-list-name"  key-ref="{{@key}}">{{{name}}}</div>
+		{{{shortBio}}}<div class="short-bio-expand"  key-ref="{{@key}}"><svg width="18px" height="18px" viewBox="0 0 18 18">
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="More" fill="#FFFFFF" points="6.23636364 7.76363636 6.50681818 14 7.47727273 14 7.76363636 7.76363636 14 7.47727273 14 6.50681818 7.76363636 6.23636364 7.47727273 0 6.50681818 0 6.23636364 6.23636364 0 6.50681818 0 7.47727273"></polygon>
     </g>
