@@ -1,0 +1,50 @@
+// set anis here so they can be used across other multiple scss files
+
+@-webkit-keyframes white-to-black {
+          from { background-color:white; }
+          40%  { background-color:white;}
+          to   { background-color:$neutral-7;}
+      }
+
+@keyframes white-to-black {
+          from { background-color:white;}
+          40%  { background-color:white; }
+          to   { background-color:$neutral-7;}
+      }
+
+@-webkit-keyframes  opacity-ani {
+          from { opacity:0; animation-timing-function: ease-in;}         
+          to   { opacity:1; animation-timing-function: ease-out;}
+      }
+
+@keyframes opacity-ani {
+          from { opacity:0; animation-timing-function: ease-in;}
+         
+          to   {  opacity:1; animation-timing-function: ease-out;}
+      }
+
+
+@-webkit-keyframes  opacity-ani-fortypc {
+          from { opacity:0; animation-timing-function: ease-in;}
+          40%  { opacity:1; animation-timing-function: ease-out;}
+          to   { opacity:1; }
+      }
+
+@keyframes opacity-ani-fortypc {
+          from { opacity:0; animation-timing-function: ease-in;}
+          40%  { opacity:1; animation-timing-function: ease-out;}
+          to   {  opacity:1; }
+      }
+
+
+@-webkit-keyframes text-white-to-black {
+          from {    color:white; }         
+          40%  {  color:white;}
+          to   { color:$neutral-7;}
+      }
+
+@keyframes  text-white-to-black {
+          from { color:white;}
+          40%  { color:white; }
+          to   { color:$neutral-7;}
+      }

@@ -10,7 +10,7 @@ const floors = 24;
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
 
-var previousShortBio, previousBio;
+var previousShortList, previousLongList, previousListName;
 
 function init() {
     axios.get(`${process.env.PATH}/assets/data/grenfell-test-data.json`).then((resp) => {
@@ -74,11 +74,11 @@ function compileListHTML(dataIn) {
 }
 
 function addListeners() {
-    document.querySelectorAll(".gren-list-name").forEach((el) => {
-        el.addEventListener('click', function() { showLinkedInfo(this.getAttribute("key-ref")) });
-    })
+    // document.querySelectorAll(".gren-list-name").forEach((el) => {
+    //     el.addEventListener('click', function() { showLinkedInfo(this.getAttribute("key-ref")) });
+    // })
 
-    document.querySelectorAll(".short-bio-expand").forEach((el) =>{
+    document.querySelectorAll(".gren-list-item").forEach((el) =>{
         el.addEventListener('click', function() { showFullBio(this.getAttribute("key-ref")) });
     })
 }
@@ -115,8 +115,7 @@ function floorsAni() {
     })
 
     finalEl.addEventListener('animationend', function(event) {
-       listAni()
-   
+       listAni();
     }, false);
 }
 
@@ -130,7 +129,7 @@ function standyAni(){
 }
 
 function listAni() {
-    document.querySelectorAll(".gren-list-item").forEach((el) => {
+    document.querySelectorAll(".list-item-short").forEach((el) => {
         var delay = ((el.getAttribute("key-ref")) / 10 )+ "s";
         
         el.classList.add("animated");
@@ -138,55 +137,51 @@ function listAni() {
     })
 }
 
-function showLinkedInfo(n) {
 
-    if (previousShortBio) {
-        previousShortBio.classList.add("hide");
-    }
-
-    if (previousBio) {
-        previousBio.classList.add("hide");
-    }
-
-    document.querySelectorAll(".short-biog").forEach((el) => {
-        let nn = el.getAttribute("key-ref");
-      
-        if (n == nn) {
-            el.classList.remove("hide");
-            previousShortBio = el;
-        }
-
-    })
-}
 
 function showFullBio(n){
-    if (previousBio) {
-        previousBio.classList.add("hide");
+    if (previousShortList) {
+        previousShortList.classList.remove("hide");
+        
     }
 
-    if (previousShortBio) {
-        previousShortBio.classList.remove("hide");
+    if (previousLongList) {
+        previousLongList.classList.add("hide");
     }
 
-    document.querySelectorAll(".short-biog").forEach((el) => {
+   
+
+
+    document.querySelectorAll(".list-item-short").forEach((el) => {
         let nn = el.getAttribute("key-ref");
         
         if (n == nn) {
             el.classList.add("hide");
-            previousShortBio = el;
+            previousShortList = el;
         }
 
     })
 
-    document.querySelectorAll(".long-biog").forEach((el) => {
+    document.querySelectorAll(".list-item-long").forEach((el) => {
         let nn = el.getAttribute("key-ref");
        
         if (n == nn) {
             el.classList.remove("hide");
-            previousBio = el;
+            el.classList.add("animated");
+            previousLongList = el;
         }
 
     })
+
+
+    document.querySelectorAll(".list-item-short-name").forEach((el) => {    
+            el.classList.add("neutral-86");
+            previousListName = el;
+    })
+
+    
+
+   
 }
 
 
