@@ -2,16 +2,18 @@
 @import "fonts";
 @import "palette";
 
+
+
 @-webkit-keyframes white-to-black {
           from {    background-color:white; }
           40%  {  background-color:white;}
-          to   { background-color:black;}
+          to   { background-color:$neutral-7;}
       }
 
 @keyframes white-to-black {
           from { background-color:white;}
           40%  { background-color:white; }
-          to   {  background-color:black;}
+          to   {  background-color:$neutral-7;}
       }
 
 @-webkit-keyframes  opacity-ani {
@@ -43,13 +45,13 @@
 @-webkit-keyframes text-white-to-black {
           from {    color:white; }         
           40%  {  color:white;}
-          to   { color:black;}
+          to   { color:$neutral-7;}
       }
 
 @keyframes  text-white-to-black {
           from { color:white;}
           40%  { color:white; }
-          to   {  color:black;}
+          to   { color:$neutral-7;}
       }
 
 

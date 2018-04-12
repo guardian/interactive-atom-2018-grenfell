@@ -22,7 +22,23 @@ function init() {
 function setData(data){
     data.forEach((d) => {
         console.log(d);
-        d.shortBio = "a Grenfell veteran – a resident for almost 40 years who would bring food downstairs and share it with his neighbours, picnicking outside.";
+
+        d.shortBio = d.bio.split(" ");
+
+        d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";
+
+        console.log(d.shortBio.length)
+        // if(d.shortBio.length < 20){
+        //     var tempArr = [];
+
+        //     shortBio.forEach((str,i) => {
+        //         i < 20 ? tempArr.push(str)
+        //     });
+
+        //     d.shortBio = tempArr.join(" ");            
+
+        // }
+        
     })
 
     return data;
@@ -116,7 +132,7 @@ function standyAni(){
 function listAni() {
     document.querySelectorAll(".gren-list-item").forEach((el) => {
         var delay = ((el.getAttribute("key-ref")) / 10 )+ "s";
-        //console.log(delay)
+        
         el.classList.add("animated");
         el.style.animationDelay = delay;
     })
@@ -134,7 +150,7 @@ function showLinkedInfo(n) {
 
     document.querySelectorAll(".short-biog").forEach((el) => {
         let nn = el.getAttribute("key-ref");
-        console.log(el)
+      
         if (n == nn) {
             el.classList.remove("hide");
             previousShortBio = el;
@@ -154,7 +170,7 @@ function showFullBio(n){
 
     document.querySelectorAll(".short-biog").forEach((el) => {
         let nn = el.getAttribute("key-ref");
-        console.log(el)
+        
         if (n == nn) {
             el.classList.add("hide");
             previousShortBio = el;
@@ -164,7 +180,7 @@ function showFullBio(n){
 
     document.querySelectorAll(".long-biog").forEach((el) => {
         let nn = el.getAttribute("key-ref");
-        console.log(el)
+       
         if (n == nn) {
             el.classList.remove("hide");
             previousBio = el;
