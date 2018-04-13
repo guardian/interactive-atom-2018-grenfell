@@ -20,4 +20,4 @@
 	TO DO
 
 8. Test all in mobile and app view
-	TO DO
+	TO DO ---
