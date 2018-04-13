@@ -1,0 +1,23 @@
+1. transition to original state is v slow for list items with higher key-ref.
+	FIXED
+
+2. Intro ani slow
+	FIXED
+
+3. HEader and standy to appear from frame 1.
+	FIXED
+
+4. Anchor CTA button position in list items
+	FIXED
+
+5. Re-organise layout of list items to include intro text
+	FIXED
+
+6. introduce expand all UX el
+	TO DO
+
+7. animate in a group of list items towards centre of list as user scrolls.
+	TO DO
+
+8. Test all in mobile and app view
+	TO DO

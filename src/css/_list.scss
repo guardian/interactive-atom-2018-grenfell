@@ -35,6 +35,11 @@
 		
 	}
 
+	&.animation-done{
+		visibility:visible;
+		opacity: 1;
+	}
+
 	&.list-item-short{
 		cursor:pointer;
 	}
@@ -95,6 +100,7 @@
 		color:$neutral-86;
 		font-size: 14px;
 		line-height: 18px;
+		width: 100%;
 		@include mq(desktop){
 			position:absolute;
 			top: 0;
@@ -140,6 +146,23 @@
 	}
 }
 
+.short-biog-insert{
+	position: relative;
+	color:$neutral-86;
+	font-size: 14px;
+	line-height: 18px;
+	width: 100%;
+	max-width:620px;
+		@include mq(desktop){
+			// position:absolute;
+			// top: 0;
+			// left: 250px;
+			padding-top:9px;
+			margin-bottom: 0;
+			font-size: 16px;
+		}
+}
+
 .gren-long-biog-wrapper{
 	 @include mq(desktop){
 		margin-left:250px;
@@ -148,12 +171,14 @@
 }
 
 .short-bio-expand{
-	display: inline-block;
+	position: absolute;
 	margin-left: 6px;
 	border-radius: 100px;
 	background-color: $neutral-86;
 	height:18px;
 	width:18px;
+	top: 0;
+	left: 100%;
 }
 
 .biog-pic{

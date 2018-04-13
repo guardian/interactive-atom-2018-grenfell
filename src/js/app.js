@@ -10,7 +10,7 @@ const floors = 24;
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
 
-var previousShortList, previousLongList, previousListName;
+var previousShortList, previousLongList, previousListName, initAni;
 
 function init() {
     axios.get(`${process.env.PATH}/assets/data/grenfell-test-data.json`).then((resp) => {
@@ -21,23 +21,10 @@ function init() {
 
 function setData(data){
     data.forEach((d) => {
-        console.log(d);
 
         d.shortBio = d.bio.split(" ");
 
         d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";
-
-        console.log(d.shortBio.length)
-        // if(d.shortBio.length < 20){
-        //     var tempArr = [];
-
-        //     shortBio.forEach((str,i) => {
-        //         i < 20 ? tempArr.push(str)
-        //     });
-
-        //     d.shortBio = tempArr.join(" ");            
-
-        // }
         
     })
 
@@ -50,7 +37,7 @@ function buildView(data) {
     const listHTML = compileListHTML(data);
     document.querySelector('.gren-list-wrapper').innerHTML = listHTML;
     addListeners();
-    headlineAni()
+    floorsAni()
 }
 
 
@@ -108,7 +95,7 @@ function headlineAni() {
 function floorsAni() {
     var finalEl = document.querySelector(".floor-6");
     document.querySelectorAll(".gren-floor").forEach((el) => {
-        var delay = ((floors - el.getAttribute("floor-ref")) / 15) + "s";
+        var delay = ((floors - el.getAttribute("floor-ref")) / 30) + "s";
         el.classList.add("floor-ani");
         el.style.animationDelay = delay;
   
@@ -129,12 +116,24 @@ function standyAni(){
 }
 
 function listAni() {
+    var finalEl;
+
     document.querySelectorAll(".list-item-short").forEach((el) => {
-        var delay = ((el.getAttribute("key-ref")) / 10 )+ "s";
+        var delay = ((el.getAttribute("key-ref")) / 20 )+ "s";
         
         el.classList.add("animated");
         el.style.animationDelay = delay;
+        finalEl = el;
     })
+
+    finalEl.addEventListener('animationend', function(event) {
+       document.querySelectorAll(".list-item-short").forEach((el) => { 
+        el.style = "";
+        el.classList.remove("animated");
+        el.classList.add("animation-done");
+        console.log(el)
+    })
+    }, false);
 }
 
 

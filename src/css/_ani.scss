@@ -48,3 +48,16 @@
           40%  { color:white; }
           to   { color:$neutral-7;}
       }
+
+
+@-webkit-keyframes text-light-to-black {
+          from { color:$neutral-86;}
+          40%  { color:$neutral-86; }
+          to   { color:$neutral-7;}
+      }
+
+@keyframes  text-light-to-black {
+          from { color:$neutral-86;}
+          40%  { color:$neutral-86; }
+          to   { color:$neutral-7;}
+      }
