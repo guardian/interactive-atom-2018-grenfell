@@ -61,7 +61,7 @@
 	font-weight: bold;
 	
 	cursor:pointer;
-	color:$neutral-7 !important;
+	color:$neutral-7;
 	max-width: 240px;
 
 	margin: 0;
@@ -72,10 +72,10 @@
 
 
 .list-item-short-name{
-	// 
+	color: $neutral-86;
 	&.animated{
-		visibility:visible;
 		color: $neutral-86;
+		visibility:visible;		
 		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */ 
 		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
