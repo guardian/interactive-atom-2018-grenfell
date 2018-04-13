@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import Handlebars from 'handlebars/dist/handlebars'
+import throttle from 'lodash.throttle';
 
 import listTemplate from "../templates/list.html"
 
@@ -21,15 +22,11 @@ function init() {
 
 function setData(data){
     data.forEach((d) => {
-
         d.shortBio = d.bio.split(" ");
-
-        d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";
-        
+        d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";        
     })
 
     return data;
-
 }
 
 
@@ -70,26 +67,62 @@ function addListeners() {
     })
 }
 
-function headlineAni() {
-    
-    let elOne = document.querySelector("#Headline");
-    let elTwo = document.querySelector("#of_Grenfell");
-    
-    if (!isMobile) {
-        elOne = document.querySelector("#Headline_L");
-        elTwo = document.querySelector("#of_Grenfell_L");
-    }
+function addScrollListeners(){
+    var els = document.querySelectorAll(".list-item-short");
 
+        window.addEventListener('scroll', throttle(function (event) {
+            
+            var elsInView = [];
+
+            els.forEach((el) => {
+                if (isInViewport(el)) {
+                    el.querySelector('.gren-list-name').classList.remove('neutral-86');
+                    el.querySelector('.gren-list-name').classList.add('animated');
+                    elsInView.push(el);
+                }
+
+                if (!isInViewport(el)) {
+                    el.querySelector('.gren-list-name').classList.remove('animated');
+                    el.querySelector('.gren-list-name').classList.add('neutral-86');
+                }
+            })  
+
+            console.log("elsInView", elsInView);
+
+            // var nn = 0;
+
+            // var tgtEl;
+            // elsInView.forEach((el) => {
+            //     if(el.getAttribute("key-ref") > nn){
+            //         nn = el.getAttribute("key-ref");
+
+            //         tgtEl = el;
+            //     }
+            // })
+            // if(tgtEl){
+            //     tgtEl.querySelector('.gren-list-name').classList.remove('neutral-86')
+            // }
+            
+            if (previousLongList) {
+                previousLongList.classList.add("hide");
+            }
+
+
+        }, 500), false);
+
+}
+
+
+var isInViewport = function (elem) {
+    var bounding = elem.getBoundingClientRect();
     
-    elOne.classList.add("animated");
-    elTwo.classList.add("animated");
+    return (
+        bounding.top >= ((window.innerHeight * 0.25) || (document.documentElement.clientHeight * 0.25)) 
+        && bounding.left >= 0 
+        && bounding.bottom <= ((window.innerHeight * 0.5) || (document.documentElement.clientHeight * 0.5)) 
+        && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
 
-
-    elOne.addEventListener('animationend', function(event) {
-        standyAni()
-    }, false);
-
-    
 }
 
 function floorsAni() {
@@ -112,6 +145,7 @@ function standyAni(){
 
     elThree.addEventListener('animationend', function(event) {
         floorsAni();
+        
     }, false);
 }
 
@@ -127,12 +161,15 @@ function listAni() {
     })
 
     finalEl.addEventListener('animationend', function(event) {
-       document.querySelectorAll(".list-item-short").forEach((el) => { 
+    
+
+    document.querySelectorAll(".list-item-short").forEach((el) => { 
         el.style = "";
         el.classList.remove("animated");
         el.classList.add("animation-done");
-        console.log(el)
     })
+
+    addScrollListeners();
     }, false);
 }
 
@@ -140,16 +177,12 @@ function listAni() {
 
 function showFullBio(n){
     if (previousShortList) {
-        previousShortList.classList.remove("hide");
-        
+        previousShortList.classList.remove("hide");  
     }
 
     if (previousLongList) {
         previousLongList.classList.add("hide");
     }
-
-   
-
 
     document.querySelectorAll(".list-item-short").forEach((el) => {
         let nn = el.getAttribute("key-ref");
@@ -172,15 +205,11 @@ function showFullBio(n){
 
     })
 
-
     document.querySelectorAll(".list-item-short-name").forEach((el) => {    
             el.classList.add("neutral-86");
             previousListName = el;
     })
 
-    
-
-   
 }
 
 

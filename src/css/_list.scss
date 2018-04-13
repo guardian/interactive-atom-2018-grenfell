@@ -31,8 +31,7 @@
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	    animation-name: opacity-ani-fortypc;
 	    animation-duration: 1s;	   
-		animation-fill-mode: forwards;
-		
+		animation-fill-mode: forwards;	
 	}
 
 	&.animation-done{
@@ -53,6 +52,7 @@
 }
 
 
+
 .gren-list-name, .gren-list-bio-head{
 	font-family: 'Guardian Headline Full', Georgia, serif;
 	font-size:18px;
@@ -67,9 +67,22 @@
 	margin: 0;
 	 @include mq(desktop){
 	 	float: left;
-	 }
+	 }	
+}
 
-	
+
+.list-item-short-name{
+	// 
+	&.animated{
+		visibility:visible;
+		color: $neutral-86;
+		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */ 
+		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	    animation-name: text-light-to-black;
+	    animation-duration: 0.5s;	   
+		animation-fill-mode: forwards;	
+	}
 }
 
 // .gren-list-bio-head{
