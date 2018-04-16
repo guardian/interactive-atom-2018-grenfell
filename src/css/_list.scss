@@ -73,7 +73,7 @@
 
 .list-item-short-name{
 	color: $neutral-86;
-	&.animated{
+	&.animate-active{
 		color: $neutral-86;
 		visibility:visible;		
 		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */ 
@@ -97,14 +97,17 @@
 
 .gren-list-biog{
 	position:relative;
+	width:100%;
 	max-width:300px;
 	font-family: 'Guardian Text Egyptian Web', Georgia, serif;
 	font-size: 16px;
     line-height: 18px;
 	
-	@include mq(desktop){
-		top: 10px;
-		max-width: 620px;
+	@include mq(mobileLandscape){
+		max-width: 460px;
+	}
+	@include mq(tablet){
+		max-width: 540px;
 	}
 
 	&.short-biog{
@@ -113,7 +116,7 @@
 		color:$neutral-86;
 		font-size: 14px;
 		line-height: 18px;
-		width: 100%;
+
 		@include mq(desktop){
 			position:absolute;
 			top: 0;
@@ -165,7 +168,13 @@
 	font-size: 14px;
 	line-height: 18px;
 	width: 100%;
-	max-width:620px;
+	max-width:300px;
+		@include mq(mobileLandscape){
+			max-width: 460px;
+		}
+		@include mq(tablet){
+			max-width: 540px;
+		}
 		@include mq(desktop){
 			// position:absolute;
 			// top: 0;
@@ -173,7 +182,13 @@
 			padding-top:9px;
 			margin-bottom: 0;
 			font-size: 16px;
+			max-width: 620px;
 		}
+
+	
+
+
+		
 }
 
 .gren-long-biog-wrapper{
@@ -181,6 +196,23 @@
 		margin-left:250px;
 	}
 
+}
+
+.bio-expand-all{
+	position: fixed;
+    top: 6px;
+    background-color: #FFF;
+    right: 20px;
+    height: 30px;
+    padding: 18px 0 0;
+    width: 80px;
+    border-radius: 100px;
+    border: 1px solid;
+    padding: 0;
+    cursor: pointer;
+    font-family: $f-data;
+    font-size: 12px;
+    font-weight: light;
 }
 
 .short-bio-expand{
@@ -192,6 +224,19 @@
 	width:18px;
 	top: 0;
 	left: 100%;
+
+	
+
+	&.animate-active{
+	
+		visibility:visible;		
+		 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */ 
+		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	    animation-name: bg-light-to-black;
+	    animation-duration: 0.5s;	   
+		animation-fill-mode: forwards;	
+	}
 }
 
 .biog-pic{

@@ -11,7 +11,7 @@ const floors = 24;
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
 
-var previousShortList, previousLongList, previousListName, initAni;
+var previousShortList, previousLongList, previousListName, initAni, prevScroll;
 
 function init() {
     axios.get(`${process.env.PATH}/assets/data/grenfell-test-data.json`).then((resp) => {
@@ -26,6 +26,7 @@ function setData(data){
         d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";        
     })
 
+   
     return data;
 }
 
@@ -65,18 +66,27 @@ function addListeners() {
     document.querySelectorAll(".gren-list-item").forEach((el) =>{
         el.addEventListener('click', function() { showFullBio(this.getAttribute("key-ref")) });
     })
+
+    document.getElementById("expandAll").addEventListener('click',  function() { expandAllBiogs() })
 }
 
 function addScrollListeners(){
     var els = document.querySelectorAll(".list-item-short");
+    var headEl = document.querySelector(".gren-standy");
+    var expandAll = document.getElementById("expandAll");
+    var currScroll;
+  
 
         window.addEventListener('scroll', throttle(function (event) {
-            
+
+            !isInViewport(headEl) ?  expandAll.classList.remove("hide") :  expandAll.classList.add("hide") ;
+
+
+    
             var elsInView = [];
 
             els.forEach((el) => {
                 if (isInViewport(el)) {
-                   
                     elsInView.push(el);
                 }
 
@@ -87,43 +97,60 @@ function addScrollListeners(){
                 }
             })  
 
-            elsInView.forEach((el,i) => {
-                 el.querySelector('.gren-list-name').style.animationDelay = (i * 0.1)+"s";
-                 el.querySelector('.gren-list-name').classList.remove('neutral-86');
-                    el.querySelector('.gren-list-name').classList.add('animated');
+            currScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if(prevScroll && currScroll < prevScroll){ elsInView.reverse(); }
+
+            highlightElsInView([ elsInView[ Math.round((elsInView.length-1)/3)], elsInView[ Math.round((elsInView.length-1)/3) + 1], elsInView[ Math.round((elsInView.length-1)/3) + 2] ] )
+            
+            prevScroll = currScroll;
+        }, 500), false);
+
+
+
+
+}
+
+function resetListAni(){
+    document.querySelectorAll(".animate-active").forEach((el) => {
+                el.classList.remove("animate-active");
             })
 
-            // var nn = 0;
+    document.querySelectorAll(".short-bio-expand").forEach((el) => {
+                el.classList.remove("animate-active");
+            })
+}
 
-            // var tgtEl;
-            // elsInView.forEach((el) => {
-            //     if(el.getAttribute("key-ref") > nn){
-            //         nn = el.getAttribute("key-ref");
+function highlightElsInView(a){
+    
+    resetListAni();
 
-            //         tgtEl = el;
-            //     }
-            // })
-            // if(tgtEl){
-            //     tgtEl.querySelector('.gren-list-name').classList.remove('neutral-86')
-            // }
-            
-            if (previousLongList) {
-                previousLongList.classList.add("hide");
-            }
+    if(a[0]){
+        a.forEach((el,i) => {
+                var aniDelay = (i*0.15)+"s";
+                console.log(aniDelay)
+                el.querySelector('.gren-list-name').style.animationDelay = aniDelay;
+                el.querySelector('.gren-list-name').classList.remove('neutral-86');
+                el.querySelector('.gren-list-name').classList.add('animate-active');
+
+                el.querySelector('.short-bio-expand').style.animationDelay = aniDelay;
+                el.querySelector('.short-bio-expand').classList.add('animate-active');
+            })
+    }
 
 
-        }, 500), false);
+        
 
 }
 
 
 var isInViewport = function (elem) {
     var bounding = elem.getBoundingClientRect();
-    
+    // bounding.top >= (window.innerHeight * 0.1 || document.documentElement.clientHeight * 0.1) 
     return (
-        bounding.top >= ((window.innerHeight * 0.25) || (document.documentElement.clientHeight * 0.25)) 
+        bounding.top >= 0 
         && bounding.left >= 0 
-        && bounding.bottom <= ((window.innerHeight * 0.5) || (document.documentElement.clientHeight * 0.5)) 
+        && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) 
         && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 
@@ -177,7 +204,16 @@ function listAni() {
     }, false);
 }
 
+function expandAllBiogs(){
+    document.querySelectorAll(".list-item-short").forEach((el) => {
+            el.classList.add("hide");
+    })
 
+    document.querySelectorAll(".list-item-long").forEach((el) => {
+            el.classList.remove("hide");
+            el.classList.add("animated"); 
+    })
+}
 
 function showFullBio(n){
     if (previousShortList) {
@@ -187,6 +223,8 @@ function showFullBio(n){
     if (previousLongList) {
         previousLongList.classList.add("hide");
     }
+
+    resetListAni();
 
     document.querySelectorAll(".list-item-short").forEach((el) => {
         let nn = el.getAttribute("key-ref");
@@ -223,6 +261,10 @@ function showFullBio(n){
             previousListName = el;
     })
 
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 

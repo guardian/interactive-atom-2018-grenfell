@@ -17,7 +17,10 @@
 	TO DO
 
 7. animate in a group of list items towards centre of list as user scrolls.
-	TO DO
+	FIXED
 
 8. Test all in mobile and app view
 	TO DO ---
+
+9. Change design of floor ani stripes
+	FIXED - BUT TEST AGAIN WITH REAL DATA

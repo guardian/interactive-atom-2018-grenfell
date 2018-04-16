@@ -73,7 +73,7 @@ function setData(){
 
 	Object.entries(floorsArr).forEach(([key, value]) => { 
 		var tempObj = {}; 
-		tempObj.floorNum = key; 
+		tempObj.floorNum = getFloorNum(key); 
 		tempObj.objArr = value; 
 		tempObj.count = tempObj.objArr.length
 		tempArr.push(tempObj); 
@@ -86,13 +86,18 @@ function setData(){
 
 
 	tempArr.forEach((el, i ) => {
-		el.pcOfMax = Math.round((el.count/max.count)*100);
+		el.pcOfMax = 100 - (Math.round((el.count/max.count)*100));
 	})
 
 	tempArr.reverse(); 
 
 	return tempArr;
 
+}
+
+function getFloorNum(n){
+	console.log(n);
+	return n;
 }
 
 
