@@ -11,7 +11,7 @@ const floors = 24;
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
 
-var previousShortList, previousLongList, previousListName, initAni, prevScroll;
+var previousShortList, previousLongList, previousListName, initAni, prevScroll, expandedBiogs = false;
 
 function init() {
     axios.get(`${process.env.PATH}/assets/data/grenfell-test-data.json`).then((resp) => {
@@ -67,19 +67,30 @@ function addListeners() {
         el.addEventListener('click', function() { showFullBio(this.getAttribute("key-ref")) });
     })
 
-    document.getElementById("expandAll").addEventListener('click',  function() { expandAllBiogs() })
+    document.getElementById("expandAll").addEventListener('click',  function() { expandAllBiogs() });
+
+    document.getElementById("hideAll").addEventListener('click',  function() { hideAllBiogs() });
+
 }
 
 function addScrollListeners(){
     var els = document.querySelectorAll(".list-item-short");
-    var headEl = document.querySelector(".gren-standy");
-    var expandAll = document.getElementById("expandAll");
+    var headEl = document.getElementById("grenStandy");
+    var expandBtn;
     var currScroll;
+
+    
+
+    
   
-
         window.addEventListener('scroll', throttle(function (event) {
+            console.log(expandedBiogs);
 
-            !isInViewport(headEl) ?  expandAll.classList.remove("hide") :  expandAll.classList.add("hide") ;
+            
+            expandedBiogs ? expandBtn = document.getElementById("hideAll") : expandBtn = document.getElementById("expandAll");
+
+            
+            !isInViewport(headEl) ?  expandBtn.classList.remove("hide") :  expandBtn.classList.add("hide") ;
 
 
     
@@ -205,6 +216,11 @@ function listAni() {
 }
 
 function expandAllBiogs(){
+  expandedBiogs = true;  
+
+    document.getElementById("expandAll").classList.add("hide");
+    document.getElementById("hideAll").classList.remove("hide");
+
     document.querySelectorAll(".list-item-short").forEach((el) => {
             el.classList.add("hide");
     })
@@ -213,6 +229,28 @@ function expandAllBiogs(){
             el.classList.remove("hide");
             el.classList.add("animated"); 
     })
+
+    
+}
+
+
+function hideAllBiogs(){
+
+    expandedBiogs = false;
+
+    document.getElementById("expandAll").classList.remove("hide");
+    document.getElementById("hideAll").classList.add("hide");
+
+    document.querySelectorAll(".list-item-short").forEach((el) => {
+            el.classList.remove("hide");
+    })
+
+    document.querySelectorAll(".list-item-long").forEach((el) => {
+            el.classList.add("hide");
+            el.classList.remove("animated"); 
+    })
+
+    
 }
 
 function showFullBio(n){
