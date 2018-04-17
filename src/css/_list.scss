@@ -222,8 +222,25 @@
 }
 
 .rotate-45{
-	transform: rotate(45deg);
+	-webkit-animation-name: icon-rotate; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	animation-name: icon-rotate;
+	animation-duration: 0.5s;	   
+    animation-fill-mode: forwards;	
 }
+
+.rotate-minus-45{
+	
+	-webkit-animation-name: icon-anti-cw-rotate; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	animation-name: icon-anti-cw-rotate;
+	animation-duration: 0.5s;	   
+    animation-fill-mode: forwards;	
+}
+
+
 
 
 

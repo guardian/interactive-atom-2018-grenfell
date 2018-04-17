@@ -87,6 +87,7 @@ function setData(){
 
 	tempArr.forEach((el, i ) => {
 		el.pcOfMax = 100 - (Math.round((el.count/max.count)*100));
+		el.widthShim = el.count * 5;
 	})
 
 	tempArr.reverse(); 

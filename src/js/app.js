@@ -230,7 +230,6 @@ function expandAllBiogs(){
             el.classList.add("animated"); 
     })
 
-    
 }
 
 

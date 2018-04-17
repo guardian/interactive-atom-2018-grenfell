@@ -75,4 +75,31 @@
           to   { color:$neutral-7;}
       }
 
+@-webkit-keyframes icon-rotate {
+          from { transform: rotate(0deg);}
+          40%  { transform: rotate(45deg);}
+          to   { transform: rotate(45deg);}
+      }
+
+@keyframes  icon-rotate {
+          from { transform: rotate(0deg);}
+          40%  { transform: rotate(45deg);}
+          to   { transform: rotate(45deg);}
+      }
+
+@-webkit-keyframes icon-anti-cw-rotate {
+          from { transform: rotate(45deg);}
+          40%  { transform: rotate(0deg);}
+          to   { transform: rotate(0deg);}
+      }
+
+@keyframes  icon-anti-cw-rotate {
+          from { transform: rotate(45deg);}
+          40%  { transform: rotate(0deg);}
+          to   { transform: rotate(0deg);}
+      }
+
+
+
+
 

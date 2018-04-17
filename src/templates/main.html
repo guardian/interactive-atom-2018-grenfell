@@ -2,7 +2,7 @@
     <div class="header-wrapper">
         <div class="gren-floors">
             {{#each this}}
-            <div class="gren-floor floor-{{{floorNum}}}" style="width: {{{pcOfMax}}}%;" floor-ref="{{{floorNum}}}">
+            <div class="gren-floor floor-{{{floorNum}}}" style="width: calc(100% - {{{widthShim}}}px);" floor-ref="{{{floorNum}}}">
             </div>
             {{/each}}
         </div>
