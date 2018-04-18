@@ -73,7 +73,10 @@ function addListeners() {
 
 }
 
-//function addScrollListeners(){
+function addScrollListeners(){
+
+// Example
+scrollStop(updateListView);
     // var els = document.querySelectorAll(".list-item-short");
     // var headEl = document.getElementById("grenStandy");
     // var expandBtn;
@@ -114,7 +117,7 @@ function addListeners() {
 
 
 
-//}
+}
 
 function resetListAni(){
     document.querySelectorAll(".animate-active").forEach((el) => {
@@ -172,6 +175,7 @@ function floorsAni() {
 
     finalEl.addEventListener('animationend', function(event) {
        listAni();
+       addScrollListeners();
     }, false);
 }
 
@@ -205,7 +209,7 @@ function listAni() {
         el.classList.add("animation-done");
     })
 
-    //addScrollListeners();
+
     }, false);
 }
 
@@ -335,8 +339,9 @@ var scrollStop = function ( callback ) {
 };
 
 
-// Example
-scrollStop(function () {
+
+
+function updateListView() {
     var els = document.querySelectorAll(".list-item-short");
     var headEl = document.getElementById("grenStandy");
     var expandBtn;
@@ -366,7 +371,7 @@ scrollStop(function () {
             highlightElsInView([ elsInView[ Math.round((elsInView.length-1)/3)], elsInView[ Math.round((elsInView.length-1)/3) + 1], elsInView[ Math.round((elsInView.length-1)/3) + 2] ] )
             
             prevScroll = currScroll;
-});
+}
 
 
 init();
