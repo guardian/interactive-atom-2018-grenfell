@@ -76,12 +76,10 @@ function addListeners() {
 function addScrollListeners(){
     var els = document.querySelectorAll(".list-item-short");
     var headEl = document.getElementById("grenStandy");
+    var mobileHeadEl = document.getElementById("mobileHeadEl");
     var expandBtn;
     var currScroll;
 
-    
-
-    
   
         window.addEventListener('scroll', throttle(function (event) {
             console.log(expandedBiogs);
@@ -92,8 +90,6 @@ function addScrollListeners(){
             
             !isInViewport(headEl) ?  expandBtn.classList.remove("hide") :  expandBtn.classList.add("hide") ;
 
-
-    
             var elsInView = [];
 
             els.forEach((el) => {
