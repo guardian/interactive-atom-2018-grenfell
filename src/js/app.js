@@ -73,50 +73,48 @@ function addListeners() {
 
 }
 
-function addScrollListeners(){
-    var els = document.querySelectorAll(".list-item-short");
-    var headEl = document.getElementById("grenStandy");
-    var mobileHeadEl = document.getElementById("mobileHeadEl");
-    var expandBtn;
-    var currScroll;
-
+//function addScrollListeners(){
+    // var els = document.querySelectorAll(".list-item-short");
+    // var headEl = document.getElementById("grenStandy");
+    // var expandBtn;
+    // var currScroll;
   
-        window.addEventListener('scroll', throttle(function (event) {
-            console.log(expandedBiogs);
+        // window.addEventListener('scroll', throttle(function (event) {
+            
+        //     expandedBiogs ? expandBtn = document.getElementById("hideAll") : expandBtn = document.getElementById("expandAll");
 
             
-            expandedBiogs ? expandBtn = document.getElementById("hideAll") : expandBtn = document.getElementById("expandAll");
+        //     !isInViewport(headEl) ?  expandBtn.classList.remove("hide") :  expandBtn.classList.add("hide") ;
 
+
+    
+        //     var elsInView = [];
+
+        //     els.forEach((el) => {
+        //         if (isInViewport(el)) {
+        //             elsInView.push(el);
+        //         }
+
+        //         if (!isInViewport(el)) {
+        //             el.querySelector('.gren-list-name').classList.remove('animated');
+        //             el.querySelector('.gren-list-name').classList.add('neutral-86');
+        //             el.querySelector('.gren-list-name').style = "";
+        //         }
+        //     })  
+
+        //     currScroll = window.pageYOffset || document.documentElement.scrollTop;
             
-            !isInViewport(headEl) ?  expandBtn.classList.remove("hide") :  expandBtn.classList.add("hide") ;
+        //     if(prevScroll && currScroll < prevScroll){ elsInView.reverse(); }
 
-            var elsInView = [];
-
-            els.forEach((el) => {
-                if (isInViewport(el)) {
-                    elsInView.push(el);
-                }
-
-                if (!isInViewport(el)) {
-                    el.querySelector('.gren-list-name').classList.remove('animated');
-                    el.querySelector('.gren-list-name').classList.add('neutral-86');
-                    el.querySelector('.gren-list-name').style = "";
-                }
-            })  
-
-            currScroll = window.pageYOffset || document.documentElement.scrollTop;
+        //     highlightElsInView([ elsInView[ Math.round((elsInView.length-1)/3)], elsInView[ Math.round((elsInView.length-1)/3) + 1], elsInView[ Math.round((elsInView.length-1)/3) + 2] ] )
             
-            if(prevScroll && currScroll < prevScroll){ elsInView.reverse(); }
-
-            highlightElsInView([ elsInView[ Math.round((elsInView.length-1)/3)], elsInView[ Math.round((elsInView.length-1)/3) + 1], elsInView[ Math.round((elsInView.length-1)/3) + 2] ] )
-            
-            prevScroll = currScroll;
-        }, 500), false);
+        //     prevScroll = currScroll;
+        // }, 500), false);
 
 
 
 
-}
+//}
 
 function resetListAni(){
     document.querySelectorAll(".animate-active").forEach((el) => {
@@ -134,7 +132,7 @@ function highlightElsInView(a){
 
     if(a[0]){
         a.forEach((el,i) => {
-                var aniDelay = (i*0.15)+"s";
+                var aniDelay = ((i*0.15) + 0.2)+"s";
                 console.log(aniDelay)
                 el.querySelector('.gren-list-name').style.animationDelay = aniDelay;
                 el.querySelector('.gren-list-name').classList.remove('neutral-86');
@@ -207,7 +205,7 @@ function listAni() {
         el.classList.add("animation-done");
     })
 
-    addScrollListeners();
+    //addScrollListeners();
     }, false);
 }
 
@@ -299,6 +297,76 @@ function showFullBio(n){
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
+
+
+
+
+/*! scrollStop.js | (c) 2017 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/scrollStop */
+/**
+ * Run functions after scrolling has stopped
+ * @param  {Function} callback The function to run after scrolling
+ */
+
+var scrollStop = function ( callback ) {
+
+    // Make sure a valid callback was provided
+    if ( !callback || Object.prototype.toString.call( callback ) !== '[object Function]' ) return;
+
+    // Setup scrolling variable
+    var isScrolling;
+
+    // Listen for scroll events
+    window.addEventListener('scroll', function ( event ) {
+
+        // Clear our timeout throughout the scroll
+        window.clearTimeout( isScrolling );
+
+        // Set a timeout to run after scrolling ends
+        isScrolling = setTimeout(function() {
+
+            // Run the callback
+            callback();
+
+        }, 66);
+
+    }, false);
+
+};
+
+
+// Example
+scrollStop(function () {
+    var els = document.querySelectorAll(".list-item-short");
+    var headEl = document.getElementById("grenStandy");
+    var expandBtn;
+    var currScroll;
+    expandedBiogs ? expandBtn = document.getElementById("hideAll") : expandBtn = document.getElementById("expandAll");
+
+            !isInViewport(headEl) ?  expandBtn.classList.remove("hide") :  expandBtn.classList.add("hide") ;
+
+            var elsInView = [];
+
+            els.forEach((el) => {
+                if (isInViewport(el)) {
+                    elsInView.push(el);
+                }
+
+                if (!isInViewport(el)) {
+                    el.querySelector('.gren-list-name').classList.remove('animated');
+                    el.querySelector('.gren-list-name').classList.add('neutral-86');
+                    el.querySelector('.gren-list-name').style = "";
+                }
+            })  
+
+            currScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if(prevScroll && currScroll < prevScroll){ elsInView.reverse(); }
+
+            highlightElsInView([ elsInView[ Math.round((elsInView.length-1)/3)], elsInView[ Math.round((elsInView.length-1)/3) + 1], elsInView[ Math.round((elsInView.length-1)/3) + 2] ] )
+            
+            prevScroll = currScroll;
+});
 
 
 init();
