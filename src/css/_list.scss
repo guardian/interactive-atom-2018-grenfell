@@ -97,8 +97,7 @@
 
 .gren-list-biog{
 	position:relative;
-	width:100%;
-	max-width:300px;
+	width: calc(100% - 40px);
 	font-family: 'Guardian Text Egyptian Web', Georgia, serif;
 	font-size: 16px;
     line-height: 18px;
@@ -107,8 +106,10 @@
 		max-width: 460px;
 	}
 	@include mq(tablet){
+		width: 100%;
 		max-width: 540px;
 	}
+
 
 	&.short-biog{
 		position:relative;
@@ -160,12 +161,13 @@
 	color:$neutral-86;
 	font-size: 14px;
 	line-height: 18px;
-	width: 100%;
-	max-width:300px;
+	width: calc(100% - 40px);
 		@include mq(mobileLandscape){
+			
 			max-width: 460px;
 		}
 		@include mq(tablet){
+			width: 100%;
 			max-width: 540px;
 		}
 		@include mq(desktop){
@@ -175,7 +177,6 @@
 			padding-top:9px;
 			margin-bottom: 0;
 			font-size: 16px;
-			max-width: 620px;
 		}
 
 	
@@ -193,14 +194,13 @@
 
 .bio-expand-all{
 	position: fixed;
-    top: 12px;
+    bottom: 18px;
     background-color: #FFF;
     right: 20px;
     height: 24px;
     padding: 8px 0 4px 9px;
     width: 96px;
     border-radius: 100px;
-    cursor: pointer;
     font-family: $f-sans-serif-text;
     font-size: 13px;
     color: #FFF;
@@ -219,6 +219,10 @@
     &.hide-all:after{
     	content:'hide all';
     }
+
+    @include mq(tablet){
+    	// top: 12px;
+    }
 }
 
 .rotate-45{
@@ -231,7 +235,7 @@
 }
 
 .rotate-minus-45{
-	
+
 	-webkit-animation-name: icon-anti-cw-rotate; /* Safari 4.0 - 8.0 */ 
 	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
 	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
@@ -251,8 +255,12 @@
 	background-color: $neutral-86;
 	height:18px;
 	width:18px;
-	top: 0;
+	top: -36px;
 	left: 100%;
+
+	@include mq(desktop){
+		top: 0;
+	}
 
 	&.animate-active{	
 		visibility:visible;		
@@ -286,18 +294,7 @@
 		height: 100%;
 		border: 1px solid $neutral-7;
 	}
-
-	
 }
-
-.hide{
-	display: none;
-}
-
-.show{
-	display:block;
-}
-
 
 .atom--snippet__handle, .atom--snippet__feedback .atom__button {
     background: #121212;
@@ -345,5 +342,14 @@
     width: 20px;
     height: 20px;
     margin-right: 10px;
+}
+
+
+.hide{
+	display: none;
+}
+
+.show{
+	display:block;
 }
 
