@@ -5,13 +5,13 @@
 	FIXED
 
 3. HEader and standy to appear from frame 1.
-	FIXED
+	DONE
 
 4. Anchor CTA button position in list items
-	FIXED
+	DONE
 
 5. Re-organise layout of list items to include intro text
-	FIXED
+	DONE
 
 6. introduce expand all UX el
 	DONE
@@ -24,3 +24,14 @@
 
 9. Change design of floor ani stripes
 	DONE - BUT TEST AGAIN WITH REAL DATA
+
+	Hi Andy
+	I've just spoken with Maria (my partner)and some uncertainty has come to light about her job in Spain. She only found this out yesterday - and I found out earlier this afternoon. 
+
+	She's been told she'll be given a decision on her job status by the end of this week. If she has to return to London then I couldn't let the room out. If things work out for her I'd be really happy to rent the room to you from next Wednesday (I'm not advertising it and won't be doing any more viewings in the interim). I'll let you know as soon as I hear news from her.
+
+	Apologies for the uncertainty here. Feel free to text/call or email chrisefenn@googlemail.com.
+
+	Best regards
+
+	Chris.
