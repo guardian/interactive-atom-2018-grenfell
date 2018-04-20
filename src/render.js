@@ -1,13 +1,39 @@
+import fs from 'fs'
 import groupBy from 'lodash/groupby'
 import Handlebars from 'handlebars/dist/handlebars'
+import rp from "request-promise"
 
 import templateHTML from "./src/templates/main.html!text"
+import listTemplate from "./src/templates/list.html!text"
 
 export async function render() {
 	// this function just has to return a string of HTML
 	// you can generate this using js, e.g. using Mustache.js
 
+	const shortData = JSON.parse(fs.readFileSync("./src/assets/firstTen.json"));
+
 	const data = setData();
+
+	console.log(shortData.length)
+
+	shortData.forEach((d,i) => {
+		d.bio = " ";
+		d.name= d["Name"];
+        d.shortBio = d["Short-biog"];
+        d.grid_photo = d["Pic-url"];
+
+        if(d["Long-biog"]){ d.bio = JSON.stringify(d["Long-biog"]) }
+        // if(d["Long-biog"]){ d.bio = JSON.stringify(d["Long-biog"]).split('\r\') };
+        console.log(d.bio )
+        // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";     
+    })
+
+	//console.log(shortData)
+	data.shortData = shortData;
+
+	data.floorsArr = data;
+
+	// console.log(data)
 
 	const renderedHTML = renderHTML(data);
 
@@ -15,12 +41,29 @@ export async function render() {
 }
 
 
-function renderHTML(dataIn){
+function formatShortData(data){
+	data.forEach((d) => {
+        // d.shortBio = d["Short-biog"].split(" ");
+        // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";        
 
+       // console.log(d.Name)
+    })
+
+
+}
+
+function renderHTML(dataIn){
+	Handlebars.registerHelper('nl2br', function (text, isXhtml) {
+	  var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br />' : '<br>';
+	  return (text + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+	});
+	
     Handlebars.registerHelper('html_decoder', function(text) {
         var str = unescape(text).replace(/&amp;/g, '&');
         return str;
     });
+
+
 
     // Handlebars.registerPartial({
     //     'headerItem': paraItem,
@@ -97,7 +140,7 @@ function setData(){
 }
 
 function getFloorNum(n){
-	console.log(n);
+	
 	return n;
 }
 

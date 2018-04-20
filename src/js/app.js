@@ -14,16 +14,24 @@ const isMobile = screenWidth < 740;
 var previousShortList, previousLongList, previousListName, initAni, prevScroll, expandedBiogs = false;
 
 function init() {
-    axios.get(`${process.env.PATH}/assets/data/grenfell-test-data.json`).then((resp) => {
+    axios.get(`${process.env.PATH}/assets/appData.json`).then((resp) => {
+
         var data = setData(resp.data);
+
         buildView(data);
     });
 }
 
 function setData(data){
+        console.log(data)
     data.forEach((d) => {
-        d.shortBio = d.bio.split(" ");
-        d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";        
+        // d.shortBio = d.bio.split(" ");
+        // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";    
+
+        d.name = d["Name"];
+        d.shortBio = d["Short-biog"];
+        d.grid_photo = d["Pic-url"];
+        d.bio =  d["Long-biog"];   
     })
 
    
@@ -32,10 +40,14 @@ function setData(data){
 
 
 function buildView(data) {
+
     const listHTML = compileListHTML(data);
-    document.querySelector('.gren-list-wrapper').innerHTML = listHTML;
+    document.querySelector('.gren-list-wrapper').insertAdjacentHTML('beforeend', listHTML);   //.innerHTML = listHTML; 
     addListeners();
     floorsAni()
+
+
+
 }
 
 
@@ -45,6 +57,20 @@ function compileListHTML(dataIn) {
         var str = unescape(text).replace(/&amp;/g, '&');
         return str;
     });
+
+    Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+        
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];
+});
+
 
     var content = Handlebars.compile(
         listTemplate, {

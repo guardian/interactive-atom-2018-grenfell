@@ -11,9 +11,21 @@ async function start() {
 
     const allRequests = links.map(d => rp(d));
 
-    Promise.all(allRequests)
+    const firstTen = allRequests.slice(0, 9);
+
+    const appData = allRequests.slice(10, allRequests.length);
+
+    Promise.all(appData)
         .then(d => {
-            fs.writeFileSync("./src/assets/all.json", d);
+            fs.writeFileSync("./src/assets/appData.json", d); //JSON.stringify(d)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
+    Promise.all(firstTen)
+        .then(d => {
+            fs.writeFileSync("./src/assets/firstTen.json", d); //JSON.stringify(d)
         })
         .catch(err => {
             console.log(err);
@@ -21,3 +33,4 @@ async function start() {
 }
 
 start();
+
