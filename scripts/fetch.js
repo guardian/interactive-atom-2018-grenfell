@@ -7,15 +7,16 @@ async function start() {
         json: true
     })).sheets["Duplicate name list for interactive"];
 
-    const links = masterSheet.map(d => d["Link to copy"]).filter(d => d !== "");
+    const links = masterSheet.filter(d => d["appearing_in_S3_tool"] === "Y").map(d => d["s3 url"]).filter(d => d !== "");
 
-    const keys = links.map(c => c.match(/\/document\/d\/([a-zA-Z0-9-_]+)/)[1]);
-
-    const allRequests = keys.map(d => rp("https://interactive.guim.co.uk/docsdata-test/" + d + ".json"))
+    const allRequests = links.map(d => rp(d));
 
     Promise.all(allRequests)
         .then(d => {
-            console.log(d);
+            fs.writeFileSync("./src/assets/all.json", d);
+        })
+        .catch(err => {
+            console.log(err);
         });
 }
 
