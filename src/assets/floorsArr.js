@@ -1,0 +1,1 @@
+[{"floorNum":"14","peopleNum":4},{"floorNum":"15","peopleNum":1},{"floorNum":"16","peopleNum":5},{"floorNum":"17","peopleNum":1},{"floorNum":"18","peopleNum":4},{"floorNum":"19","peopleNum":3},{"floorNum":"20","peopleNum":7},{"floorNum":"21","peopleNum":1},{"floorNum":"22","peopleNum":8},{"floorNum":"23","peopleNum":9},{"floorNum":"Non resident","peopleNum":1}]
