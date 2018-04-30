@@ -2,7 +2,7 @@
 	position: relative;
 	margin-left:10px;
 	padding-top: 0;
-	min-height: 500px;	
+	min-height: 500px;
 	margin-bottom:60px;
 
 	@include mq(desktop){
@@ -28,11 +28,11 @@
 	&.animated{
 		visibility:visible;
 		 -webkit-animation-name: opacity-ani-fortypc; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */ 
+		 -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	    animation-name: opacity-ani-fortypc;
-	    animation-duration: 1s;	   
-		animation-fill-mode: forwards;	
+	    animation-duration: 1s;
+		animation-fill-mode: forwards;
 	}
 
 	&.animation-done{
@@ -60,15 +60,15 @@
 	font-style: italic;
 	line-height: 33px;
 	font-weight: bold;
-	
+
 	cursor:pointer;
-	color:$neutral-7;
+	color:$neutral-100;
 	max-width: 240px;
 
 	margin: 0;
 	 @include mq(desktop){
 	 	float: left;
-	 }	
+	 }
 }
 
 
@@ -76,13 +76,13 @@
 	color: $neutral-86;
 	&.animate-active{
 		color: $neutral-86;
-		visibility:visible;		
-		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */ 
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+		visibility:visible;
+		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	    animation-name: text-light-to-black;
-	    animation-duration: 0.5s;	   
-		animation-fill-mode: forwards;	
+	    animation-duration: 0.5s;
+		animation-fill-mode: forwards;
 	}
 }
 
@@ -101,8 +101,9 @@
 	width: calc(100% - 40px);
 	font-family: 'Guardian Text Egyptian Web', Georgia, serif;
 	font-size: 16px;
-    line-height: 18px;
-	
+  line-height: 18px;
+	color:$neutral-100;
+
 	@include mq(mobileLandscape){
 		max-width: 460px;
 	}
@@ -115,7 +116,7 @@
 	&.short-biog{
 		position:relative;
 		margin-bottom:9px;
-		color:$neutral-86;
+		color:$neutral-100;
 		font-size: 14px;
 		line-height: 18px;
 
@@ -159,12 +160,12 @@
 
 .short-biog-insert{
 	position: relative;
-	color:$neutral-86;
+	color:$neutral-100;
 	font-size: 14px;
 	line-height: 18px;
 	width: calc(100% - 40px);
 		@include mq(mobileLandscape){
-			
+
 			max-width: 460px;
 		}
 		@include mq(tablet){
@@ -180,10 +181,10 @@
 			font-size: 16px;
 		}
 
-	
 
 
-		
+
+
 }
 
 .gren-long-biog-wrapper{
@@ -196,7 +197,7 @@
 .bio-expand-all{
 	position: fixed;
     bottom: 18px;
-    background-color: #FFF;
+    background-color: $neutral-7;
     right: 15px;
     height: 24px;
     padding: 8px 0 4px 9px;
@@ -204,9 +205,9 @@
     border-radius: 100px;
     font-family: $f-sans-serif-text;
     font-size: 13px;
-    color: #FFF;
-    background-color: $neutral-7;
-    border: 1px solid  $neutral-7;
+    color: $neutral-7;
+    background-color: $neutral-100;
+    border: 1px solid  $neutral-100;
     font-weight: light;
     cursor:pointer;
 
@@ -228,22 +229,22 @@
 }
 
 .rotate-45{
-	-webkit-animation-name: icon-rotate; /* Safari 4.0 - 8.0 */ 
-	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-name: icon-rotate; /* Safari 4.0 - 8.0 */
+	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	animation-name: icon-rotate;
-	animation-duration: 0.5s;	   
-    animation-fill-mode: forwards;	
+	animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
 .rotate-minus-45{
 
-	-webkit-animation-name: icon-anti-cw-rotate; /* Safari 4.0 - 8.0 */ 
-	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-name: icon-anti-cw-rotate; /* Safari 4.0 - 8.0 */
+	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	animation-name: icon-anti-cw-rotate;
-	animation-duration: 0.5s;	   
-    animation-fill-mode: forwards;	
+	animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
 
@@ -254,7 +255,8 @@
 	position: absolute;
 	margin-left: 6px;
 	border-radius: 100px;
-	background-color: $neutral-86;
+	background-color: $neutral-7;
+	border: 1px solid $neutral-100;
 	height:18px;
 	width:18px;
 	top: -27px;
@@ -264,14 +266,14 @@
 		top: 0;
 	}
 
-	&.animate-active{	
-		visibility:visible;		
-		 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */ 
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	&.animate-active{
+		visibility:visible;
+		 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	    animation-name: bg-light-to-black;
-	    animation-duration: 0.5s;	   
-		animation-fill-mode: forwards;	
+	    animation-duration: 0.5s;
+		animation-fill-mode: forwards;
 	}
 }
 
@@ -354,4 +356,3 @@
 .show{
 	display:block;
 }
-

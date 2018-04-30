@@ -9,7 +9,11 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 html {
-    background-color: white;
+    background-color: #121212;
+}
+
+body {
+  background-color: #121212;
 }
 
 .element-atom,
@@ -19,7 +23,7 @@ html {
 
 .page-wrapper {
     max-width: 1300px;
-    background-color: #fff;
+    background-color: #121212;
     margin: 80px auto 0;
     position: relative;
     @include mq(leftCol) {
@@ -33,7 +37,7 @@ html {
         position: absolute;
         @include mq(leftCol) {
             left: 160px;
-            border-right: 1px solid #000;
+            border-right: 1px solid #ffffff;
             top: 32px;
         }
         @include mq(wide) {
