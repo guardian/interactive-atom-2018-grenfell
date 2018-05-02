@@ -19,6 +19,7 @@
         </div>
     </div>
 
+
     <div class="gren-list-wrapper">
         {{#each shortData}}
        <div class="gren-list-item list-item-short" key-ref="{{@key}}">
@@ -27,17 +28,18 @@
 
                 {{{shortBio}}}
 
+                <div class="short-bio-expand">
+                  <div class="short-bio-expand-btn"  key-ref="{{@key}}">
 
-                <div class="short-bio-expand"  key-ref="{{@key}}">
-
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     width="18px" height="18px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve">
-                <g id="Page-1">
-                    <polygon id="More" fill="#FFFFFF" points="8.236,9.764 8.507,16 9.477,16 9.764,9.764 16,9.478 16,8.507 9.764,8.236 9.477,2
-                        8.507,2 8.236,8.236 2,8.507 2,9.478     "/>
-                </g>
-                </svg>
-
+                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                       width="18px" height="18px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve">
+                  <g id="Page-1">
+                      <polygon id="More" fill="#FFFFFF" points="8.236,9.764 8.507,16 9.477,16 9.764,9.764 16,9.478 16,8.507 9.764,8.236 9.477,2
+                          8.507,2 8.236,8.236 2,8.507 2,9.478     "/>
+                  </g>
+                  </svg>
+                </div>
+                <p class="short-bio-copy">Full extract</p>
             </div>
         </div>
 
@@ -59,5 +61,5 @@
 </div>
        {{/each}}
 
-    </div>
+  </div>
 </div>
