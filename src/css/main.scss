@@ -24,27 +24,13 @@ body {
 .page-wrapper {
     max-width: 1300px;
     background-color: #121212;
-    margin: 80px auto 0;
+    margin: 0px auto;
     position: relative;
     @include mq(leftCol) {
-        margin-top: 120px;
-    }
-    &::before {
-        content: '';
-        display: block;
-        height: 100%;
-        width: 0;
-        position: absolute;
-        @include mq(leftCol) {
-            left: 160px;
-            border-right: 1px solid #ffffff;
-            top: 32px;
-        }
-        @include mq(wide) {
-            left: 240px;
-        }
+        margin-top: 0px;
     }
 }
+
 
 .show-mobile {
     display: block;

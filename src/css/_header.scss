@@ -2,63 +2,88 @@
 	position: relative;
 	margin-left:10px;
 	padding-top: 0;
+	height: 30vh;
+	display: block;
+	margin-top: 0px;
+	padding-top: 50vh;
 
 	@include mq(leftCol){
-		margin-left:170px;
+		height: 60vh;
+		padding-top: 20vh;
 
 	}
-
-	@include mq(wide){
-		margin-left:250px;
-	}
+	//
+	// @include mq(wide){
+	// 	margin-left:250px;
+	// }
 }
 
 
-.gren-floors{
-	position: relative;
-	width:130px;
+// .gren-floors{
+// 	position: relative;
+// 	width:130px;
+//
+// 	@include mq(desktop){
+// 		width:230px;
+// 	}
+// }
 
-	@include mq(desktop){
-		width:230px;
-	}
-}
+// .gren-floor{
+// // 	position: relative;
+// // 	height:8px;
+// // 	margin-bottom:10px;
+// // 	background-color:$neutral-7;
+// // 	visibility: hidden;
+// //
+// // 	@include mq(desktop){
+// // 		height:12px;
+// // 		margin-bottom:20px;
+// // 	}
+// //
+// // 	&:first-child{
+// // 		margin-left: 40px;
+// // 	}
+// // }
 
-.gren-floor{
-	position: relative;
-	height:8px;
-	margin-bottom:10px;
-	background-color:$neutral-7;
-	visibility: hidden;
-
-	@include mq(desktop){
-		height:12px;
-		margin-bottom:20px;
-	}
-
-	&:first-child{
-		margin-left: 40px;
-	}
+.gren-headline.show-mobile {
+	display: block;
+	background: url('<%= path %>/assets/grenfell-logo.svg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: absolute;
+	height: 98px;
+	width: 337px;
+	@include mq(tablet){
+	display: none;
+		}
 }
 
 .gren-header-txt{
 	position:relative;
 
-	@include mq(desktop){
+	@include mq(tablet){
 		position: absolute;
-		top: -5px;
-		left: 330px;
+		left: 90px;
 	}
 
 }
 
 .gren-standy{
 	font-family: 'Guardian Headline Full', Georgia, serif;
-	font-size:20px;
+	font-size: 20px;
 	line-height: 24px;
 	font-weight: 200;
 	max-width: 300px;
-	margin-bottom: 36px;
+	padding-top: 108px;
 	color: $neutral-100;
+	padding-left: 94px;
+
+	@include mq(tablet){
+		padding-top: 0px;
+		position: absolute;
+		left: 148px;
+		padding-left: 0px;
+	}
 }
 
 .floor-ani{
