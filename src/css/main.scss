@@ -22,14 +22,62 @@ body {
 }
 
 
-.page-wrapper {
-    max-width: 1300px;
-    margin: 0px auto;
-    position: relative;
+.gv-page-width {
+        margin: 0 auto;
+        @each $bp in (phablet,
+        tablet,
+        desktop,
+        leftCol,
+        wide) {
+            @include mq($bp) {
+                max-width: map-get($mq-breakpoints, $bp);
+            }
+        }
+  }
+
+  .page-wrapper {
+      padding: 0 0 0 0;
+      position: relative;
+  }
+
+  .gv-main-column {
+    margin: 0 10px;
+    max-width: 790px; // padding: 0 10px 20px 10px;
+    @include mq(mobileLandscape) {
+        margin: 0 10px;
+    }
+
+    @include mq(phablet) {
+        margin: 0 10px;
+    }
+
+    @include mq(tablet) {
+        margin: 0 10px;
+    }
+
     @include mq(leftCol) {
-        margin-top: 0px;
+        margin: 0 0 0 180px;
+    }
+
+    @include mq(wide) {
+        margin: 0 0 0 260px;
+    }
+    .gv-main-column-left {
+        @include mq(leftCol) {
+        width: 160px;
+        padding-left: 10px;
+        float: left;
+        }
+    }
+
+    .gv-main-column-right {
+         @include mq(leftCol) {
+        width: calc(100% - 170px);
+        float: right;
+        }
     }
 }
+
 
 
 .show-mobile {

@@ -1,61 +1,61 @@
-<div class="page-wrapper">
-    <div class="header-wrapper">
-        <div class="gren-floors">
-            {{#each floorsArr}}
-            <div class="gren-floor floor-{{{floorNum}}}" style="width: calc(100% - {{{widthShim}}}px);" floor-ref="{{{floorNum}}}">
-            </div>
-            {{/each}}
-        </div>
-        <div class="gren-header-txt">
-            <div class="gren-headline show-mobile" id="mobileHeadEl"></div>
-            <div class="gren-headline show-desktop"></div>
-            <div class="gren-standy" id="grenStandy">
-                A memorial to the people killed in the Grenfell tower fire.
-            </div>
-        </div>
+<div class="page-wrapper gv-page-width">
+  <div class="header-wrapper">
+    <div class="gren-floors">
+      {{#each floorsArr}}
+      <div class="gren-floor floor-{{{floorNum}}}" style="width: calc(100% - {{{widthShim}}}px);" floor-ref="{{{floorNum}}}">
+      </div>
+      {{/each}}
     </div>
+    <div class="gren-header-txt">
+      <div class="gren-headline show-mobile" id="mobileHeadEl"></div>
+      <div class="gren-headline show-desktop"></div>
+      <div class="gren-standy" id="grenStandy">
+        A memorial to the people killed in the Grenfell tower fire.
+      </div>
+    </div>
+  </div>
 
 
-    <div class="gren-list-wrapper">
-        {{#each shortData}}
-       <div class="gren-list-item list-item-short" key-ref="{{@key}}">
-            <div class="gren-list-name list-item-short-name"  key-ref="{{@key}}">{{{name}}}</div>
-            <div class="gren-list-biog short-biog"  key-ref="{{@key}}">
+  <div class="gren-list-wrapper gv-page-width">
+    {{#each shortData}}
+    <div class="gren-list-item gv-main-column list-item-short" key-ref="{{@key}}">
+      <div class="gv-inner-block">
+        <div class="gren-list-name list-item-short-name" key-ref="{{@key}}">{{{name}}}</div>
+        <div class="gren-list-biog short-biog" key-ref="{{@key}}">
 
-                {{{shortBio}}}
+          {{{shortBio}}}
 
-                <div class="short-bio-expand">
-                  <div class="short-bio-expand-btn"  key-ref="{{@key}}">
+          <div class="short-bio-expand">
+            <div class="short-bio-expand-btn" key-ref="{{@key}}">
 
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                       width="18px" height="18px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve">
-                  <g id="Page-1">
-                      <polygon id="More" fill="#FFFFFF" points="8.236,9.764 8.507,16 9.477,16 9.764,9.764 16,9.478 16,8.507 9.764,8.236 9.477,2
-                          8.507,2 8.236,8.236 2,8.507 2,9.478     "/>
-                  </g>
-                  </svg>
-                </div>
-                <p class="short-bio-copy">Full extract</p>
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px" height="18px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve">
+                    <g id="Page-1">
+                        <polygon id="More" fill="#FFFFFF" points="8.236,9.764 8.507,16 9.477,16 9.764,9.764 16,9.478 16,8.507 9.764,8.236 9.477,2
+                            8.507,2 8.236,8.236 2,8.507 2,9.478     "/>
+                    </g>
+                    </svg>
             </div>
+            <p class="short-bio-copy">Full extract</p>
+          </div>
         </div>
-
-</div>
-
-<div class="gren-list-item list-item-long hide" key-ref="{{@key}}">
-    <div class="gren-list-name"  key-ref="{{@key}}">{{{name}}}</div>
-
+      </div>
+    </div>
+    <div class="gren-list-item gv-main-column list-item-long hide" key-ref="{{@key}}">
+      <div class="gren-list-name" key-ref="{{@key}}">{{{name}}}</div>
 
 
 
 
-    <div class="gren-long-biog-wrapper">
+
+      <div class="gren-long-biog-wrapper">
         <div class="gren-long-biog-card">
           <div class="short-biog-insert">{{{shortBio}}}</div>
-          <div class="gren-list-biog long-biog"  key-ref="{{@key}}"><div class="biog-pic"><img src="{{{grid_photo}}}"/></div>{{{bio}}}</div>
+          <div class="gren-list-biog long-biog" key-ref="{{@key}}">
+            <div class="biog-pic"><img src="{{{grid_photo}}}" /></div>{{{bio}}}</div>
         </div>
+      </div>
     </div>
-</div>
-       {{/each}}
+    {{/each}}
 
   </div>
 </div>
