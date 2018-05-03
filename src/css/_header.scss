@@ -7,11 +7,17 @@
 	margin-top: 0px;
 	padding-top: 50vh;
 
+	@include mq(tablet){
+		height: 50vh;
+		padding-top: 30vh;
+	}
+
 	@include mq(leftCol){
 		height: 60vh;
 		padding-top: 20vh;
-
 	}
+
+
 	//
 	// @include mq(wide){
 	// 	margin-left:250px;
@@ -50,13 +56,29 @@
 	background: url('<%= path %>/assets/grenfell-logo.svg');
 	background-size: cover;
 	background-repeat: no-repeat;
-	position: absolute;
-	height: 98px;
+	height: 87px;
 	width: 300px;
+	@include mq (mobileLandscape) {
+		height: 98px;
+		width: 337px;
+	}
 	@include mq(tablet){
 	display: none;
 		}
 }
+
+.gren-headline.show-desktop {
+	display: none;
+	@include mq(tablet){
+		display: block;
+		background: url('<%= path %>/assets/grenfell-logo.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 148px;
+		width: 504px;
+	}
+}
+
 
 .gren-header-txt{
 	position:relative;
@@ -73,12 +95,17 @@
 	font-size: 20px;
 	line-height: 24px;
 	font-weight: 200;
-	max-width: 300px;
-	padding-top: 108px;
+	max-width: 240px;
+	padding-top: 6px;
 	color: $neutral-100;
-	padding-left: 94px;
+	padding-left: 88px;
+	@include mq (mobileLandscape) {
+		padding-left: 94px;
+			max-width: 280px;
+	}
 
 	@include mq(tablet){
+
 		padding-top: 0px;
 		position: absolute;
 		left: 148px;
