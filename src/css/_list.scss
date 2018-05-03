@@ -21,17 +21,6 @@
 			}
 	}
 
-	@include mq(desktop){
-		margin-top: 0px;
-	}
-
-	@include mq(leftCol){
-		margin-left:170px;
-	}
-
-	@include mq(wide){
-		margin-left:250px;
-	}
 }
 
 .gren-list-item{
@@ -109,18 +98,18 @@
 
 .gren-list-biog{
 	position:relative;
-	width: calc(100% - 40px);
+	width: 100%;
 	font-family: 'Guardian Text Egyptian Web', Georgia, serif;
 	font-size: 16px;
   line-height: 18px;
 	color:$neutral-100;
 
-	@include mq(mobileLandscape){
-		max-width: 460px;
-	}
+	// @include mq(mobileLandscape){
+	// 	max-width: 460px;
+	// }
 	@include mq(tablet){
 		width: 100%;
-		max-width: 540px;
+		max-width: 640px;
 	}
 
 
@@ -174,10 +163,10 @@
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 18px;
-	width: calc(100% - 40px);
+	width: 100%;
 		@include mq(mobileLandscape){
 
-			max-width: 460px;
+			// max-width: 460px;
 		}
 		@include mq(tablet){
 			width: 100%;
@@ -199,23 +188,58 @@
 
 }
 
-.gren-long-biog-wrapper{
+.gren-card__wrapper {
 	background-color: $neutral-100;
-		@include mq(desktop){
-		 	position: relative;
-		 	left: 50%;
-		 	width: 100vw;
-		 	transform: translateX(-50%);
-		 	margin-left: -133px;
-	}
+	position: relative;
+	left: 50%;
+	width: 100vw;
+	transform: translateX(-50%);
+	@include mq(tablet) {
 
-}
-.gren-long-biog-card {
-	@include mq(desktop){
-		margin: 0 auto;
-		max-width: 620px;
+			margin-left: 0px;
+	}
+	@include mq(leftCol) {
+			margin-left: -5px;
+	}
+	@include mq(wide) {
+			margin-left: -13px;
 	}
 }
+
+.gren-card__container {
+	position: relative;
+	margin: 0 auto;
+	max-width: 320px;
+	padding-left: 10px;
+	padding-right: 10px;
+	max-width: 790px;
+	@include mq(mobileLandscape) {
+			// max-width: 460px;
+	}
+	@include mq(tablet) {
+		padding-left: 10px;
+	}
+	@include mq(leftCol) {
+		padding-left: 15px;
+	}
+	@include mq(wide) {
+		max-width: 790px;
+		padding-left: 25px;
+	}
+}
+
+.gren-long-biog-wrapper {
+	position: relative;
+	max-width: 790px;
+}
+
+
+// .gren-long-biog-card {
+// 	@include mq(desktop){
+// 		margin: 0 auto;
+// 		max-width: 620px;
+// 	}
+// }
 
 .bio-expand-all{
 	position: fixed;

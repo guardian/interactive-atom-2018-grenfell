@@ -41,17 +41,19 @@
       </div>
     </div>
     <div class="gren-list-item gv-main-column list-item-long hide" key-ref="{{@key}}">
-      <div class="gren-list-name" key-ref="{{@key}}">{{{name}}}</div>
+      <div class="gren-card__wrapper">
+        <div class="gren-card__container">
+          <div class="gren-list-name" key-ref="{{@key}}">{{{name}}}</div>
 
 
 
 
 
-      <div class="gren-long-biog-wrapper">
-        <div class="gren-long-biog-card">
-          <div class="short-biog-insert">{{{shortBio}}}</div>
-          <div class="gren-list-biog long-biog" key-ref="{{@key}}">
-            <div class="biog-pic"><img src="{{{grid_photo}}}" /></div>{{{bio}}}</div>
+          <div class="gren-long-biog-wrapper">
+              <div class="short-biog-insert">{{{shortBio}}}</div>
+              <div class="gren-list-biog long-biog" key-ref="{{@key}}">
+                <div class="biog-pic"><img src="{{{grid_photo}}}" /></div>{{{bio}}}</div>
+          </div>
         </div>
       </div>
     </div>
