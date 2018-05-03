@@ -1,38 +1,38 @@
 // set anis here so they can be used across other multiple scss files
 
 @-webkit-keyframes white-to-black {
-          from { background-color:white; }
-          40%  { background-color:white;}
-          to   { background-color:$neutral-7;}
+          from { background-color:$neutral-7;}
+          40%  { background-color:$neutral-7;}
+          to   { background-color:$neutral-100;}
       }
 
 @keyframes white-to-black {
-          from { background-color:white;}
-          40%  { background-color:white; }
-          to   { background-color:$neutral-7;}
+          from { background-color:$neutral-7;}
+          40%  { background-color:$neutral-7;}
+          to   { background-color:$neutral-100;}
       }
 
 
 @-webkit-keyframes bg-light-to-black {
           from { background-color:$neutral-86; }
           40%  { background-color:$neutral-86;}
-          to   { background-color:$neutral-7;}
+          to   { background-color:$neutral-100;}
       }
 
 @keyframes bg-light-to-black {
           from { background-color:$neutral-86;}
           40%  { background-color:$neutral-86; }
-          to   { background-color:$neutral-7;}
+          to   { background-color:$neutral-100;}
       }
 
 @-webkit-keyframes  opacity-ani {
-          from { opacity:0; animation-timing-function: ease-in;}         
+          from { opacity:0; animation-timing-function: ease-in;}
           to   { opacity:1; animation-timing-function: ease-out;}
       }
 
 @keyframes opacity-ani {
           from { opacity:0; animation-timing-function: ease-in;}
-         
+
           to   {  opacity:1; animation-timing-function: ease-out;}
       }
 
@@ -51,28 +51,28 @@
 
 
 @-webkit-keyframes text-white-to-black {
-          from {    color:white; }         
-          40%  {  color:white;}
-          to   { color:$neutral-7;}
+          from { background-color:$neutral-7;}
+          40%  { background-color:$neutral-7;}
+          to   { background-color:$neutral-100;}
       }
 
 @keyframes  text-white-to-black {
-          from { color:white;}
-          40%  { color:white; }
-          to   { color:$neutral-7;}
+          from { background-color:$neutral-7;}
+          40%  { background-color:$neutral-7;}
+          to   { background-color:$neutral-100;}
       }
 
 
 @-webkit-keyframes text-light-to-black {
           from { color:$neutral-86;}
           40%  { color:$neutral-86; }
-          to   { color:$neutral-7;}
+          to   { color:$neutral-100;}
       }
 
 @keyframes  text-light-to-black {
           from { color:$neutral-86;}
           40%  { color:$neutral-86; }
-          to   { color:$neutral-7;}
+          to   { color:$neutral-100;}
       }
 
 @-webkit-keyframes icon-rotate {
@@ -98,8 +98,3 @@
           40%  { transform: rotate(0deg);}
           to   { transform: rotate(0deg);}
       }
-
-
-
-
-

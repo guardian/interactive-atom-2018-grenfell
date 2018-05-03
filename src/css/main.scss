@@ -9,7 +9,11 @@
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 html {
-    background-color: white;
+    background-color: #121212;
+}
+
+body {
+  background-color: #121212;
 }
 
 .element-atom,
@@ -17,30 +21,64 @@ html {
     margin: 0 !important;
 }
 
-.page-wrapper {
-    max-width: 1300px;
-    background-color: #fff;
-    margin: 80px auto 0;
-    position: relative;
-    @include mq(leftCol) {
-        margin-top: 120px;
-    }
-    &::before {
-        content: '';
-        display: block;
-        height: 100%;
-        width: 0;
-        position: absolute;
-        @include mq(leftCol) {
-            left: 160px;
-            border-right: 1px solid #000;
-            top: 32px;
+
+.gv-page-width {
+        margin: 0 auto;
+        @each $bp in (phablet,
+        tablet,
+        desktop,
+        leftCol,
+        wide) {
+            @include mq($bp) {
+                max-width: map-get($mq-breakpoints, $bp);
+            }
         }
-        @include mq(wide) {
-            left: 240px;
+  }
+
+  .page-wrapper {
+      padding: 0 0 0 0;
+      position: relative;
+  }
+
+  .gv-main-column {
+    margin: 0 10px;
+    max-width: 790px; // padding: 0 10px 20px 10px;
+    @include mq(mobileLandscape) {
+        margin: 0 10px;
+    }
+
+    @include mq(phablet) {
+        margin: 0 10px;
+    }
+
+    @include mq(tablet) {
+        margin: 0 10px;
+    }
+
+    @include mq(leftCol) {
+        margin: 0 0 0 180px;
+    }
+
+    @include mq(wide) {
+        margin: 0 0 0 260px;
+    }
+    .gv-main-column-left {
+        @include mq(leftCol) {
+        width: 160px;
+        padding-left: 10px;
+        float: left;
+        }
+    }
+
+    .gv-main-column-right {
+         @include mq(leftCol) {
+        width: calc(100% - 170px);
+        float: right;
         }
     }
 }
+
+
 
 .show-mobile {
     display: block;

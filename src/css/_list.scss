@@ -1,21 +1,26 @@
 .gren-list-wrapper{
 	position: relative;
-	margin-left:10px;
 	padding-top: 0;
-	min-height: 500px;	
+	min-height: 500px;
 	margin-bottom:60px;
 
-	@include mq(desktop){
-		margin-top: 36px;
+
+	&::before {
+			content: '';
+			display: block;
+			height: 100%;
+			width: 0;
+			position: absolute;
+			@include mq(leftCol) {
+					left: 170px;
+					border-left: 1px solid #ffffff;
+					top: 6px;
+			}
+			@include mq(wide) {
+				left: 250px;
+			}
 	}
 
-	@include mq(leftCol){
-		margin-left:170px;
-	}
-
-	@include mq(wide){
-		margin-left:250px;
-	}
 }
 
 .gren-list-item{
@@ -28,11 +33,11 @@
 	&.animated{
 		visibility:visible;
 		 -webkit-animation-name: opacity-ani-fortypc; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */ 
+		 -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	    animation-name: opacity-ani-fortypc;
-	    animation-duration: 1s;	   
-		animation-fill-mode: forwards;	
+	    animation-duration: 1s;
+		animation-fill-mode: forwards;
 	}
 
 	&.animation-done{
@@ -45,8 +50,8 @@
 	}
 
 	&.list-item-long{
-		margin: 0 0 0 -10px;
-	    padding-left: 10px;
+		// margin: 0 0 0 -10px;
+	  //   padding-left: 10px;
 	    //border-left: 1px solid white;
 	}
 
@@ -56,19 +61,14 @@
 
 .gren-list-name, .gren-list-bio-head{
 	font-family: 'Guardian Headline Full', Georgia, serif;
-	font-size:18px;
-	font-style: italic;
-	line-height: 33px;
-	font-weight: bold;
-	
+	font-size:24px;
+	line-height: 32px;
+
 	cursor:pointer;
 	color:$neutral-7;
 	max-width: 240px;
 
 	margin: 0;
-	 @include mq(desktop){
-	 	float: left;
-	 }	
 }
 
 
@@ -76,13 +76,13 @@
 	color: $neutral-86;
 	&.animate-active{
 		color: $neutral-86;
-		visibility:visible;		
-		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */ 
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+		visibility:visible;
+		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	    animation-name: text-light-to-black;
-	    animation-duration: 0.5s;	   
-		animation-fill-mode: forwards;	
+	    animation-duration: 0.5s;
+		animation-fill-mode: forwards;
 	}
 }
 
@@ -98,43 +98,43 @@
 
 .gren-list-biog{
 	position:relative;
-	width: calc(100% - 40px);
+	width: 100%;
 	font-family: 'Guardian Text Egyptian Web', Georgia, serif;
 	font-size: 16px;
-    line-height: 18px;
-	
-	@include mq(mobileLandscape){
-		max-width: 460px;
-	}
+  line-height: 18px;
+	color:$neutral-100;
+
+	// @include mq(mobileLandscape){
+	// 	max-width: 460px;
+	// }
 	@include mq(tablet){
 		width: 100%;
-		max-width: 540px;
+		max-width: 640px;
 	}
 
 
 	&.short-biog{
 		position:relative;
 		margin-bottom:9px;
-		color:$neutral-86;
+		color:$neutral-100;
 		font-size: 14px;
 		line-height: 18px;
+		margin-top: 6px;
+		margin-bottom: 52px;
 
 		@include mq(desktop){
-			position:absolute;
-			top: 0;
-			left: 250px;
-			margin-top:9px;
 			font-size: 16px;
 		}
 	}
 
 	&.long-biog{
 		margin-top: 6px;
-    	padding-bottom: 18px;
-    	margin-bottom: 18px;
+    padding-bottom: 18px;
 		min-height: 100px;
 		font-size: 16px;
-    	line-height: 22px;
+    line-height: 22px;
+		color: #121212;
+
 	}
 
 	&.long-biog:before{
@@ -159,44 +159,92 @@
 
 .short-biog-insert{
 	position: relative;
-	color:$neutral-86;
+	color:$neutral-7;
 	font-size: 14px;
+	font-weight: bold;
 	line-height: 18px;
-	width: calc(100% - 40px);
+	width: 100%;
 		@include mq(mobileLandscape){
-			
-			max-width: 460px;
+
+			// max-width: 460px;
 		}
 		@include mq(tablet){
 			width: 100%;
-			max-width: 540px;
+			max-width: 620px;
 		}
 		@include mq(desktop){
 			// position:absolute;
 			// top: 0;
 			// left: 250px;
-			padding-top:9px;
+			padding-top: 8px;
 			margin-bottom: 0;
 			font-size: 16px;
+			line-height: 22px;
 		}
 
-	
 
 
-		
+
+
 }
 
-.gren-long-biog-wrapper{
-	 @include mq(desktop){
-		margin-left:250px;
+.gren-card__wrapper {
+	background-color: $neutral-100;
+	position: relative;
+	left: 50%;
+	width: 100vw;
+	transform: translateX(-50%);
+	@include mq(tablet) {
+
+			margin-left: 0px;
 	}
-
+	@include mq(leftCol) {
+			margin-left: -5px;
+	}
+	@include mq(wide) {
+			margin-left: -13px;
+	}
 }
+
+.gren-card__container {
+	position: relative;
+	margin: 0 auto;
+	max-width: 320px;
+	padding-left: 10px;
+	padding-right: 10px;
+	max-width: 790px;
+	@include mq(mobileLandscape) {
+			// max-width: 460px;
+	}
+	@include mq(tablet) {
+		padding-left: 10px;
+	}
+	@include mq(leftCol) {
+		padding-left: 15px;
+	}
+	@include mq(wide) {
+		max-width: 790px;
+		padding-left: 25px;
+	}
+}
+
+.gren-long-biog-wrapper {
+	position: relative;
+	max-width: 790px;
+}
+
+
+// .gren-long-biog-card {
+// 	@include mq(desktop){
+// 		margin: 0 auto;
+// 		max-width: 620px;
+// 	}
+// }
 
 .bio-expand-all{
 	position: fixed;
     bottom: 18px;
-    background-color: #FFF;
+    background-color: $neutral-7;
     right: 15px;
     height: 24px;
     padding: 8px 0 4px 9px;
@@ -204,9 +252,9 @@
     border-radius: 100px;
     font-family: $f-sans-serif-text;
     font-size: 13px;
-    color: #FFF;
-    background-color: $neutral-7;
-    border: 1px solid  $neutral-7;
+    color: $neutral-7;
+    background-color: $neutral-100;
+    border: 1px solid  $neutral-100;
     font-weight: light;
     cursor:pointer;
 
@@ -228,22 +276,22 @@
 }
 
 .rotate-45{
-	-webkit-animation-name: icon-rotate; /* Safari 4.0 - 8.0 */ 
-	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-name: icon-rotate; /* Safari 4.0 - 8.0 */
+	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	animation-name: icon-rotate;
-	animation-duration: 0.5s;	   
-    animation-fill-mode: forwards;	
+	animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
 .rotate-minus-45{
 
-	-webkit-animation-name: icon-anti-cw-rotate; /* Safari 4.0 - 8.0 */ 
-	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	-webkit-animation-name: icon-anti-cw-rotate; /* Safari 4.0 - 8.0 */
+	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
 	animation-name: icon-anti-cw-rotate;
-	animation-duration: 0.5s;	   
-    animation-fill-mode: forwards;	
+	animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 }
 
 
@@ -251,28 +299,56 @@
 
 
 .short-bio-expand{
-	position: absolute;
-	margin-left: 6px;
-	border-radius: 100px;
-	background-color: $neutral-86;
-	height:18px;
-	width:18px;
-	top: -27px;
-	left: 100%;
+	position: relative;
+	display:block;
+	background-color: $neutral-7;
+	left: 0;
+	bottom: -28px;
+	margin-top: 12px;
 
 	@include mq(desktop){
-		top: 0;
+		bottom: 0;
 	}
 
-	&.animate-active{	
-		visibility:visible;		
-		 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */ 
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */ 
+	// &.animate-active{
+	// 	visibility:visible;
+	// 	 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
+	// 	 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+	// 	 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	//     animation-name: bg-light-to-black;
+	//     animation-duration: 0.5s;
+	// 	animation-fill-mode: forwards;
+	// }
+}
+
+.short-bio-expand-btn {
+	margin-left: 6px;
+	border-radius: 100px;
+	border: 1px solid $neutral-100;
+	background-color: $neutral-7;
+	height:18px;
+	width:18px;
+	float: left;
+
+	&.animate-active{
+		visibility:visible;
+		 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-	    animation-name: bg-light-to-black;
-	    animation-duration: 0.5s;	   
-		animation-fill-mode: forwards;	
+			animation-name: bg-light-to-black;
+			animation-duration: 0.5s;
+		animation-fill-mode: forwards;
 	}
+}
+
+.short-bio-copy {
+	font-family: $f-sans-serif-text;
+	font-size: 13px;
+	color: $neutral-100;
+	float: left;
+	display: inline-block;
+	padding-left: 6px;
+	padding-top: 2px;
 }
 
 .biog-pic{
@@ -354,4 +430,3 @@
 .show{
 	display:block;
 }
-
