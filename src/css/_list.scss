@@ -11,6 +11,10 @@
 			width: 0;
 			position: absolute;
 			z-index: 1000;
+			@include mq(tablet) {
+					left: 40px;
+					border-left: 1px solid #767676;
+			}
 			@include mq(leftCol) {
 					left: 170px;
 					border-left: 1px solid #767676;
@@ -85,11 +89,40 @@
 				position: relative;
 		}
 
+		.gren-collapse-button {
+			display: block;
+			position: absolute;
+			right: 0px;
+			top: -20px;
+			z-index: 1000;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			border: 1px solid $neutral-7;
+		}
+
+		.gren-collapse-icon {
+			display: inline-flex;
+			align-items: center;
+	    border: 0;
+			margin-top: 8px;
+			right: 0px;
+			z-index: 1000;
+
+			background: url('<%= path %>/assets/close-button.svg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 16px;
+			width: 16px;
+		}
+
 	}
 
 }
 
-
+.gren-collapse-button {
+	display: none;
+}
 
 .gren-list-name, .gren-list-bio-head{
 	font-family: 'Guardian Headline Full', Georgia, serif;
