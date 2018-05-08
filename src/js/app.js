@@ -45,7 +45,7 @@ function buildView(data) {
 
     // fill in long biogs
 
-    $$('.gren-list-item.list-item-long').forEach( item => {
+    $$('.gren-list-item').forEach( item => {
 
         const longBiogEl = item.querySelector('.gren-longbio')
         const entry = data.find(row => row.name === item.getAttribute('data-name'))
@@ -138,7 +138,7 @@ function addListeners() {
     // })
 
     document.querySelectorAll(".gren-list-item").forEach((el) =>{
-        el.addEventListener('click', function() { showFullBio(this.getAttribute("key-ref")) });
+        el.addEventListener('click', function() { showFullBio(this) });
     })
 
     document.getElementById("expandAll").addEventListener('click',  function() { expandAllBiogs() });
@@ -324,51 +324,51 @@ function hideAllBiogs(){
 
 }
 
-function showFullBio(n){
-    if (previousShortList) {
-        previousShortList.classList.remove("hide");
-    }
+function showFullBio(el){
+    // if (previousShortList) {
+    //     previousShortList.classList.remove("hide");
+    // }
 
-    if (previousLongList) {
-        previousLongList.classList.add("hide");
-    }
+    // if (previousLongList) {
+    //     previousLongList.classList.add("hide");
+    // }
 
-    resetListAni();
+    // resetListAni();
 
-    document.querySelectorAll(".list-item-short").forEach((el) => {
-        let nn = el.getAttribute("key-ref");
+    // document.querySelectorAll(".list-item-short").forEach((el) => {
+    //     let nn = el.getAttribute("key-ref");
 
-        if (n != nn) {
-            el.querySelector(".list-item-short-name").classList.remove("animated");
-            el.querySelector(".list-item-short-name").classList.add("neutral-86");
-        }
+    //     if (n != nn) {
+    //         el.querySelector(".list-item-short-name").classList.remove("animated");
+    //         el.querySelector(".list-item-short-name").classList.add("neutral-86");
+    //     }
 
-        if (n == nn) {
-            el.classList.add("hide");
-            previousShortList = el;
-        }
+    //     if (n == nn) {
+    //         el.classList.add("hide");
+    //         previousShortList = el;
+    //     }
 
-
-
-    })
+    //})
 
 
 
-    document.querySelectorAll(".list-item-long").forEach((el) => {
-        let nn = el.getAttribute("key-ref");
+    // document.querySelectorAll(".list-item-long").forEach((el) => {
+    //     let nn = el.getAttribute("key-ref");
 
-        if (n == nn) {
-            el.classList.remove("hide");
-            el.classList.add("animated");
-            previousLongList = el;
-        }
+    //     if (n == nn) {
+    //         el.classList.remove("hide");
+    //         el.classList.add("animated");
+    //         previousLongList = el;
+    //     }
 
-    })
+    // })
 
-    document.querySelectorAll(".list-item-short-name").forEach((el) => {
-            el.classList.add("neutral-86");
-            previousListName = el;
-    })
+    // document.querySelectorAll(".list-item-short-name").forEach((el) => {
+    //         el.classList.add("neutral-86");
+    //         previousListName = el;
+    // })
+
+    el.classList.add('gren-list-item--expanded')
 
 }
 

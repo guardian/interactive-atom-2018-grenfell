@@ -59,6 +59,15 @@
 			opacity: 1;
 	}
 
+	&.animation-done:hover {
+		opacity: 1;
+	}
+
+	&.gren-list-item--expanded {
+		opacity: 1;
+		background: white;
+	}
+
 }
 
 
@@ -235,6 +244,13 @@
 .gren-long-biog-wrapper {
 	position: relative;
 	max-width: 790px;
+
+	display: none;
+
+	.gren-list-item--expanded & {
+		display: block;
+	}
+
 }
 
 
