@@ -35,8 +35,6 @@ function setData(data){
         d.grid_photo = d["Pic-url"];
         d.bio = d["Long-biog"];
     })
-
-
     return data;
 }
 
@@ -67,7 +65,7 @@ function buildView(data) {
 
     const checkItems = () => {
 
-        const listItemsInView = listItems.filter( element => isInView(element) )
+        const listItemsInView = [listItems[0]].concat(listItems.filter( element => isInView(element)))
         const lastElementInView = listItemsInView.slice(-1)[0]
 
         listItems.forEach( element => {
