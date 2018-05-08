@@ -139,6 +139,14 @@ function addListeners() {
         el.addEventListener('click', function() { showFullBio(this) });
     })
 
+    $$('.gren-collapse-button').forEach((el) => {
+
+        console.log(el)
+
+        el.addEventListener('click', collapseBio)
+
+    })
+
     document.getElementById("expandAll").addEventListener('click',  function() { expandAllBiogs() });
 
     document.getElementById("hideAll").addEventListener('click',  function() { hideAllBiogs() });
@@ -321,51 +329,24 @@ function hideAllBiogs(){
 
 }
 
+function findAncestor (el, cls) {
+    while ((el = el.parentElement) && !el.classList.contains(cls));
+    return el;
+}
+
 function showFullBio(el){
-    // if (previousShortList) {
-    //     previousShortList.classList.remove("hide");
-    // }
-
-    // if (previousLongList) {
-    //     previousLongList.classList.add("hide");
-    // }
-
-    // resetListAni();
-
-    // document.querySelectorAll(".list-item-short").forEach((el) => {
-    //     let nn = el.getAttribute("key-ref");
-
-    //     if (n != nn) {
-    //         el.querySelector(".list-item-short-name").classList.remove("animated");
-    //         el.querySelector(".list-item-short-name").classList.add("neutral-86");
-    //     }
-
-    //     if (n == nn) {
-    //         el.classList.add("hide");
-    //         previousShortList = el;
-    //     }
-
-    //})
-
-
-
-    // document.querySelectorAll(".list-item-long").forEach((el) => {
-    //     let nn = el.getAttribute("key-ref");
-
-    //     if (n == nn) {
-    //         el.classList.remove("hide");
-    //         el.classList.add("animated");
-    //         previousLongList = el;
-    //     }
-
-    // })
-
-    // document.querySelectorAll(".list-item-short-name").forEach((el) => {
-    //         el.classList.add("neutral-86");
-    //         previousListName = el;
-    // })
-
     el.classList.add('gren-list-item--expanded')
+}
+
+function collapseBio(evt) {
+
+    const parent = findAncestor(this, 'gren-list-item')
+
+    console.log(parent)
+    parent.classList.remove('gren-list-item--expanded')
+    console.log(parent)
+
+    evt.stopPropagation()
 
 }
 
