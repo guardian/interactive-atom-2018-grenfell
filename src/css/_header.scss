@@ -53,11 +53,11 @@
 	background: url('<%= path %>/assets/grenfell-logo.svg');
 	background-size: cover;
 	background-repeat: no-repeat;
-	height: 87px;
+	height: 66px;
 	width: 300px;
-	@include mq (mobileLandscape) {
-		height: 98px;
-		width: 337px;
+	@include mq (mobileMedium) {
+		height: 74px;
+		width: 332px;
 	}
 	@include mq(tablet){
 	display: none;
@@ -71,8 +71,11 @@
 		background: url('<%= path %>/assets/grenfell-logo.svg');
 		background-size: cover;
 		background-repeat: no-repeat;
-		height: 148px;
-		width: 504px;
+		height: 128px;
+		width: 565px;
+	}
+	@include mq(wide){
+		margin-left: 84px;
 	}
 }
 
@@ -92,21 +95,30 @@
 	font-size: 20px;
 	line-height: 24px;
 	font-weight: 200;
-	max-width: 240px;
+	max-width: 200px;
 	padding-top: 6px;
 	color: $neutral-100;
-	padding-left: 88px;
+	padding-left: 38px;
 	@include mq (mobileLandscape) {
-		padding-left: 94px;
-			max-width: 280px;
+			// max-width: 280px;
 	}
 
 	@include mq(tablet){
-
-		padding-top: 0px;
+		max-width: 280px;
+		padding-top: 10px;
 		position: absolute;
-		left: 148px;
+		left: 70px;
 		padding-left: 0px;
+	}
+	@include mq(desktop){
+		left: 80px;
+	}
+
+	@include mq(leftCol){
+		left: 80px;
+	}
+	@include mq(wide){
+		left: 160px;
 	}
 }
 

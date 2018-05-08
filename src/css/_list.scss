@@ -4,7 +4,6 @@
 	min-height: 500px;
 	margin-bottom:60px;
 
-
 	&::before {
 			content: '';
 			display: block;
@@ -66,6 +65,36 @@
 	&.gren-list-item--expanded {
 		opacity: 1;
 		background: white;
+		position: relative;
+
+		.short-bio-expand, .short-biog-insert {
+			display: none;
+		}
+
+		&::before {
+			background-color: white;
+			content: "";
+			display: block;
+			height: 100%;
+			width: 200vw;
+			left: -100vw;
+			position: absolute;
+
+		}
+
+		.list-item-short-name{
+				color: $neutral-7 !important;
+				display: block;
+				position: relative;
+				// visibility:visible;
+				//  -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
+				//  -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+				//  -webkit-animation-fill-mode: backwards; /* Safari 4.0 - 8.0 */
+			  //   animation-name: text-light-to-black;
+			  //   animation-duration: 0.5s;
+				// animation-fill-mode: backwards;
+		}
+
 	}
 
 }
@@ -79,7 +108,6 @@
 
 	cursor:pointer;
 	color:$neutral-7;
-	max-width: 240px;
 
 	margin: 0;
 }
@@ -99,19 +127,8 @@
 	}
 }
 
-// .gren-list-bio-head{
-// 	font-family: 'Guardian Headline Full', Georgia, serif;
-// 	font-size:24px;
-// 	font-style: italic;
-// 	line-height: 28px;
-// 	font-weight: bold;
-// 	margin-bottom:6px;
-// 	color:$neutral-7;
-// }
-
 .gren-list-biog{
 	position:relative;
-	width: 100%;
 	font-family: 'Guardian Text Egyptian Web', Georgia, serif;
 	font-size: 16px;
   line-height: 18px;
@@ -121,8 +138,7 @@
 	// 	max-width: 460px;
 	// }
 	@include mq(tablet){
-		width: 100%;
-		max-width: 640px;
+		// max-width: 640px;
 	}
 
 
@@ -141,7 +157,6 @@
 	}
 
 	&.long-biog{
-		margin-top: 6px;
     padding-bottom: 18px;
 		min-height: 100px;
 		font-size: 16px;
@@ -149,95 +164,61 @@
 		color: #121212;
 
 	}
+}
 
-	&.long-biog:before{
-		// content:'';
-		// position:absolute;
-		// top:-5px;
-		// left:0;
-		// width: 100%;
-		// height: 100%;
+.biog-meta {
+	font-family: $f-sans-serif-text;
+	font-size: 12px;
+	line-height: 14px;
 
-		// background-color: white;
-		// border-top: 1px solid $neutral-7;
-  //   	border-bottom: 1px solid $neutral-7;
-		// z-index: -1;
-
-		// @include mq(desktop){
-		// 	width: calc(100% + 120px);
-		// 	left: -120px;
-		// }
+	& .biog-age {
+		font-weight: bold;
 	}
 }
 
 .short-biog-insert{
 	position: relative;
-	color:$neutral-7;
+	color:$neutral-100;
 	font-size: 14px;
-	font-weight: bold;
 	line-height: 18px;
 	width: 100%;
 		@include mq(mobileLandscape){
 
-			// max-width: 460px;
 		}
 		@include mq(tablet){
 			width: 100%;
 			max-width: 620px;
 		}
 		@include mq(desktop){
-			// position:absolute;
-			// top: 0;
-			// left: 250px;
-			padding-top: 8px;
 			margin-bottom: 0;
 			font-size: 16px;
 			line-height: 22px;
 		}
 
-
-
-
-
-}
-
-.gren-card__wrapper {
-	background-color: $neutral-100;
-	position: relative;
-	left: 50%;
-	width: 100vw;
-	transform: translateX(-50%);
-	@include mq(tablet) {
-
-			margin-left: 0px;
-	}
-	@include mq(leftCol) {
-			margin-left: -5px;
-	}
-	@include mq(wide) {
-			margin-left: -13px;
-	}
 }
 
 .gren-card__container {
 	position: relative;
 	margin: 0 auto;
-	max-width: 320px;
-	padding-left: 10px;
-	padding-right: 10px;
+	// max-width: 320px;
+	// padding-left: 24px;
+	// padding-right: 24px;
 	max-width: 790px;
 	@include mq(mobileLandscape) {
-			// max-width: 460px;
+			max-width: 100%;
 	}
 	@include mq(tablet) {
-		padding-left: 10px;
+		// margin-left: 0px;
+		// margin-right:0px;
+		max-width: 710px;
 	}
-	@include mq(leftCol) {
-		padding-left: 15px;
-	}
+	// @include mq(leftCol) {
+	// 	padding-left: 40px;
+	// 	padding-right: 40px;
+	// }
 	@include mq(wide) {
 		max-width: 790px;
-		padding-left: 25px;
+		// padding-left: 25px;
 	}
 }
 
@@ -323,22 +304,13 @@
 	display:block;
 	background-color: $neutral-7;
 	left: 0;
-	bottom: -28px;
+	bottom: 0px;
 	margin-top: 12px;
+	height: 1px;
 
 	@include mq(desktop){
 		bottom: 0;
 	}
-
-	// &.animate-active{
-	// 	visibility:visible;
-	// 	 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
-	// 	 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
-	// 	 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-	//     animation-name: bg-light-to-black;
-	//     animation-duration: 0.5s;
-	// 	animation-fill-mode: forwards;
-	// }
 }
 
 .short-bio-expand-btn {
