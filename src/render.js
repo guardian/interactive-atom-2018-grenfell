@@ -1,5 +1,5 @@
 import fs from 'fs'
-import groupBy from 'lodash/groupby'
+import groupBy from 'lodash.groupby'
 import Handlebars from 'handlebars/dist/handlebars'
 import rp from "request-promise"
 
@@ -13,7 +13,7 @@ export async function render() {
 	// this function just has to return a string of HTML
 	// you can generate this using js, e.g. using Mustache.js
 
-	const shortData = JSON.parse(fs.readFileSync("./src/assets/firstTen.json"));
+	const shortData = JSON.parse(fs.readFileSync("./src/assets/initial_data.json"));
 
 	const data = setData();
 
