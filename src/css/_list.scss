@@ -10,13 +10,15 @@
 			height: 100%;
 			width: 0;
 			position: absolute;
+			z-index: 1000;
 			@include mq(leftCol) {
 					left: 170px;
-					border-left: 1px solid #ffffff;
-					top: 6px;
+					border-left: 1px solid #767676;
+					top: 0px;
 			}
 			@include mq(wide) {
 				left: 250px;
+
 			}
 	}
 
@@ -83,7 +85,8 @@
 		}
 
 		.list-item-short-name{
-				color: $neutral-7 !important;
+				color: $neutral-7;
+				font-weight: bold;
 				display: block;
 				position: relative;
 				// visibility:visible;
@@ -166,14 +169,19 @@
 	}
 }
 
-.biog-meta {
+.biog-meta, .biog-credit {
 	font-family: $f-sans-serif-text;
 	font-size: 12px;
 	line-height: 14px;
+	margin-bottom: 12px;
 
 	& .biog-age {
 		font-weight: bold;
 	}
+}
+
+.biog-credit {
+	margin-top:10px;
 }
 
 .short-biog-insert{
