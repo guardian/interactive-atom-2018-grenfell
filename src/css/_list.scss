@@ -65,6 +65,36 @@
 	&.gren-list-item--expanded {
 		opacity: 1;
 		background: white;
+		position: relative;
+
+		.short-bio-expand, .short-biog-insert {
+			display: none;
+		}
+
+		&::before {
+			background-color: white;
+			content: "";
+			display: block;
+			height: 100%;
+			width: 200vw;
+			left: -100vw;
+			position: absolute;
+
+		}
+
+		.list-item-short-name{
+				color: $neutral-7 !important;
+				display: block;
+				position: relative;
+				// visibility:visible;
+				//  -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
+				//  -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+				//  -webkit-animation-fill-mode: backwards; /* Safari 4.0 - 8.0 */
+			  //   animation-name: text-light-to-black;
+			  //   animation-duration: 0.5s;
+				// animation-fill-mode: backwards;
+		}
+
 	}
 
 }
@@ -96,16 +126,6 @@
 		animation-fill-mode: forwards;
 	}
 }
-
-// .gren-list-bio-head{
-// 	font-family: 'Guardian Headline Full', Georgia, serif;
-// 	font-size:24px;
-// 	font-style: italic;
-// 	line-height: 28px;
-// 	font-weight: bold;
-// 	margin-bottom:6px;
-// 	color:$neutral-7;
-// }
 
 .gren-list-biog{
 	position:relative;
@@ -158,63 +178,23 @@
 
 .short-biog-insert{
 	position: relative;
-	color:$neutral-7;
+	color:$neutral-100;
 	font-size: 14px;
-	font-weight: bold;
 	line-height: 18px;
 	width: 100%;
 		@include mq(mobileLandscape){
 
-			// max-width: 460px;
 		}
 		@include mq(tablet){
 			width: 100%;
 			max-width: 620px;
 		}
 		@include mq(desktop){
-			// position:absolute;
-			// top: 0;
-			// left: 250px;
-			padding-top: 8px;
 			margin-bottom: 0;
 			font-size: 16px;
 			line-height: 22px;
 		}
 
-
-
-
-
-}
-
-.gren-card__wrapper {
-	background-color: $neutral-100;
-	position: relative;
-
-	&::before {
-		background-color: white;
-		content: "";
-		display: block;
-		height: 100%;
-		width: 200vw;
-		left: -100vw;
-		position: absolute;
-
-	}
-
-	// @include mq(tablet) {
-	//
-	// 		margin-left: -7px;
-	// }
-	// @include mq(desktop) {
-	// 		margin-left: 77px;
-	// }
-	// @include mq(leftCol) {
-	// 		margin-left: -13px;
-	// }
-	// @include mq(wide) {
-	// 		margin-left: -13px;
-	// }
 }
 
 .gren-card__container {
@@ -331,16 +311,6 @@
 	@include mq(desktop){
 		bottom: 0;
 	}
-
-	// &.animate-active{
-	// 	visibility:visible;
-	// 	 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
-	// 	 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
-	// 	 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-	//     animation-name: bg-light-to-black;
-	//     animation-duration: 0.5s;
-	// 	animation-fill-mode: forwards;
-	// }
 }
 
 .short-bio-expand-btn {

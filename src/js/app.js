@@ -61,7 +61,7 @@ function buildView(data) {
 
     const isInView = element => {
         return element.getBoundingClientRect().top < window.innerHeight*2/3
-    } 
+    }
 
     // code we want to run periodically to check all items
 
@@ -75,7 +75,7 @@ function buildView(data) {
                 element.classList.remove('gren-list-item--hl')
             }
         })
-        if(lastElementInView) { 
+        if(lastElementInView) {
             lastElementInView.classList.add('gren-list-item--hl')
         }
         // code runs itself again on next frame (ie a few milliseconds after)
@@ -249,7 +249,6 @@ function floorsAni() {
 
     finalEl.addEventListener('animationend', function(event) {
        listAni();
-       addScrollListeners();
     }, false);
 }
 
