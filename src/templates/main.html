@@ -56,13 +56,13 @@
         <div class="gren-card__container">
           <div class="gren-list-name" key-ref="{{@key}}">{{{name}}}</div>
 
-
-
-
-
           <div class="gren-long-biog-wrapper">
-              <div class="short-biog-insert">{{{shortBio}}}</div>
+
               <div class="gren-list-biog long-biog" key-ref="{{@key}}">
+                <div class="biog-meta">
+                  <div class="biog-age">{{{Age}}} years old</div>
+                  <div class="biog-nationality">{{{Nationality}}}</div>
+                </div>
                 <div class="biog-pic"><img src="{{{grid_photo}}}" /></div>
                 <div class='gren-longbio'>{{{bio}}}</div>
             </div>
