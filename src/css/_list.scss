@@ -288,8 +288,9 @@
 	display:block;
 	background-color: $neutral-7;
 	left: 0;
-	bottom: -28px;
+	bottom: 0px;
 	margin-top: 12px;
+	height: 1px;
 
 	@include mq(desktop){
 		bottom: 0;
