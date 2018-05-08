@@ -341,11 +341,7 @@ function showFullBio(el){
 function collapseBio(evt) {
 
     const parent = findAncestor(this, 'gren-list-item')
-
-    console.log(parent)
     parent.classList.remove('gren-list-item--expanded')
-    console.log(parent)
-
     evt.stopPropagation()
 
 }
