@@ -6,6 +6,9 @@ import throttle from 'lodash.throttle';
 
 import listTemplate from "../templates/list.html"
 
+const $$ = sel => [].slice.apply(document.querySelectorAll(sel))
+const $ = sel => document.querySelector(sel)
+
 const floors = 24;
 
 const screenWidth = window.innerWidth;
@@ -23,7 +26,6 @@ function init() {
 }
 
 function setData(data){
-        console.log(data)
     data.forEach((d) => {
         // d.shortBio = d.bio.split(" ");
         // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";
@@ -31,7 +33,7 @@ function setData(data){
         d.name = d["Name"];
         d.shortBio = d["Short-biog"];
         d.grid_photo = d["Pic-url"];
-        d.bio =  d["Long-biog"];
+        d.bio = d["Long-biog"];
     })
 
 
@@ -41,8 +43,50 @@ function setData(data){
 
 function buildView(data) {
 
-    const listHTML = compileListHTML(data);
-    document.querySelector('.gren-list-wrapper').insertAdjacentHTML('beforeend', listHTML);   //.innerHTML = listHTML; 
+    // fill in long biogs
+
+    $$('.gren-list-item.list-item-long').forEach( item => {
+
+        const longBiogEl = item.querySelector('.gren-longbio')
+        const entry = data.find(row => row.name === item.getAttribute('data-name'))
+        longBiogEl.innerHTML = entry.bio
+
+    })
+
+    // set up list items for highlight on scroll
+
+    const listItems = $$('.gren-list-item.list-item-short')
+
+    // function to check whether element is in top area of the screen
+
+    const isInView = element => {
+        return element.getBoundingClientRect().top < window.innerHeight*2/3
+    } 
+
+    // code we want to run periodically to check all items
+
+    const checkItems = () => {
+
+        const listItemsInView = listItems.filter( element => isInView(element) )
+        const lastElementInView = listItemsInView.slice(-1)[0]
+
+        listItems.forEach( element => {
+            if(element !== lastElementInView) {
+                element.classList.remove('gren-list-item--hl')
+            }
+        })
+        if(lastElementInView) { 
+            lastElementInView.classList.add('gren-list-item--hl')
+        }
+        // code runs itself again on next frame (ie a few milliseconds after)
+        window.requestAnimationFrame(checkItems)
+
+    }
+
+    // kicks off our code initially
+
+    window.requestAnimationFrame(checkItems)
+
     addListeners();
     floorsAni()
 
@@ -78,7 +122,11 @@ function compileListHTML(dataIn) {
         }
     );
 
+    console.log(dataIn)
+
     var newHTML = content(dataIn);
+
+    console.log(newHTML)
 
     return newHTML
 
@@ -160,7 +208,7 @@ function highlightElsInView(a){
     resetListAni();
 
     if(a[0]){
-        a.forEach((el,i) => {
+        a.filter(el => el).forEach((el,i) => {
                 var aniDelay = ((i*0.15) + 0.2)+"s";
                 console.log(aniDelay)
                 el.querySelector('.gren-list-name').style.animationDelay = aniDelay;

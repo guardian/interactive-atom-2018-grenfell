@@ -42,7 +42,7 @@
 
 	&.animation-done{
 		visibility:visible;
-		opacity: 1;
+		opacity: 0.5;
 	}
 
 	&.list-item-short{
@@ -53,6 +53,10 @@
 		// margin: 0 0 0 -10px;
 	  //   padding-left: 10px;
 	    //border-left: 1px solid white;
+	}
+
+	&.animation-done.gren-list-item--hl {
+			opacity: 1;
 	}
 
 }

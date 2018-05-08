@@ -32,7 +32,10 @@
 	
 	<div class="gren-long-biog-wrapper">
 		<div class="short-biog-insert">{{{shortBio}}}</div>
-		<div class="gren-list-biog long-biog"  key-ref="{{math @key "+" 9}}"><div class="biog-pic"><img src="{{{grid_photo}}}"/></div>{{{bio}}}</div>
+		<div class="gren-list-biog long-biog"  key-ref="{{math @key "+" 9}}">
+			<div class="biog-pic"><img src="{{{grid_photo}}}"/></div>
+			<div>{{{bio}}}</div>
+		</div>
 	</div>
 </div>
 {{/each}}
