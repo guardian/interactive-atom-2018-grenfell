@@ -121,6 +121,65 @@
 	}
 }
 
+
+.header-share-container {
+		position: relative;
+		margin-top: -32px;
+		margin-left: 230px;
+		@include mq(tablet) {
+			margin-top: 144px;
+			margin-left: 380px;
+		}
+
+      @include mq(leftCol) {
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				margin-left: 0px;
+}
+
+}
+
+.interactive-share {
+    height: 32px;
+    width: 32px;
+    border-radius: 34px;
+    display: inline-block;
+    border: 1px solid $neutral-46;
+    cursor: pointer;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 32px;
+    &[data-network='facebook'] {
+        background-image: url("<%= path %>/assets/facebook.svg");
+        background-color: #121212;
+    }
+    &[data-network='twitter'] {
+        background-image: url("<%= path %>/assets/twitter.svg");
+        background-color: #121212;
+    }
+    &[data-network='email'] {
+        background-image: url("<%= path %>/assets/mail.svg");
+        background-color: #121212;
+    }
+}
+
+.interactive-share:hover {
+    cursor: pointer;
+    border: 1px solid $neutral-100;
+
+		&[data-network='facebook'] {
+			background-image: url("<%= path %>/assets/facebook-white.svg");
+		}
+		&[data-network='twitter'] {
+				background-image: url("<%= path %>/assets/twitter-white.svg");
+		}
+		&[data-network='email'] {
+				background-image: url("<%= path %>/assets/mail-white.svg");
+		}
+}
+
 .floor-ani{
 	visibility: visible;
 	 -webkit-animation-name: white-to-black; /* Safari 4.0 - 8.0 */

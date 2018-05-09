@@ -13,11 +13,11 @@
 			z-index: 1000;
 			@include mq(tablet) {
 					left: 40px;
-					border-left: 1px solid #767676;
+					border-left: 1px solid $neutral-46;
 			}
 			@include mq(leftCol) {
 					left: 170px;
-					border-left: 1px solid #767676;
+					border-left: 1px solid $neutral-46;
 					top: 0px;
 			}
 			@include mq(wide) {
