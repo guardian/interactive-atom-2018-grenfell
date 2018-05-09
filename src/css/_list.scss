@@ -87,6 +87,9 @@
 				font-weight: bold;
 				display: block;
 				position: relative;
+				@include mq(tablet){
+					margin-left: 104px;
+				}
 		}
 
 		.gren-collapse-button {
@@ -192,6 +195,12 @@
 	}
 }
 
+.biog-meta {
+	@include mq(tablet){
+		margin-left: 104px;
+	}
+}
+
 .biog-credit {
 	margin-top:10px;
 }
@@ -217,14 +226,22 @@
 
 }
 
+.gren-longbio {
+	@include mq(tablet){
+		margin-top: 42px;
+	}
+}
+
 .gren-long-biog-wrapper {
 	position: relative;
 	max-width: 790px;
 
 	display: none;
 
+
 	.gren-list-item--expanded & {
 		display: block;
+
 	}
 
 }
@@ -344,6 +361,12 @@
 		width:100%;
 		height: 100%;
 		border: 1px solid $neutral-7;
+	}
+
+	@include mq(tablet){
+		position: absolute;
+		left: 0px;
+		top: -32px;
 	}
 }
 
