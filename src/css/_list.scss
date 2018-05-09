@@ -34,6 +34,9 @@
 	visibility: hidden;
 	opacity: 0;
 
+	.short-bio-expand {
+		opacity: 0;
+	}
 
 	&.animated{
 		visibility:visible;
@@ -56,6 +59,10 @@
 
 	&.animation-done.gren-list-item--hl {
 			opacity: 1;
+
+			.short-bio-expand {
+				opacity: 1;
+			}
 	}
 
 	&.animation-done:hover {
