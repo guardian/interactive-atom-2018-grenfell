@@ -18,7 +18,7 @@ async function start() {
 
     const firstTen = allRequests.slice(0, 9);
 
-    const appData = allRequests.slice(10, allRequests.length);
+    const appData = allRequests
       
     const floorsArr = published.reduce(function (r, a) {
         a.floorNum = getFloorNum(a);
@@ -57,7 +57,7 @@ async function start() {
 
     Promise.all(appData)
         .then(d => {      
-            fs.writeFileSync("./src/assets/appData.json", d); 
+            fs.writeFileSync("./src/assets/appData.json", '[' + d + ']'); 
         })
         .catch(err => {
             console.log("ERROR",err);

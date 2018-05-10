@@ -23,7 +23,9 @@ export async function render() {
         d.shortBio = d["Short-biog"];
         d.grid_photo = d["Pic-url"];
 
-        if(d["Long-biog"]){ d.bio = JSON.stringify(d["Long-biog"]) }
+		if(d["Long-biog"]){
+			d.bio = d["Long-biog"].split('\n').map(par => `<p>${par}</p>`).join('')
+		}
         // if(d["Long-biog"]){ d.bio = JSON.stringify(d["Long-biog"]).split('\r\') };
         // console.log(d.bio )
         // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";     
