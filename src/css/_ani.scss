@@ -46,9 +46,27 @@
 @keyframes opacity-ani-fortypc {
           from { opacity:0; animation-timing-function: ease-in;}
           40%  { opacity:0.5; animation-timing-function: ease-out;}
-          to   {  opacity:0.5; }
+          to   {  opacity:0; }
       }
 
+@keyframes opacity-0-1 {
+          from { opacity:0; animation-timing-function: ease-in;}
+          40%  { opacity:0.5;}
+          to   {  opacity:1; animation-timing-function: ease-out;}
+      }
+@keyframes opacity-5-1 {
+          from { opacity:0.5;}
+          40%  { opacity:0.5;}
+          to   {  opacity:1; animation-timing-function: ease-out;}
+      }
+
+
+
+@keyframes name-fade {
+          from { color:$neutral-46;}
+          40%  { color:$neutral-46;}
+          to   { color:$neutral-100;}
+      }
 
 @-webkit-keyframes text-white-to-black {
           from { background-color:$neutral-7;}

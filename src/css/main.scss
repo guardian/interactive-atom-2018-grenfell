@@ -43,7 +43,7 @@ body {
 
   .gv-main-column {
     margin: 0 10px;
-    max-width: 790px; // padding: 0 10px 20px 10px;
+    max-width: 660px; // padding: 0 10px 20px 10px;
     @include mq(mobileLandscape) {
         margin: 0 10px;
     }
@@ -53,7 +53,7 @@ body {
     }
 
     @include mq(tablet) {
-        margin: 0 10px;
+        margin: 0 50px;
     }
 
     @include mq(leftCol) {
@@ -78,7 +78,6 @@ body {
         }
     }
 }
-
 
 
 .show-mobile {
@@ -154,8 +153,6 @@ body {
     @include fs-textSans(3);
     fill: white;
     text-anchor: middle;
-    stroke: #121212;
-    paint-order: stroke;
 }
 
 .gren-chart {

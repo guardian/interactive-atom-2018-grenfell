@@ -2,10 +2,15 @@
 	position: relative;
 	margin-left:10px;
 	padding-top: 0;
-	height: 30vh;
+	height: 70vh;
 	display: block;
 	margin-top: 0px;
-	padding-top: 50vh;
+	padding-top: 10vh;
+
+	@include mq(mobileMedium){
+		height: 60vh;
+		padding-top: 20vh;
+	}
 
 	@include mq(tablet){
 		height: 50vh;
@@ -13,7 +18,7 @@
 	}
 
 	@include mq(leftCol){
-		height: 60vh;
+		height: 50vh;
 		padding-top: 20vh;
 	}
 
@@ -48,36 +53,34 @@
 // // 	}
 // // }
 
-.gren-headline.show-mobile {
+.gren-headline {
 	display: block;
-	background: url('<%= path %>/assets/grenfell-logo.svg');
-	background-size: cover;
+	background: url('<%= path %>/assets/grenfell-logo-mobile.svg');
+	background-size: contain;
 	background-repeat: no-repeat;
-	height: 66px;
-	width: 300px;
-	@include mq (mobileMedium) {
-		height: 74px;
-		width: 332px;
+	height: 217px;
+	width: 235px;
+	@include mq(mobileMedium) {
+		// height: 74px;
+		// width: 332px;
 	}
-	@include mq(tablet){
-	display: none;
-		}
-}
-
-.gren-headline.show-desktop {
-	display: none;
-	@include mq(tablet){
-		display: block;
-		background: url('<%= path %>/assets/grenfell-logo.svg');
-		background-size: cover;
+	@include mq(tablet) {
+		background: url('<%= path %>/assets/grenfell-logo-desktop.svg');
+		background-size: contain;
 		background-repeat: no-repeat;
-		height: 128px;
-		width: 565px;
+		height: 105px;
+		width: 440px;
+	}
+	@include mq(leftCol){
+		height: 124px;
+		width: 518px;
 	}
 	@include mq(wide){
-		margin-left: 84px;
+		height: 147px;
+		width: 620px;
 	}
 }
+
 
 
 .gren-header-txt{
@@ -85,6 +88,9 @@
 
 	@include mq(tablet){
 		position: absolute;
+		left: 40px;
+	}
+	@include mq(leftCol){
 		left: 90px;
 	}
 
@@ -92,34 +98,95 @@
 
 .gren-standy{
 	font-family: 'Guardian Headline Full', Georgia, serif;
-	font-size: 20px;
-	line-height: 24px;
+	font-size: 18px;
+	line-height: 22px;
 	font-weight: 200;
-	max-width: 200px;
+	max-width: 300px;
 	padding-top: 6px;
 	color: $neutral-100;
-	padding-left: 38px;
+	padding-left: 0px;
 	@include mq (mobileLandscape) {
-			// max-width: 280px;
 	}
 
 	@include mq(tablet){
-		max-width: 280px;
+		max-width: 446px;
 		padding-top: 10px;
 		position: absolute;
-		left: 70px;
+		left: 6px;
 		padding-left: 0px;
-	}
-	@include mq(desktop){
-		left: 80px;
 	}
 
 	@include mq(leftCol){
 		left: 80px;
+		max-width: 600px;
 	}
 	@include mq(wide){
 		left: 160px;
+		max-width: 600px;
 	}
+}
+
+
+.header-share-container {
+		position: relative;
+		margin-top: -10px;
+		margin-right: 10px;
+		float:right;
+		@include mq(mobileMedium) {
+			margin-top: -10px;
+		}
+		@include mq(tablet) {
+			margin-top: 144px;
+			margin-left: 380px;
+		}
+
+      @include mq(leftCol) {
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				margin-left: 0px;
+}
+
+}
+
+.interactive-share {
+    height: 32px;
+    width: 32px;
+    border-radius: 34px;
+    display: inline-block;
+    border: 1px solid $neutral-46;
+    cursor: pointer;
+    outline: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 32px;
+    &[data-network='facebook'] {
+        background-image: url("<%= path %>/assets/facebook.svg");
+        background-color: #121212;
+    }
+    &[data-network='twitter'] {
+        background-image: url("<%= path %>/assets/twitter.svg");
+        background-color: #121212;
+    }
+    &[data-network='email'] {
+        background-image: url("<%= path %>/assets/mail.svg");
+        background-color: #121212;
+    }
+}
+
+.interactive-share:hover {
+    cursor: pointer;
+    border: 1px solid $neutral-100;
+
+		&[data-network='facebook'] {
+			background-image: url("<%= path %>/assets/facebook-white.svg");
+		}
+		&[data-network='twitter'] {
+				background-image: url("<%= path %>/assets/twitter-white.svg");
+		}
+		&[data-network='email'] {
+				background-image: url("<%= path %>/assets/mail-white.svg");
+		}
 }
 
 .floor-ani{

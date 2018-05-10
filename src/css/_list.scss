@@ -11,9 +11,13 @@
 			width: 0;
 			position: absolute;
 			z-index: 1000;
+			@include mq(tablet) {
+					left: 40px;
+					border-left: 1px solid $neutral-46;
+			}
 			@include mq(leftCol) {
 					left: 170px;
-					border-left: 1px solid #767676;
+					border-left: 1px solid $neutral-46;
 					top: 0px;
 			}
 			@include mq(wide) {
@@ -30,20 +34,25 @@
 	visibility: hidden;
 	opacity: 0;
 
+	.short-bio-expand {
+		opacity: 0;
+	}
 
 	&.animated{
+		opacity: 0.5;
 		visibility:visible;
-		 -webkit-animation-name: opacity-ani-fortypc; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-name: opacity-5-1; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-	    animation-name: opacity-ani-fortypc;
-	    animation-duration: 1s;
+	    animation-name: opacity-5-1;
+	    animation-duration: 2s;
 		animation-fill-mode: forwards;
 	}
 
 	&.animation-done{
 		visibility:visible;
-		opacity: 0.5;
+		opacity: 0.3;
+		transition: opacity 1.5s;
 	}
 
 	&.list-item-short{
@@ -52,10 +61,32 @@
 
 	&.animation-done.gren-list-item--hl {
 			opacity: 1;
+			transition: opacity .5s;
+
+
+			// .list-item-short-name, .short-biog-insert {
+			// 	-webkit-animation-name: name-fade; /* Safari 4.0 - 8.0 */
+			//  	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+			//  	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+			// 	animation-name: name-fade;
+			// 	animation-duration: 0.5s;
+			// 	animation-fill-mode: forwards;
+			// 	color: #ffffff;
+			// }
+
+			.short-bio-expand {
+				-webkit-animation-name: opacity-0-1; /* Safari 4.0 - 8.0 */
+				-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+				-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+				animation-name: opacity-0-1;
+				animation-duration: 1s;
+			 	animation-fill-mode: forwards;
+			}
 	}
 
 	&.animation-done:hover {
 		opacity: 1;
+		transition: opacity .5s;
 	}
 
 	&.gren-list-item--expanded {
@@ -83,17 +114,49 @@
 				font-weight: bold;
 				display: block;
 				position: relative;
+				@include mq(tablet){
+					margin-left: 104px;
+				}
+		}
+
+		.gren-collapse-button {
+			display: block;
+			position: absolute;
+			right: 0px;
+			top: -20px;
+			z-index: 1000;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			border: 1px solid $neutral-7;
+		}
+
+		.gren-collapse-icon {
+			display: inline-flex;
+			align-items: center;
+	    border: 0;
+			margin-top: 8px;
+			right: 0px;
+			z-index: 1000;
+
+			background: url('<%= path %>/assets/close-button.svg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			height: 16px;
+			width: 16px;
 		}
 
 	}
 
 }
 
-
+.gren-collapse-button {
+	display: none;
+}
 
 .gren-list-name, .gren-list-bio-head{
 	font-family: 'Guardian Headline Full', Georgia, serif;
-	font-size:24px;
+	font-size:22px;
 	line-height: 32px;
 
 	cursor:pointer;
@@ -105,16 +168,16 @@
 
 .list-item-short-name{
 	color: $neutral-86;
-	&.animate-active{
-		color: $neutral-86;
-		visibility:visible;
-		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-	    animation-name: text-light-to-black;
-	    animation-duration: 0.5s;
-		animation-fill-mode: forwards;
-	}
+	// &.animate-active{
+	// 	color: $neutral-86;
+	// 	visibility:visible;
+	// 	 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
+	// 	 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+	// 	 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	//     animation-name: text-light-to-black;
+	//     animation-duration: 0.5s;
+	// 	animation-fill-mode: forwards;
+	// }
 }
 
 .gren-list-biog{
@@ -159,29 +222,40 @@
 	}
 }
 
+.biog-meta {
+	@include mq(tablet){
+		margin-left: 104px;
+	}
+}
+
 .biog-credit {
 	margin-top:10px;
 }
 
 .short-biog-insert{
+	font-family: 'Guardian Headline Full', Georgia, serif;
 	position: relative;
 	color:$neutral-100;
-	font-size: 14px;
-	line-height: 18px;
+	font-size: 18px;
+	line-height: 22px;
 	width: 100%;
 		@include mq(mobileLandscape){
 
 		}
 		@include mq(tablet){
-			width: 100%;
-			max-width: 620px;
 		}
 		@include mq(desktop){
 			margin-bottom: 0;
-			font-size: 16px;
-			line-height: 22px;
+			font-size: 20px;
+			line-height: 24px;
 		}
 
+}
+
+.gren-longbio {
+	@include mq(tablet){
+		margin-top: 42px;
+	}
 }
 
 .gren-long-biog-wrapper {
@@ -190,8 +264,10 @@
 
 	display: none;
 
+
 	.gren-list-item--expanded & {
 		display: block;
+
 	}
 
 }
@@ -266,23 +342,36 @@
 	}
 }
 
+.short-bio-plus {
+	display: inline-flex;
+	align-items: center;
+	z-index: 1000;
+	left: 0px;
+	background: url('<%= path %>/assets/plus.svg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 11px;
+	margin-left: 3px;
+}
+
 .short-bio-expand-btn {
 	margin-left: 6px;
-	border-radius: 100px;
-	border: 1px solid $neutral-100;
+	border-radius: 50%;
+	border: 1px solid $neutral-46;
 	background-color: $neutral-7;
 	height:18px;
 	width:18px;
 	float: left;
 
 	&.animate-active{
-		visibility:visible;
-		 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-			animation-name: bg-light-to-black;
-			animation-duration: 0.5s;
-		animation-fill-mode: forwards;
+		// visibility:visible;
+		//  -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
+		//  -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+		//  -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+		// 	animation-name: bg-light-to-black;
+		// 	animation-duration: 0.5s;
+		// animation-fill-mode: forwards;
 	}
 }
 
@@ -312,6 +401,16 @@
 		height: 100%;
 		border: 1px solid $neutral-7;
 	}
+
+	@include mq(tablet){
+		position: absolute;
+		left: 0px;
+		top: -32px;
+	}
+}
+
+.gren-endpiece-blurb {
+	color: $neutral-100;
 }
 
 .atom--snippet__handle, .atom--snippet__feedback .atom__button {
