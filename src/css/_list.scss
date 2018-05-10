@@ -106,6 +106,8 @@
 			width: 200vw;
 			left: -100vw;
 			position: absolute;
+			margin-top: -6px;
+			padding-bottom: 6px;
 
 		}
 
@@ -114,6 +116,7 @@
 				font-weight: bold;
 				display: block;
 				position: relative;
+				padding-top: 0px;
 				@include mq(tablet){
 					margin-left: 104px;
 				}
@@ -123,7 +126,7 @@
 			display: block;
 			position: absolute;
 			right: 0px;
-			top: -20px;
+			top: -26px;
 			z-index: 1000;
 			width: 40px;
 			height: 40px;
@@ -156,8 +159,14 @@
 
 .gren-list-name, .gren-list-bio-head{
 	font-family: 'Guardian Headline Full', Georgia, serif;
-	font-size:22px;
-	line-height: 32px;
+	font-size: 20px;
+	line-height: 18px;
+
+	@include mq(tablet){
+		font-size:22px;
+		line-height: 22px;
+	}
+
 
 	cursor:pointer;
 	color:$neutral-7;
@@ -254,7 +263,7 @@
 
 .gren-longbio {
 	@include mq(tablet){
-		margin-top: 42px;
+		margin-top: 46px;
 	}
 }
 
@@ -284,7 +293,6 @@
     font-family: $f-sans-serif-text;
     font-size: 13px;
     color: $neutral-7;
-    background-color: $neutral-100;
     border: 1px solid  $neutral-100;
     font-weight: light;
     cursor:pointer;
@@ -352,11 +360,11 @@
 	background-repeat: no-repeat;
 	height: 11px;
 	width: 11px;
-	margin-left: 3px;
+	margin-left: 4px;
+	margin-top: 3px;
 }
 
 .short-bio-expand-btn {
-	margin-left: 6px;
 	border-radius: 50%;
 	border: 1px solid $neutral-46;
 	background-color: $neutral-7;
@@ -377,7 +385,7 @@
 
 .short-bio-copy {
 	font-family: $f-sans-serif-text;
-	font-size: 13px;
+	font-size: 12px;
 	color: $neutral-100;
 	float: left;
 	display: inline-block;
@@ -405,7 +413,7 @@
 	@include mq(tablet){
 		position: absolute;
 		left: 0px;
-		top: -32px;
+		top: -28px;
 	}
 }
 

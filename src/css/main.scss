@@ -79,6 +79,11 @@ body {
     }
 }
 
+.ghost-h1 {
+    position: fixed;
+    top: 3000px;
+    left: -2000px;
+}
 
 .show-mobile {
     display: block;
