@@ -9,7 +9,7 @@
 
 	@include mq(mobileMedium){
 		height: 60vh;
-		padding-top: 20vh;
+		padding-top: 10vh;
 	}
 
 	@include mq(tablet){
@@ -19,7 +19,7 @@
 
 	@include mq(leftCol){
 		height: 50vh;
-		padding-top: 20vh;
+		padding-top: 10vh;
 	}
 
 
@@ -119,6 +119,8 @@
 	@include mq(leftCol){
 		left: 80px;
 		max-width: 600px;
+		font-size: 20px;
+		line-height: 24px;
 	}
 	@include mq(wide){
 		left: 160px;
@@ -129,20 +131,17 @@
 
 .header-share-container {
 		position: relative;
-		margin-top: -10px;
-		margin-right: 10px;
-		float:right;
-		@include mq(mobileMedium) {
-			margin-top: -10px;
-		}
+		margin-top: 12px;
+		padding-left: 4px;
 		@include mq(tablet) {
-			margin-top: 144px;
-			margin-left: 380px;
+			margin-top: 192px;
+			margin-left: 40px;
 		}
 
       @include mq(leftCol) {
 				position: absolute;
-				bottom: 0px;
+				bottom: 6px;
+				z-index: 0;
 				left: 0px;
 				margin-left: 0px;
 }
