@@ -130,13 +130,27 @@ const drawChart = (data) => {
             Object.assign({}, agg, { [floor] : [ cur ] })
     }
 
-    const offset = (circle, i, cols, vertSpacing = 160) => {
+    const offset = (circle, i, cols, vertSpacing = 160, arr, topSpacing = 160) => {
 
-        const spacing = width / cols
+        const n = arr.length
+
+        const lastFull = n - (n % cols)
+
+        let spacing = width / cols
+
+        if(i >= lastFull) {
+
+            const magicNum = (cols - (n - lastFull))/2
+
+            return {
+                x : circle.x + (i % cols + magicNum)*spacing + spacing/2,
+                y : circle.y + Math.floor(i/cols)*vertSpacing + topSpacing/2
+            }
+        }
 
         return {
             x : circle.x + (i % cols)*spacing + spacing/2,
-            y : circle.y + Math.floor(i/cols)*vertSpacing + 160/2
+            y : circle.y + Math.floor(i/cols)*vertSpacing + topSpacing/2
         }
 
     }
@@ -164,10 +178,10 @@ const drawChart = (data) => {
     const flatten = (agg, cur, i) => i === 0 ? cur : agg.concat(cur) 
 
 
-    const verts = isMobile ? [ 200, 90, 110 ] : [ 200, 115, 150 ]
+    const verts = isMobile ? [ 110, 87, 110 ] : [ 110, 112, 151 ]
+    const tops = isMobile ? [ 440, 160, 160 ] : [ 480, 160, 160 ]
 
-
-    const allCircles = arr.map((d, i) => {
+    const allCircles = arr.map((d, i, arr) => {
 
         const x = d[1].map(() => ({}))
 
@@ -185,21 +199,19 @@ const drawChart = (data) => {
         .force('charge', d3.forceManyBody().strength(30))
         .force('center', d3.forceCenter(0, 0 ))
         .force('collision', d3.forceCollide().radius(radius + 1.5))
-        .force('y', d3.forceY().y(0).strength(Math.random()*0.1))
+        .force('y', d3.forceY().y(0).strength(Math.random()*0.08))
     .stop();
 
         for (let t = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); t < n; ++t) {
             simulation.tick();
         }
 
-        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[0])))
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[0], arr, tops[0])))
         return x2
 
-        // return d3.packSiblings(d[1].map( p => Object.assign({}, p, { r : radius + 1.5.5 + Math.random()*1 })))
-        // .map( c => Object.assign({}, c, offset(c, i, columns,verts[0]) ))
     }).reduce(flatten, [])
 
-    const allCircles2 = arr2.map((d, i) => {
+    const allCircles2 = arr2.map((d, i, arr) => {
 
 
         const x = d[1].map(() => ({}))
@@ -218,22 +230,20 @@ const drawChart = (data) => {
         .force('charge', d3.forceManyBody().strength(30))
         .force('center', d3.forceCenter(0, 0 ))
         .force('collision', d3.forceCollide().radius(radius + 1.5))
-        .force('y', d3.forceY().y(0).strength(Math.random()*0.1))
+        .force('y', d3.forceY().y(0).strength(Math.random()*0.08))
     .stop();
 
         for (let t = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); t < n; ++t) {
             simulation.tick();
         }
 
-        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[1])))
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[1], arr, tops[1])))
         return x2
 
-        //return d3.packSiblings(d[1].map( p => Object.assign({}, p, { r : radius + 1.5.5 + Math.random()*1 })))
-        //.map( c => Object.assign({}, c, offset(c, i, columns,verts[1]) ))
     }).reduce(flatten, [])
 
 
-    const allCircles3 = arr3.map((d, i) => {
+    const allCircles3 = arr3.map((d, i, arr) => {
 
 
         const x = d[1].map(() => ({}))
@@ -252,18 +262,16 @@ const drawChart = (data) => {
         .force('charge', d3.forceManyBody().strength(30))
         .force('center', d3.forceCenter(0, 0 ))
         .force('collision', d3.forceCollide().radius(radius + 1.5))
-        .force('y', d3.forceY().y(0).strength(Math.random()*0.1))
+        .force('y', d3.forceY().y(0).strength(Math.random()*0.08))
     .stop();
     
         for (let t = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); t < n; ++t) {
             simulation.tick();
         }
 
-        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[2])))
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[2], arr, tops[2])))
         return x2
 
-       // return d3.packSiblings(d[1].map( p => Object.assign({}, p, { r : radius + 1.5.5 + Math.random()*1 })))
-       // .map( c => Object.assign({}, c, offset(c, i, columns,verts[2]) ))
     }).reduce(flatten, [])
 
     const positions = [ allCircles, allCircles2, allCircles3 ]
@@ -292,11 +300,11 @@ const drawChart = (data) => {
 
     const labels = labelGroups
         .selectAll('.gren-label')
-        .data((d, i) => d.map(x => [ x, i ]))
+        .data((d, i, arr) => d.map(x => [ x, i, arr ]))
         .enter()
         .append('text')
-        .attr('x', (d, i) => offset({ x : 0, y : -40 }, i, columns,verts[d[1]]).x)
-        .attr('y', (d, i) => offset({ x : 0, y : -40 }, i, columns,verts[d[1]]).y)
+        .attr('x', (d, i, arr) => offset({ x : 0, y : -40 }, i, columns, verts[d[1]], arr, tops[d[1]]).x )
+        .attr('y', (d, i, arr) => offset({ x : 0, y : -40 }, i, columns, verts[d[1]], arr, tops[d[1]]).y )
         .text(d => d[0])
         .attr('class', 'gren-label')
 
