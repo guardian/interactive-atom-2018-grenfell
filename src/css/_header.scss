@@ -9,7 +9,7 @@
 
 	@include mq(mobileMedium){
 		height: 60vh;
-		padding-top: 20vh;
+		padding-top: 10vh;
 	}
 
 	@include mq(tablet){
@@ -19,7 +19,7 @@
 
 	@include mq(leftCol){
 		height: 50vh;
-		padding-top: 20vh;
+		padding-top: 10vh;
 	}
 
 
@@ -119,6 +119,8 @@
 	@include mq(leftCol){
 		left: 80px;
 		max-width: 600px;
+		font-size: 20px;
+		line-height: 24px;
 	}
 	@include mq(wide){
 		left: 160px;
