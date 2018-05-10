@@ -112,12 +112,12 @@ body {
     position: relative;
     max-width: 620px;
 
-    @include mq($until: desktop) {
+    @include mq($until: tablet) {
         margin-left: 0;
     }
 
-    @include mq($from: leftCol) {
-        margin-left: 10px;
+    @include mq($from: desktop) {
+        margin-left: 50px;
     }
 
     @include mq($from: leftCol) {
