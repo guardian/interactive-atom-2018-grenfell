@@ -42,18 +42,19 @@ body {
   }
 
   .gv-main-column {
-    margin: 0 10px;
+    margin: 0 20px;
     max-width: 400px; // padding: 0 10px 20px 10px;
-    @include mq(mobileLandscape) {
-        margin: 0 10px;
-    }
+    // @include mq(mobileLandscape) {
+    //     margin: 0 20px;
+    // }
 
     @include mq(phablet) {
-        margin: 0 10px;
+        margin: 0 20px;
     }
 
     @include mq(tablet) {
-        margin: 0 50px;
+        max-width: 400px;
+        margin: 0 180px;
     }
 
     @include mq(leftCol) {

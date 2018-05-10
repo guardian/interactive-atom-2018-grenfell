@@ -18,8 +18,9 @@
 	}
 
 	@include mq(leftCol){
-		height: 50vh;
+		height: 60vh;
 		padding-top: 10vh;
+	  margin: 0;
 	}
 
 
@@ -68,16 +69,18 @@
 		background: url('<%= path %>/assets/grenfell-logo-desktop.svg');
 		background-size: contain;
 		background-repeat: no-repeat;
-		height: 105px;
-		width: 440px;
+		height: 114px;
+		width: 480px;
+		margin-left: 32px;
 	}
 	@include mq(leftCol){
 		height: 124px;
 		width: 518px;
+		margin-left: -46px;
 	}
 	@include mq(wide){
 		height: 147px;
-		width: 620px;
+		width: 600px;
 	}
 }
 
@@ -104,27 +107,48 @@
 	max-width: 300px;
 	padding-top: 6px;
 	color: $neutral-100;
-	padding-left: 0px;
+	padding-left: 10px;
 	@include mq (mobileLandscape) {
 	}
 
 	@include mq(tablet){
-		max-width: 446px;
+		max-width: 400px;
 		padding-top: 10px;
 		position: absolute;
-		left: 6px;
+		left: 130px;
 		padding-left: 0px;
-	}
-
-	@include mq(leftCol){
-		left: 80px;
-		max-width: 600px;
 		font-size: 20px;
 		line-height: 24px;
 	}
+
+	@include mq(leftCol){
+		left: 90px;
+		max-width: 400px;
+	}
 	@include mq(wide){
-		left: 160px;
-		max-width: 600px;
+		left: 170px;
+
+	}
+
+	&::before {
+			content: '';
+			display: block;
+			height: 1000px;
+			width: 0;
+			position: absolute;
+			z-index: 1000;
+			border-left: 1px solid $neutral-20;
+			left: 0px;
+			@include mq(tablet) {
+					left: -10px;
+					border-left: 1px solid $neutral-20;
+			}
+			@include mq(leftCol) {
+					top: 14px;
+			}
+			@include mq(wide) {
+
+			}
 	}
 }
 
@@ -132,19 +156,20 @@
 .header-share-container {
 		position: relative;
 		margin-top: 12px;
-		padding-left: 4px;
+		padding-left: 8px;
 		@include mq(tablet) {
-			margin-top: 192px;
-			margin-left: 40px;
+			margin-top: 124px;
+			margin-left: 38px;
 		}
 
-      @include mq(leftCol) {
-				position: absolute;
-				bottom: 6px;
-				z-index: 0;
-				left: 0px;
-				margin-left: 0px;
-}
+    @include mq(leftCol) {
+			margin-top: 138px;
+			margin-left: 48px;
+		}
+		@include mq(wide) {
+			margin-top: 160px;
+			margin-left: 128px;
+		}
 
 }
 

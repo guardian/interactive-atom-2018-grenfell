@@ -11,13 +11,12 @@
 			width: 0;
 			position: absolute;
 			z-index: 1000;
+			border-left: 1px solid $neutral-20;
+			left: 10px;
 			@include mq(tablet) {
-					left: 40px;
-					border-left: 1px solid $neutral-46;
+					left: 170px;
 			}
 			@include mq(leftCol) {
-					left: 170px;
-					border-left: 1px solid $neutral-46;
 					top: 0px;
 			}
 			@include mq(wide) {
@@ -42,19 +41,22 @@
 		color: white;
 		position: absolute;
 		left: 0px;
-		top: 0px;
+		top: -24px;
 		@include fs-textSans(3);
-		margin: 0 10px;
+		margin: 0 20px;
 
     @include mq(phablet) {
-        margin: 0 10px;
+        margin: 0 20px;
+    }
+		@include mq(tablet) {
+        margin: 0 55px;
     }
 		@include mq(desktop) {
+				top: 0px;
 				text-align: right;
     }
 
     @include mq(leftCol) {
-				text-align: right;
         margin: 0 0 0 60px;
     }
 
@@ -241,10 +243,11 @@
 		font-size: 14px;
 		line-height: 18px;
 		margin-top: 6px;
-		margin-bottom: 52px;
+		margin-bottom: 66px;
 
 		@include mq(desktop){
 			font-size: 16px;
+			margin-bottom: 52px;
 		}
 	}
 
