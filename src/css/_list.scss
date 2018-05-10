@@ -28,6 +28,25 @@
 
 }
 
+.gren-itemwrapper {
+
+	position: relative;
+
+	&:before {
+
+		opacity: 0.3;
+
+		content: attr(data-floor);
+		text-align: right;
+		width: 100px;
+		color: white;
+		position: absolute;
+		left: -120px;
+		top: 8px;
+		@include fs-textSans(3);
+	}
+}
+
 .gren-list-item{
 	position: relative;
 	min-height:66px;

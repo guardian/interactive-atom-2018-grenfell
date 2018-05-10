@@ -17,19 +17,43 @@ export async function render() {
 
 	const data = setData();
 
-	shortData.forEach((d,i) => {
+	const clean = str => {
+
+		if(str === '' || !str) { return 'Floor unknown' }
+		if(str === 'Non-resident') { return str }
+
+		return str.endsWith('1') && !str.endsWith('11') ? str + 'st floor' :
+			( str.endsWith('2') && !str.endsWith('12') ? str + 'nd floor' :
+			( str.endsWith('3') && !str.endsWith('13') ? str + 'rd floor' :  str + 'th floor'))
+
+	}
+
+	shortData.sort((a, b) => {
+		
+		if(isNaN(Number(a.Floor))) { return 1 }
+		if(isNaN(Number(b.Floor))) { return -1 }
+		
+		return Number(a.Floor) - Number(b.Floor)
+	})
+	 	.forEach((d,i, arr) => {
 		d.bio = " ";
 		d.name= d["Name"];
         d.shortBio = d["Short-biog"];
-        d.grid_photo = d["Pic-url"];
+		d.grid_photo = d["Pic-url"];
 
-        if(d["Long-biog"]){ d.bio = JSON.stringify(d["Long-biog"]) }
+		const cleaned = clean(d.Floor)
+
+		d.floorStr = cleaned == clean((arr[i-1] || {}).Floor) ? '' : cleaned
+
+		if(d["Long-biog"]){
+			d.bio = d["Long-biog"].split('\n').map(par => `<p>${par}</p>`).join('')
+		}
         // if(d["Long-biog"]){ d.bio = JSON.stringify(d["Long-biog"]).split('\r\') };
         // console.log(d.bio )
         // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";     
     })
 
-	data.shortData = shortData;
+	data.shortData = shortData
 
 	data.floorsArr = data;
 

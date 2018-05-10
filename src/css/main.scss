@@ -108,3 +108,87 @@ body {
     fill: $neutral-60;
     color: $neutral-60;
 }
+
+.gren-chart-container {
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 620px;
+
+    @include mq($until: desktop) {
+        margin-left: 0;
+    }
+
+    @include mq($from: leftCol) {
+        margin-left: 10px;
+    }
+
+    @include mq($from: leftCol) {
+        margin-left: 170px;
+    }
+    @include mq($from: wide) {
+        margin-left: 250px;
+    }
+}
+
+.gren-buttons {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.gren-button {
+    @include fs-textSans(3);
+    color: white;
+    padding: 6px 10px;
+    border: 2px solid white;
+    margin: 0 2.5px;
+    display: inline-block;
+    border-radius: 24px;
+    cursor: pointer;
+
+    font-weight: bold;
+
+    &.gren-button--selected {
+        background: white;
+        color: #333;
+    }
+}
+
+.gren-label {
+    @include fs-textSans(3);
+    fill: white;
+    text-anchor: middle;
+}
+
+.gren-chart {
+    width: 100%;
+    max-width: 620px;
+    height: 460px;
+    margin-bottom: 40px;
+    //border: 1px solid rgba(255, 255, 255, 0.05);
+
+    // @include mq($until: desktop) {
+    //     height: 460px;
+    // }
+
+}
+
+.gren-label-layer {
+
+    pointer-events: none;
+    user-select: none;
+    stroke-width: 3;
+
+    opacity: 0;
+
+    transition: opacity 0.6s;
+
+    &.gren-label-layer--shown {
+        opacity: 1;
+        //transition: opacity: 0.6s;
+    }
+}
+
+.gren-circle {
+    fill: white;
+}

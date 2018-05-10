@@ -6,15 +6,364 @@ import throttle from 'lodash.throttle';
 
 import listTemplate from "../templates/list.html"
 
+import * as d3 from 'd3'
+
 const $$ = sel => [].slice.apply(document.querySelectorAll(sel))
 const $ = sel => document.querySelector(sel)
 
 const floors = 24;
 
+
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
+const columns = isMobile ? 4 : 5
 
 var previousShortList, previousLongList, previousListName, initAni, prevScroll, expandedBiogs = false;
+
+const twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
+    const facebookBaseUrl = 'https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&redirect_uri=http://www.theguardian.com&link=';
+    const googleBaseUrl = 'https://plus.google.com/share?url=';
+
+    function share(title, shareURL, fbImg, twImg, hashTag) {
+        var twImgText = twImg ? ` ${twImg.trim()} ` : '';
+        var fbImgQry = fbImg ? `&picture=${encodeURIComponent(fbImg)}` : '';
+        return function(network, extra = '') {
+            var twitterMessage = `${extra}${title}${twImgText}`;
+            var shareWindow;
+
+            if (network === 'twitter') {
+                shareWindow = twitterBaseUrl + encodeURIComponent(twitterMessage + ' ') + shareURL + '?CMP=share_btn_tw';
+            } else if (network === 'facebook') {
+                shareWindow = facebookBaseUrl + shareURL + fbImgQry + '%3FCMP%3Dshare_btn_fb';
+            } else if (network === 'email') {
+                shareWindow = 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + shareURL;
+            } else if (network === 'google') {
+                shareWindow = googleBaseUrl + shareURL;
+            }
+
+            window.open(shareWindow, network + 'share', 'width=640,height=320');
+        }
+    }
+
+    var shareFn = share('The lives of Grenfell tower', 'https://www.theguardian.com/politics/ng-interactive/2018/may/04/local-council-election-results-2018-in-full');
+
+    [].slice.apply(document.querySelectorAll('.interactive-share')).forEach(shareEl => {
+        var network = shareEl.getAttribute('data-network');
+        shareEl.addEventListener('click', () => shareFn(network));
+    });
+
+
+const drawChart = (data) => {
+
+    const svgEl = $('.gren-chart')
+
+    const width = svgEl.clientWidth || svgEl.getBoundingClientRect().width
+    const height = svgEl.clientHeight || svgEl.getBoundingClientRect().height
+
+    const isMobile = window.matchMedia('(max-width: 739px)').matches
+
+    const radius = isMobile ? 3.5 : 5
+
+    const svg = d3.select(svgEl)
+        .attr('width', width)
+        .attr('height', height)
+
+    const ages = [18, 35, 50, 99]
+
+    const normaliseAge = str => {
+
+        if(!str || str === '') { return 'Unknown' }
+
+        if(/months/ig.test(str)) { 
+            return '0'
+        }
+        if(/three/ig.test(str)) { return '3' }
+        if(/five/ig.test(str)) { return '5' }
+        if(/six/ig.test(str)) { return '6' }
+        if(/eight/ig.test(str)) { return '8' }
+
+        return str
+    }
+
+    const normaliseNat = str => {
+
+        if(/british/ig.test(str)){ return 'British' }
+        if(/moroc/ig.test(str)) { return 'Moroccan' }
+        if(/gambia/ig.test(str)) { return 'Gambian' }
+        if(!str || str === '') { return 'Unknown' }
+
+        return str
+
+    }
+
+    const normaliseFloor = str => {
+
+        if(!str || str === '') { return 'Unknown' }
+        return str
+
+    }
+
+    const ageBrackets = (agg, cur) => {
+        const age = Number(normaliseAge(cur.Age))
+
+        const maxAge = ages.find(a => a > age)
+        const entry = agg[maxAge]
+        return entry ? Object.assign({}, agg, { [ maxAge ] : entry.concat(cur) }) :
+            Object.assign({}, agg, { [ maxAge ] : [ cur ] })
+
+    }
+
+    const natBrackets = (agg, cur) => {
+
+        const nat = normaliseNat(cur['Nationality'])
+
+        const entry = agg[nat]
+
+        return entry ? Object.assign({}, agg, { [nat] : entry.concat(cur) }) :
+            Object.assign({}, agg, { [ nat ] : [ cur ] })
+    }
+
+    const floorBrackets = (agg, cur) => {
+        const floor = normaliseFloor(cur['Floor'])
+        const entry = agg[floor]
+        return entry ? Object.assign({}, agg, { [ floor ] : entry.concat(cur) } ) : 
+            Object.assign({}, agg, { [floor] : [ cur ] })
+    }
+
+    const offset = (circle, i, cols, vertSpacing = 160) => {
+
+        const spacing = width / cols
+
+        return {
+            x : circle.x + (i % cols)*spacing + spacing/2,
+            y : circle.y + Math.floor(i/cols)*vertSpacing + 160/2
+        }
+
+    }
+
+    const grouped = data.reduce(ageBrackets, {})
+    const arr = Object.keys(grouped).map(k => [ k, grouped[k] ])//.slice().sort((a, b) => a[1].length - b[1].length)
+
+    const grouped2 = data.reduce(natBrackets, {})
+    const arr2 = Object.keys(grouped2)
+        .filter(k => k).map(k => [ k, grouped2[k] ]).slice()
+            .sort((a, b) => b[1].length - a[1].length)
+            .filter(o => o[0] !== 'Unknown')
+            .concat([['Unknown', grouped2['Unknown'] ]])
+
+    const grouped3 = data.reduce(floorBrackets, {})
+    const arr3 = ['10', '11', '14', '16', '17', '18', '19', '20', '21', '22', '23', 'Non-resident', 'Unknown'].map(k => [ k, grouped3[k] ])
+
+    const ageLabels = ['0-18 years', '19-35', '35-50', '51-82', 'Unknown']
+
+
+    const natLabels = arr2.map(o => o[0])
+
+    const floorLabels = arr3.map(o => o[0])
+
+    const flatten = (agg, cur, i) => i === 0 ? cur : agg.concat(cur) 
+
+
+    const verts = isMobile ? [ 200, 90, 110 ] : [ 200, 115, 150 ]
+
+
+    const allCircles = arr.map((d, i) => {
+
+        const x = d[1].map(() => ({}))
+
+        const simulation = d[1].length > 22 ? 
+        
+        d3.forceSimulation(x)
+            .force('charge', d3.forceManyBody().strength(30))
+            .force('center', d3.forceCenter(0, 0 ))
+            .force('collision', d3.forceCollide().radius(radius + 1.5))
+            .force('y', d3.forceY().y(0).strength(1.5))
+            .force('x', d3.forceX().x(0).strength(0.1))
+        .stop()
+
+        :  d3.forceSimulation(x)
+        .force('charge', d3.forceManyBody().strength(30))
+        .force('center', d3.forceCenter(0, 0 ))
+        .force('collision', d3.forceCollide().radius(radius + 1.5))
+        .force('y', d3.forceY().y(0).strength(Math.random()*0.1))
+    .stop();
+
+        for (let t = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); t < n; ++t) {
+            simulation.tick();
+        }
+
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[0])))
+        return x2
+
+        // return d3.packSiblings(d[1].map( p => Object.assign({}, p, { r : radius + 1.5.5 + Math.random()*1 })))
+        // .map( c => Object.assign({}, c, offset(c, i, columns,verts[0]) ))
+    }).reduce(flatten, [])
+
+    const allCircles2 = arr2.map((d, i) => {
+
+
+        const x = d[1].map(() => ({}))
+
+        const simulation = d[1].length > 22 ? 
+        
+        d3.forceSimulation(x)
+            .force('charge', d3.forceManyBody().strength(30))
+            .force('center', d3.forceCenter(0, 0 ))
+            .force('collision', d3.forceCollide().radius(radius + 1.5))
+            .force('y', d3.forceY().y(0).strength(1.5))
+            .force('x', d3.forceX().x(0).strength(0.1))
+        .stop()
+
+        :  d3.forceSimulation(x)
+        .force('charge', d3.forceManyBody().strength(30))
+        .force('center', d3.forceCenter(0, 0 ))
+        .force('collision', d3.forceCollide().radius(radius + 1.5))
+        .force('y', d3.forceY().y(0).strength(Math.random()*0.1))
+    .stop();
+
+        for (let t = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); t < n; ++t) {
+            simulation.tick();
+        }
+
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[1])))
+        return x2
+
+        //return d3.packSiblings(d[1].map( p => Object.assign({}, p, { r : radius + 1.5.5 + Math.random()*1 })))
+        //.map( c => Object.assign({}, c, offset(c, i, columns,verts[1]) ))
+    }).reduce(flatten, [])
+
+
+    const allCircles3 = arr3.map((d, i) => {
+
+
+        const x = d[1].map(() => ({}))
+
+        const simulation = d[1].length > 22 ? 
+        
+        d3.forceSimulation(x)
+            .force('charge', d3.forceManyBody().strength(30))
+            .force('center', d3.forceCenter(0, 0 ))
+            .force('collision', d3.forceCollide().radius(radius + 1.5))
+            .force('y', d3.forceY().y(0).strength(1.5))
+            .force('x', d3.forceX().x(0).strength(0.1))
+        .stop()
+
+        :  d3.forceSimulation(x)
+        .force('charge', d3.forceManyBody().strength(30))
+        .force('center', d3.forceCenter(0, 0 ))
+        .force('collision', d3.forceCollide().radius(radius + 1.5))
+        .force('y', d3.forceY().y(0).strength(Math.random()*0.1))
+    .stop();
+    
+        for (let t = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); t < n; ++t) {
+            simulation.tick();
+        }
+
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[2])))
+        return x2
+
+       // return d3.packSiblings(d[1].map( p => Object.assign({}, p, { r : radius + 1.5.5 + Math.random()*1 })))
+       // .map( c => Object.assign({}, c, offset(c, i, columns,verts[2]) ))
+    }).reduce(flatten, [])
+
+    const positions = [ allCircles, allCircles2, allCircles3 ]
+
+    const labelArr = [ ageLabels, natLabels, floorLabels ]
+
+    const smallCircles = svg
+        .selectAll('.gren-circle')
+        .data(allCircles)
+        .enter()
+        .append('circle')
+
+    smallCircles
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .attr('r', radius)
+        .attr('class', 'gren-circle')
+
+    const labelGroups = svg.selectAll('.gren-label-layer')
+        .data(labelArr)
+        .enter()
+        .append('g')
+        .attr('class', (d, i) => i === 0 ? 
+        'gren-label-layer gren-label-layer--shown' : 'gren-label-layer')
+        .attr('data-id', (d, i) => i)
+
+    const labels = labelGroups
+        .selectAll('.gren-label')
+        .data((d, i) => d.map(x => [ x, i ]))
+        .enter()
+        .append('text')
+        .attr('x', (d, i) => offset({ x : 0, y : -40 }, i, columns,verts[d[1]]).x)
+        .attr('y', (d, i) => offset({ x : 0, y : -40 }, i, columns,verts[d[1]]).y)
+        .text(d => d[0])
+        .attr('class', 'gren-label')
+
+    const buttons = $$('.gren-button')
+
+    const gs = $$('.gren-label-layer')
+
+    const toggleChart = i => {
+
+        gs.forEach(el2 => {
+            if(i === Number(el2.getAttribute('data-id'))) {
+                el2.classList.add('gren-label-layer--shown')
+            }
+            else {
+                el2.classList.remove('gren-label-layer--shown')
+            }
+        })
+
+        buttons.forEach(el2 => {
+
+            if(i === Number(el2.getAttribute('data-id'))) {
+                el2.classList.add('gren-button--selected')
+            }
+            else {
+                el2.classList.remove('gren-button--selected')
+            }
+        })
+
+
+        
+        const randoms = [0, 1, 2].map(() => Math.floor((Math.random()*positions[i].length)))
+
+        smallCircles
+            .data(positions[i])
+            .transition()
+            .duration((d, i) => 1000)
+            .delay((d, i) => randoms.indexOf(i) >= 0 ? Math.random()*1600 : Math.random()*200)
+            .ease(d3.easeQuadInOut)
+        
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y)
+
+    }
+
+    let globalI = 0
+
+    const toggleLoop = setInterval(() => {
+
+        globalI = (globalI + 1) % 3
+
+        toggleChart(globalI)
+
+    }, 5000)
+
+    buttons.forEach((el, i) => {
+
+        el.addEventListener('click', () => {
+
+            clearInterval(toggleLoop)
+
+            const i = Number(el.getAttribute('data-id'))
+            toggleChart(i)
+        })
+
+    })
+
+}
 
 function init() {
     axios.get(`${process.env.PATH}/assets/appData.json`).then((resp) => {
@@ -22,6 +371,9 @@ function init() {
         var data = setData(resp.data);
 
         buildView(data);
+
+        window.requestAnimationFrame(() => drawChart(data))
+
     });
 }
 
@@ -33,7 +385,7 @@ function setData(data){
         d.name = d["Name"];
         d.shortBio = d["Short-biog"];
         d.grid_photo = d["Pic-url"];
-        d.bio = d["Long-biog"];
+        d.bio = (d["Long-biog"] || '').split('\n').map(par => `<p>${par}</p>`).join('')
     })
     return data;
 }
@@ -120,11 +472,7 @@ function compileListHTML(dataIn) {
         }
     );
 
-    console.log(dataIn)
-
     var newHTML = content(dataIn);
-
-    console.log(newHTML)
 
     return newHTML
 
@@ -140,11 +488,7 @@ function addListeners() {
     })
 
     $$('.gren-collapse-button').forEach((el) => {
-
-        console.log(el)
-
         el.addEventListener('click', collapseBio)
-
     })
 
     document.getElementById("expandAll").addEventListener('click',  function() { expandAllBiogs() });
