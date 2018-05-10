@@ -51,7 +51,8 @@
 
 	&.animation-done{
 		visibility:visible;
-		opacity: 0.5;
+		opacity: 0.e;
+		transition: opacity 1.5s;
 	}
 
 	&.list-item-short{
@@ -60,6 +61,8 @@
 
 	&.animation-done.gren-list-item--hl {
 			opacity: 1;
+			transition: opacity .5s;
+
 
 			// .list-item-short-name, .short-biog-insert {
 			// 	-webkit-animation-name: name-fade; /* Safari 4.0 - 8.0 */
@@ -83,6 +86,7 @@
 
 	&.animation-done:hover {
 		opacity: 1;
+		transition: opacity .5s;
 	}
 
 	&.gren-list-item--expanded {
