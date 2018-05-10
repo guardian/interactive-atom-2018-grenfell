@@ -41,7 +41,7 @@
 		color: white;
 		position: absolute;
 		left: 0px;
-		top: -24px;
+		top: -26px;
 		@include fs-textSans(3);
 		margin: 0 20px;
 
@@ -78,6 +78,23 @@
 		opacity: 0;
 	}
 
+	hr {
+		opacity: 0;
+		position: absolute;
+		width: 100%;
+		height: 1px;
+		border: none;
+		background-color: $neutral-100;
+		top: -14px;
+		left: -10px;
+		transition: opacity 1.5s;
+
+		@include mq(tablet){
+			width: 410px;
+		}
+
+	}
+
 	&.animated{
 		opacity: 0.5;
 		visibility:visible;
@@ -102,6 +119,17 @@
 	&.animation-done.gren-list-item--hl {
 			opacity: 1;
 			transition: opacity .5s;
+
+			hr {
+				opacity: 1;
+				transition: opacity 3s;
+			}
+
+		// 	.gren-list-name {
+		// 	border-top: 1px solid white;
+		// 	width: 120px;
+		// 	margin-left: -10px;
+		// }
 
 
 			// .list-item-short-name, .short-biog-insert {
@@ -157,9 +185,9 @@
 				display: block;
 				position: relative;
 				padding-top: 0px;
-				@include mq(tablet){
-					margin-left: 104px;
-				}
+				// @include mq(tablet){
+				// 	margin-left: 104px;
+				// }
 		}
 
 		.gren-collapse-button {
@@ -275,9 +303,9 @@
 }
 
 .biog-meta {
-	@include mq(tablet){
-		margin-left: 104px;
-	}
+	// @include mq(tablet){
+	// 	margin-left: 104px;
+	// }
 }
 
 .biog-credit {
@@ -296,6 +324,7 @@
 
 		}
 		@include mq(tablet){
+			max-width: 400px;
 		}
 		@include mq(desktop){
 			margin-bottom: 0;
@@ -306,9 +335,9 @@
 }
 
 .gren-longbio {
-	@include mq(tablet){
-		margin-top: 46px;
-	}
+	// @include mq(tablet){
+	// 	margin-top: 46px;
+	// }
 }
 
 .gren-long-biog-wrapper {
@@ -455,8 +484,10 @@
 	}
 
 	@include mq(tablet){
+		width: 104px;
+		height: 104px;
 		position: absolute;
-		left: 0px;
+		left: -125px;
 		top: -28px;
 	}
 }

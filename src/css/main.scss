@@ -44,16 +44,13 @@ body {
   .gv-main-column {
     margin: 0 20px;
     max-width: 400px; // padding: 0 10px 20px 10px;
-    // @include mq(mobileLandscape) {
-    //     margin: 0 20px;
-    // }
 
     @include mq(phablet) {
         margin: 0 20px;
     }
 
     @include mq(tablet) {
-        max-width: 400px;
+        max-width: 640px;
         margin: 0 180px;
     }
 

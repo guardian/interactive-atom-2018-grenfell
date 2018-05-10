@@ -139,12 +139,12 @@
 			z-index: 1000;
 			border-left: 1px solid $neutral-20;
 			left: 0px;
+			margin-top: 4px;
 			@include mq(tablet) {
 					left: -10px;
 					border-left: 1px solid $neutral-20;
 			}
 			@include mq(leftCol) {
-					top: 14px;
 			}
 			@include mq(wide) {
 
