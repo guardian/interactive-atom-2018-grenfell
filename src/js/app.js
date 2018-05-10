@@ -179,7 +179,7 @@ const drawChart = (data) => {
 
 
     const verts = isMobile ? [ 110, 87, 110 ] : [ 110, 112, 151 ]
-    const tops = isMobile ? [ 440, 160, 160 ] : [ 480, 160, 160 ]
+    const tops = isMobile ? [ 420, 160, 160 ] : [ 480, 160, 160 ]
 
     const allCircles = arr.map((d, i, arr) => {
 
