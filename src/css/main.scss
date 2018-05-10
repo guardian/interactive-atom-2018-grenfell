@@ -43,7 +43,7 @@ body {
 
   .gv-main-column {
     margin: 0 10px;
-    max-width: 640px; // padding: 0 10px 20px 10px;
+    max-width: 660px; // padding: 0 10px 20px 10px;
     @include mq(mobileLandscape) {
         margin: 0 10px;
     }
@@ -78,7 +78,6 @@ body {
         }
     }
 }
-
 
 
 .show-mobile {

@@ -39,12 +39,13 @@
 	}
 
 	&.animated{
+		opacity: 0.5;
 		visibility:visible;
-		 -webkit-animation-name: opacity-ani-fortypc; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-name: opacity-5-1; /* Safari 4.0 - 8.0 */
+		 -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-	    animation-name: opacity-ani-fortypc;
-	    animation-duration: 1s;
+	    animation-name: opacity-5-1;
+	    animation-duration: 2s;
 		animation-fill-mode: forwards;
 	}
 
@@ -60,8 +61,23 @@
 	&.animation-done.gren-list-item--hl {
 			opacity: 1;
 
+			// .list-item-short-name, .short-biog-insert {
+			// 	-webkit-animation-name: name-fade; /* Safari 4.0 - 8.0 */
+			//  	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+			//  	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+			// 	animation-name: name-fade;
+			// 	animation-duration: 0.5s;
+			// 	animation-fill-mode: forwards;
+			// 	color: #ffffff;
+			// }
+
 			.short-bio-expand {
-				opacity: 1;
+				-webkit-animation-name: opacity-0-1; /* Safari 4.0 - 8.0 */
+				-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+				-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+				animation-name: opacity-0-1;
+				animation-duration: 1s;
+			 	animation-fill-mode: forwards;
 			}
 	}
 
@@ -136,7 +152,7 @@
 
 .gren-list-name, .gren-list-bio-head{
 	font-family: 'Guardian Headline Full', Georgia, serif;
-	font-size:24px;
+	font-size:22px;
 	line-height: 32px;
 
 	cursor:pointer;
@@ -148,16 +164,16 @@
 
 .list-item-short-name{
 	color: $neutral-86;
-	&.animate-active{
-		color: $neutral-86;
-		visibility:visible;
-		 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-	    animation-name: text-light-to-black;
-	    animation-duration: 0.5s;
-		animation-fill-mode: forwards;
-	}
+	// &.animate-active{
+	// 	color: $neutral-86;
+	// 	visibility:visible;
+	// 	 -webkit-animation-name: text-light-to-black; /* Safari 4.0 - 8.0 */
+	// 	 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+	// 	 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	//     animation-name: text-light-to-black;
+	//     animation-duration: 0.5s;
+	// 	animation-fill-mode: forwards;
+	// }
 }
 
 .gren-list-biog{
@@ -213,22 +229,21 @@
 }
 
 .short-biog-insert{
+	font-family: 'Guardian Headline Full', Georgia, serif;
 	position: relative;
 	color:$neutral-100;
-	font-size: 14px;
-	line-height: 18px;
+	font-size: 18px;
+	line-height: 22px;
 	width: 100%;
 		@include mq(mobileLandscape){
 
 		}
 		@include mq(tablet){
-			width: 100%;
-			max-width: 620px;
 		}
 		@include mq(desktop){
 			margin-bottom: 0;
-			font-size: 16px;
-			line-height: 22px;
+			font-size: 20px;
+			line-height: 24px;
 		}
 
 }
@@ -323,23 +338,36 @@
 	}
 }
 
+.short-bio-plus {
+	display: inline-flex;
+	align-items: center;
+	z-index: 1000;
+	left: 0px;
+	background: url('<%= path %>/assets/plus.svg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 11px;
+	width: 11px;
+	margin-left: 3px;
+}
+
 .short-bio-expand-btn {
 	margin-left: 6px;
-	border-radius: 100px;
-	border: 1px solid $neutral-100;
+	border-radius: 50%;
+	border: 1px solid $neutral-46;
 	background-color: $neutral-7;
 	height:18px;
 	width:18px;
 	float: left;
 
 	&.animate-active{
-		visibility:visible;
-		 -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
-		 -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-			animation-name: bg-light-to-black;
-			animation-duration: 0.5s;
-		animation-fill-mode: forwards;
+		// visibility:visible;
+		//  -webkit-animation-name: bg-light-to-black; /* Safari 4.0 - 8.0 */
+		//  -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+		//  -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+		// 	animation-name: bg-light-to-black;
+		// 	animation-duration: 0.5s;
+		// animation-fill-mode: forwards;
 	}
 }
 
@@ -375,6 +403,10 @@
 		left: 0px;
 		top: -32px;
 	}
+}
+
+.gren-endpiece-blurb {
+	color: $neutral-100;
 }
 
 .atom--snippet__handle, .atom--snippet__feedback .atom__button {
