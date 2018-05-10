@@ -45,7 +45,7 @@ const twitterBaseUrl = 'https://twitter.com/intent/tweet?text=';
         }
     }
 
-    var shareFn = share('The lives of Grenfell tower', 'https://www.theguardian.com/politics/ng-interactive/2018/may/04/local-council-election-results-2018-in-full');
+    var shareFn = share('The lives of Grenfell tower', 'https://gu.com/p/8t3ty');
 
     [].slice.apply(document.querySelectorAll('.interactive-share')).forEach(shareEl => {
         var network = shareEl.getAttribute('data-network');
