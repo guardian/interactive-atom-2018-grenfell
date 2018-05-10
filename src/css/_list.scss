@@ -49,7 +49,9 @@
         margin: 0 20px;
     }
 		@include mq(tablet) {
-        margin: 0 55px;
+				text-align: right;
+        margin: 0 60px;
+				top: 0px;
     }
 		@include mq(desktop) {
 				top: 0px;
