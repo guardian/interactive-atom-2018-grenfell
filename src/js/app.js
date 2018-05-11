@@ -13,6 +13,8 @@ const $ = sel => document.querySelector(sel)
 
 const floors = 24;
 
+let kickedOff = false
+let startLoop = () => true
 
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
@@ -298,7 +300,7 @@ const drawChart = (data) => {
 
     const smallCircles = svg
         .selectAll('.gren-circle')
-        .data(allCircles)
+        .data(allCircles3)
         .enter()
         .append('circle')
 
@@ -312,7 +314,7 @@ const drawChart = (data) => {
         .data(labelArr)
         .enter()
         .append('g')
-        .attr('class', (d, i) => i === 0 ? 
+        .attr('class', (d, i) => i === 2 ? 
         'gren-label-layer gren-label-layer--shown' : 'gren-label-layer')
         .attr('data-id', (d, i) => i)
 
@@ -405,13 +407,22 @@ const drawChart = (data) => {
 
     let globalI = 0
 
-    const toggleLoop = setInterval(() => {
+    let toggleLoop = null
 
-        globalI = (globalI + 1) % 3
+    startLoop = () => {
 
         toggleChart(globalI)
+        
+        console.log('starting loop ...')
 
-    }, 5000)
+        toggleLoop = setInterval(() => {
+
+            globalI = (globalI + 1) % 3
+            toggleChart(globalI)
+    
+        }, 5000)
+
+    }
 
     buttons.forEach((el, i) => {
 
@@ -481,6 +492,16 @@ function buildView(data) {
 
         const listItemsInView = [listItems[0]].concat(listItems.filter( element => isInView(element)))
         const lastElementInView = listItemsInView.slice(-1)[0]
+
+        const chartEl = $('.gren-chart')
+
+        if(chartEl) {
+            const chartInView = chartEl.getBoundingClientRect().top < window.innerHeight*0.8
+            if(chartInView && !kickedOff) {
+                kickedOff = true
+                startLoop()
+            }
+        }
 
         listItems.forEach( element => {
             if(element !== lastElementInView) {
@@ -658,6 +679,7 @@ function floorsAni() {
         el.style.animationDelay = delay;
 
     })
+
 
     finalEl.addEventListener('animationend', function(event) {
        listAni();
