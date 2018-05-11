@@ -139,6 +139,16 @@
 	&.animation-done:hover {
 		opacity: 1;
 		transition: opacity .5s;
+
+		.short-bio-expand {
+			-webkit-animation-name: opacity-0-1; /* Safari 4.0 - 8.0 */
+			-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+			-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+			animation-name: opacity-0-1;
+			animation-duration: 1s;
+			 animation-fill-mode: forwards;
+		}
+
 	}
 
 	&.gren-list-item--expanded {
