@@ -4,6 +4,7 @@
 @import "ani";
 @import "header";
 @import "list";
+@import "related";
 // Uncomment for embeds
 //@import "embed";
 // Uncomment for full screen (including immersive article main media)
@@ -189,4 +190,19 @@ body {
 
 .gren-circle {
     fill: white;
+}
+
+h2 {
+  color: $neutral-100;
+  line-height: 24px;
+  text-align:right;
+}
+
+.section-header {
+  @include mq($from: tablet) {
+      position: absolute;
+      left: 0px;
+      top: 6px;
+
+  }
 }

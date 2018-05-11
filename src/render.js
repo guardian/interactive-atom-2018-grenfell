@@ -13,7 +13,9 @@ export async function render() {
 	// this function just has to return a string of HTML
 	// you can generate this using js, e.g. using Mustache.js
 
-	const shortData = JSON.parse(fs.readFileSync("./src/assets/initial_data.json"));
+	const shortData = JSON.parse(fs.readFileSync("./src/assets/appData.json"));
+
+  let relatedData = await rp({ uri: 'https://interactive.guim.co.uk/docsdata-test/1LrF2lzNImp1XdlwbSAlLkf0nbpEhzvzSU-3PXrUH7ws.json', json: true });
 
 	const data = setData();
 
@@ -29,16 +31,17 @@ export async function render() {
 	}
 
 	shortData.sort((a, b) => {
-		
+
 		if(isNaN(Number(a.Floor))) { return 1 }
 		if(isNaN(Number(b.Floor))) { return -1 }
-		
+
 		return Number(b.Floor) - Number(a.Floor)
 	})
 	 	.forEach((d,i, arr) => {
 		d.bio = " ";
 		d.name= d["Name"];
         d.shortBio = d["Short-biog"];
+				console.log(d)
 		d.grid_photo = d["Pic-url"];
 
 		const cleaned = clean(d.Floor)
@@ -50,23 +53,25 @@ export async function render() {
 		}
         // if(d["Long-biog"]){ d.bio = JSON.stringify(d["Long-biog"]).split('\r\') };
         // console.log(d.bio )
-        // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";     
+        // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";
     })
 
 	data.shortData = shortData
+
+	data.related = relatedData.sheets.Related[0]
 
 	data.floorsArr = data;
 
 	const renderedHTML = renderHTML(data);
 
-    return renderedHTML;
+  return renderedHTML;
 }
 
 
 function formatShortData(data){
 	data.forEach((d) => {
         // d.shortBio = d["Short-biog"].split(" ");
-        // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";        
+        // d.shortBio = d.shortBio.slice( 0, 20).join(" ")+"…";
 
        // console.log(d.Name)
     })
@@ -76,14 +81,14 @@ function formatShortData(data){
 
 function renderHTML(dataIn){
 
-	console.log(dataIn)
+	// console.log(dataIn)
 
 
 	Handlebars.registerHelper('nl2br', function (text, isXhtml) {
 	  var breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br />' : '<br>';
 	  return (text + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 	});
-	
+
     Handlebars.registerHelper('html_decoder', function(text) {
         var str = unescape(text).replace(/&amp;/g, '&');
         return str;
@@ -116,17 +121,17 @@ function setData(){
 	    return x
 	}
 
-	// times :: Int -> (Int -> Int) -> Int 
+	// times :: Int -> (Int -> Int) -> Int
 	const times = n=> f=>
 	  repeat (n) (i => (f(i), i + 1)) (0)
 
 	// use it
-	times (reqNames) (i => { let entry={}; 
-		entry.refNum = i; 
-		entry.firstName = makeRandomName(6); 
+	times (reqNames) (i => { let entry={};
+		entry.refNum = i;
+		entry.firstName = makeRandomName(6);
 		entry.secondName = makeRandomName(9);
 		entry.floor = Math.floor(Math.random() * Math.floor(23));
-		names.push(entry); 
+		names.push(entry);
 	} );
 
 	const floorsArr = groupBy(names, function(el) {
@@ -134,13 +139,13 @@ function setData(){
 	});
 
 
-	Object.entries(floorsArr).forEach(([key, value]) => { 
-		var tempObj = {}; 
-		tempObj.floorNum = getFloorNum(key); 
-		tempObj.objArr = value; 
+	Object.entries(floorsArr).forEach(([key, value]) => {
+		var tempObj = {};
+		tempObj.floorNum = getFloorNum(key);
+		tempObj.objArr = value;
 		tempObj.count = getFloorCount(key);
-		tempArr.push(tempObj); 
-	}); 
+		tempArr.push(tempObj);
+	});
 
 
 	const max = tempArr.reduce(function(prev, current) {
@@ -153,13 +158,13 @@ function setData(){
 		el.widthShim = el.count * 5;
 	})
 
-	tempArr.reverse(); 
+	tempArr.reverse();
 
 	return tempArr;
 
 }
 
-function getFloorNum(n){	
+function getFloorNum(n){
 	return n;
 }
 

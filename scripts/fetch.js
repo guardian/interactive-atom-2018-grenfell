@@ -11,7 +11,7 @@ async function start() {
     })).sheets["Duplicate name list for interactive"];
 
     const published = masterSheet.filter(d => d["appearing_in_S3_tool"] === "Y");
- 
+
     const links = published.map(d => d["s3 url"]).filter(d => d !== "");
 
     const allRequests = links.map(d => rp(d));
@@ -19,7 +19,7 @@ async function start() {
     const firstTen = allRequests.slice(0, 9);
 
     const appData = allRequests
-      
+
     const floorsArr = published.reduce(function (r, a) {
         a.floorNum = getFloorNum(a);
         r[a.floorNum] = r[a.floorNum] || [];
@@ -30,34 +30,35 @@ async function start() {
 
     var floorsObjArr = [];
     var num = 0;
-    while(num <= totalFloors) { 
+    while(num <= totalFloors) {
        var tmpOb = {};
        tmpOb.floorNum = num.toString();
        tmpOb.count = getFloorCount(num.toString());
        floorsObjArr.push(tmpOb)
-       num++; 
-    } 
+       num++;
+    }
 
 
     function getFloorCount(s){
         console.log(s)
         var newCount = 0;
-        Object.values(floorsArr).map((d,i) => { 
+        Object.values(floorsArr).map((d,i) => {
             if(d[0].floorNum === s){
                 newCount = d.length;
             }
         });
 
-        
+
         return newCount;
     }
-   
-    
+
+
 
 
     Promise.all(appData)
-        .then(d => {      
-            fs.writeFileSync("./src/assets/appData.json", '[' + d + ']'); 
+        .then(d => {
+            fs.writeFileSync("./src/assets/appData.json", '[' + d + ']');
+            console.log("done")
         })
         .catch(err => {
             console.log("ERROR",err);
@@ -68,13 +69,13 @@ async function start() {
             // var tempArr = []; tempArr doesnt work
             // tempArr.push(d);
             // need to wrap resulting file in [ ] for it to work
-            fs.writeFileSync("./src/assets/firstTen.json", d); //JSON.stringify(tempArr)
+            fs.writeFileSync("./src/assets/firstTen.json", '[' + d + ']'); //JSON.stringify(tempArr)
         })
         .catch(err => {
             console.log("ERROR",err);
         });
 
-    fs.writeFileSync("./src/assets/floorsArr.json", JSON.stringify(floorsObjArr)) ;   
+    fs.writeFileSync("./src/assets/floorsArr.json", JSON.stringify(floorsObjArr)) ;
 
 
 }
@@ -84,7 +85,7 @@ function getFloorNum(a){
     var n = a["FLOOR NUMBER (* indicates didn\'t die on that floor)"];
 
     if(n.length > 2 && n!="Non resident"){
-       
+
         n = n.slice(0, -1);
         a.didNotLiveOnFloor = true;
         //console.log(n)
@@ -95,4 +96,3 @@ function getFloorNum(a){
 }
 
 start();
-

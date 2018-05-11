@@ -74,7 +74,7 @@ const drawChart = (data) => {
 
         if(!str || str === '') { return 'Unknown' }
 
-        if(/months/ig.test(str)) { 
+        if(/months/ig.test(str)) {
             return '0'
         }
         if(/three/ig.test(str)) { return '3' }
@@ -126,7 +126,7 @@ const drawChart = (data) => {
     const floorBrackets = (agg, cur) => {
         const floor = normaliseFloor(cur['Floor'])
         const entry = agg[floor]
-        return entry ? Object.assign({}, agg, { [ floor ] : entry.concat(cur) } ) : 
+        return entry ? Object.assign({}, agg, { [ floor ] : entry.concat(cur) } ) :
             Object.assign({}, agg, { [floor] : [ cur ] })
     }
 
@@ -134,7 +134,7 @@ const drawChart = (data) => {
 
         const n = arr.length
 
-      
+
 
         const lastFull = n - (n % cols)
 
@@ -142,7 +142,7 @@ const drawChart = (data) => {
 
         if(n === 5 && cols === 5) {
 
-            if(i <= 2) { 
+            if(i <= 2) {
                 return {
                     x : circle.x + (i+1)*spacing + spacing/2,
                     y : circle.y + topSpacing/2
@@ -193,7 +193,7 @@ const drawChart = (data) => {
 
     const floorLabels = arr3.map(o => o[0])
 
-    const flatten = (agg, cur, i) => i === 0 ? cur : agg.concat(cur) 
+    const flatten = (agg, cur, i) => i === 0 ? cur : agg.concat(cur)
 
 
     const verts = isMobile ? [ 110, 87, 110 ] : [ 110, 112, 151 ]
@@ -203,8 +203,8 @@ const drawChart = (data) => {
 
         const x = d[1].map(() => ({}))
 
-        const simulation = d[1].length > 22 ? 
-        
+        const simulation = d[1].length > 22 ?
+
         d3.forceSimulation(x)
             .force('charge', d3.forceManyBody().strength(30))
             .force('center', d3.forceCenter(0, 0 ))
@@ -234,8 +234,8 @@ const drawChart = (data) => {
 
         const x = d[1].map(() => ({}))
 
-        const simulation = d[1].length > 22 ? 
-        
+        const simulation = d[1].length > 22 ?
+
         d3.forceSimulation(x)
             .force('charge', d3.forceManyBody().strength(30))
             .force('center', d3.forceCenter(0, 0 ))
@@ -266,8 +266,8 @@ const drawChart = (data) => {
 
         const x = d[1].map(() => ({}))
 
-        const simulation = d[1].length > 22 ? 
-        
+        const simulation = d[1].length > 22 ?
+
         d3.forceSimulation(x)
             .force('charge', d3.forceManyBody().strength(30))
             .force('center', d3.forceCenter(0, 0 ))
@@ -282,7 +282,7 @@ const drawChart = (data) => {
         .force('collision', d3.forceCollide().radius(radius + 1.5))
         .force('y', d3.forceY().y(0).strength(Math.random()*0.08))
     .stop();
-    
+
         for (let t = 0, n = Math.ceil(Math.log(simulation.alphaMin()) / Math.log(1 - simulation.alphaDecay())); t < n; ++t) {
             simulation.tick();
         }
@@ -312,7 +312,7 @@ const drawChart = (data) => {
         .data(labelArr)
         .enter()
         .append('g')
-        .attr('class', (d, i) => i === 0 ? 
+        .attr('class', (d, i) => i === 0 ?
         'gren-label-layer gren-label-layer--shown' : 'gren-label-layer')
         .attr('data-id', (d, i) => i)
 
@@ -352,7 +352,7 @@ const drawChart = (data) => {
         })
 
 
-        
+
         const randoms = [0, 1, 2].map(() => Math.floor((Math.random()*positions[i].length)))
 
         smallCircles
@@ -361,7 +361,7 @@ const drawChart = (data) => {
             .duration((d, i) => 1000)
             .delay((d, i) => randoms.indexOf(i) >= 0 ? Math.random()*1600 : Math.random()*200)
             .ease(d3.easeQuadInOut)
-        
+
             .attr('cx', d => d.x)
             .attr('cy', d => d.y)
 
@@ -424,8 +424,11 @@ function buildView(data) {
     $$('.gren-list-item').forEach( item => {
 
         const longBiogEl = item.querySelector('.gren-longbio')
-        const entry = data.find(row => row.name === item.getAttribute('data-name'))
-        longBiogEl.innerHTML = entry.bio
+        const entry = data.filter(row => row.name === item.getAttribute('data-name'))
+
+        if(entry.length > 0) {
+          longBiogEl.innerHTML = entry[0].bio
+        }
 
     })
 
