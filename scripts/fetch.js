@@ -21,11 +21,9 @@ async function start() {
         }
 
 
-        row.sheetUrl = `https://interactive.guim.co.uk/docsdata-test/${urlCleaned}.json`;
+        row.sheetUrl = `https://interactive.guim.co.uk/docsdata-test/${urlCleaned}.json?page=2`;
 
-        if (urlCleaned === "1dFJTYi5n17NUfLBkGLYwulaQWQwm8SZJILCaEqinYD4" || urlCleaned === "1-P87Goh6Y0JYE29TTWtKPPIriJssP3d2DuswF_JTprw" || urlCleaned === "1NJ9GJAjfQhmK8hJ0EJS9qbT9VSC8VV3vK5u-9On8IHM" || urlCleaned === "1MJ9hvQJkNIyXyI9aQF6C7dWa4w_TPjnVJ79EF2HgT3g") {
-            row.sheetUrl = "";
-        }
+      
     });
 
     const links = published.map(d => d.sheetUrl).filter(d => d !== "");
