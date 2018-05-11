@@ -195,14 +195,20 @@ body {
 h2 {
   color: $neutral-100;
   line-height: 24px;
-  text-align:right;
 }
 
 .section-header {
-  @include mq($from: tablet) {
+  margin-bottom: 12px;
+  @include mq(tablet) {
       position: absolute;
       left: 0px;
       top: 6px;
-
+      max-width: 180px;
+  }
+  @include mq(leftCol) {
+    max-width: 180px;
+  }
+  @include mq(wide) {
+    max-width: 400px;
   }
 }
