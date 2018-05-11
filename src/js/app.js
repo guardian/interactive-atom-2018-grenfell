@@ -355,15 +355,51 @@ const drawChart = (data) => {
         
         const randoms = [0, 1, 2].map(() => Math.floor((Math.random()*positions[i].length)))
 
+        let total = 0
+
         smallCircles
             .data(positions[i])
-            .transition()
-            .duration((d, i) => 1000)
-            .delay((d, i) => randoms.indexOf(i) >= 0 ? Math.random()*1600 : Math.random()*200)
-            .ease(d3.easeQuadInOut)
+
+            .each(function(d, i) {
+
+                const el = d3.select(this)
+                const cx = Number(el.attr('cx'))
+                const cy = Number(el.attr('cy'))
+                const euclidean = Math.sqrt(( cx - d.x )**2 + (cy - d.y)**2)
+
+                const rand = Boolean(Math.random() > 0.85 && total < 2)
+
+                if(euclidean > 60 && euclidean < 150 && rand) { total ++ }
+
+                const delay = euclidean > 60 && euclidean < 150 && rand ? Math.random()*1800 : Math.random()*200
+
+                // if(euclidean > 60 && euclidean < 150) { 
+
+                //     return Math.random() > 0.9 ? Math.random()*1600 : Math.random()*200
+
+                // }
+                // return Math.random()*200
+
+                    el.transition()
+                        .delay(delay)
+                        .duration( euclidean > 60 && euclidean < 150 && rand ? (500 + Math.random()*500) : 1000 )
+                        .ease(t => euclidean > 60 && euclidean < 150 && rand ? d3.easePolyInOut(t, 6) : d3.easePolyInOut(t, 4))
+                        .attr('cx', d => d.x)
+                        .attr('cy', d => d.y)
+
+
+            })
+
+            // .transition()
+            // .duration((d, i) => 1000)
+            // .delay(function(d, i) {
+
+              
+            // })
+            // .ease(d3.easeQuadInOut)
         
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y)
+            // .attr('cx', d => d.x)
+            // .attr('cy', d => d.y)
 
     }
 
