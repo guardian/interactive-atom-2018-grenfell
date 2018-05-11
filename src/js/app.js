@@ -186,7 +186,7 @@ const drawChart = (data) => {
     const grouped3 = data.reduce(floorBrackets, {})
     const arr3 = ['10', '11', '14', '16', '17', '18', '19', '20', '21', '22', '23', 'Non-resident', 'Unknown'].map(k => [ k, grouped3[k] ])
 
-    const ageLabels = ['0-18 years', '19-35', '35-50', '51-82', 'Unknown']
+    const ageLabels = ['0–18 years', '19–35', '35–50', '51–82', 'Unknown']
 
 
     const natLabels = arr2.map(o => o[0])
