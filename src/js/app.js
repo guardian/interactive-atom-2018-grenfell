@@ -13,6 +13,8 @@ const $ = sel => document.querySelector(sel)
 
 const floors = 24;
 
+let kickedOff = false
+let startLoop = () => true
 
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
@@ -186,7 +188,7 @@ const drawChart = (data) => {
     const grouped3 = data.reduce(floorBrackets, {})
     const arr3 = ['10', '11', '14', '16', '17', '18', '19', '20', '21', '22', '23', 'Non-resident', 'Unknown'].map(k => [ k, grouped3[k] ])
 
-    const ageLabels = ['0-18 years', '19-35', '35-50', '51-82', 'Unknown']
+    const ageLabels = ['0–18 years', '19–35', '35–50', '51–82', 'Unknown']
 
 
     const natLabels = arr2.map(o => o[0])
@@ -298,7 +300,7 @@ const drawChart = (data) => {
 
     const smallCircles = svg
         .selectAll('.gren-circle')
-        .data(allCircles)
+        .data(allCircles3)
         .enter()
         .append('circle')
 
@@ -312,7 +314,11 @@ const drawChart = (data) => {
         .data(labelArr)
         .enter()
         .append('g')
+<<<<<<< HEAD
         .attr('class', (d, i) => i === 0 ?
+=======
+        .attr('class', (d, i) => i === 2 ? 
+>>>>>>> 81cef78a929c5e3bffbc05364fb1fed3625d8397
         'gren-label-layer gren-label-layer--shown' : 'gren-label-layer')
         .attr('data-id', (d, i) => i)
 
@@ -350,13 +356,22 @@ const drawChart = (data) => {
                 el2.classList.remove('gren-button--selected')
             }
         })
+<<<<<<< HEAD
 
 
 
+=======
+        
+>>>>>>> 81cef78a929c5e3bffbc05364fb1fed3625d8397
         const randoms = [0, 1, 2].map(() => Math.floor((Math.random()*positions[i].length)))
+
+        let total = 0
+
+        const dists = isMobile ? [ 50, 90 ] : [ 60, 130 ]
 
         smallCircles
             .data(positions[i])
+<<<<<<< HEAD
             .transition()
             .duration((d, i) => 1000)
             .delay((d, i) => randoms.indexOf(i) >= 0 ? Math.random()*1600 : Math.random()*200)
@@ -364,18 +379,70 @@ const drawChart = (data) => {
 
             .attr('cx', d => d.x)
             .attr('cy', d => d.y)
+=======
+
+            .each(function(d, i) {
+
+                const el = d3.select(this)
+                const cx = Number(el.attr('cx'))
+                const cy = Number(el.attr('cy'))
+                const euclidean = Math.sqrt(( cx - d.x )**2 + (cy - d.y)**2)
+
+                const rand = Boolean(Math.random() > 0.9 && (total < 2))
+
+                if(euclidean > dists[0] && euclidean < dists[1] && rand) { total ++ }
+
+                const delay = euclidean > dists[0] && euclidean < dists[1] && rand ? Math.random()*1800 : Math.random()*200
+
+                // if(euclidean > 60 && euclidean < 150) { 
+
+                //     return Math.random() > 0.9 ? Math.random()*1600 : Math.random()*200
+
+                // }
+                // return Math.random()*200
+
+                    el.transition()
+                        .delay(delay)
+                        .duration( euclidean > dists[0] && euclidean < dists[1] && rand ? (800 + Math.random()*400) : 1200 )
+                        .ease(t => euclidean > dists[0] && euclidean < dists[1] && rand ? d3.easePolyInOut(t, 3) : d3.easePolyInOut(t, 4))
+                        .attr('cx', d => d.x)
+                        .attr('cy', d => d.y)
+
+
+            })
+
+            // .transition()
+            // .duration((d, i) => 1000)
+            // .delay(function(d, i) {
+
+              
+            // })
+            // .ease(d3.easeQuadInOut)
+        
+            // .attr('cx', d => d.x)
+            // .attr('cy', d => d.y)
+>>>>>>> 81cef78a929c5e3bffbc05364fb1fed3625d8397
 
     }
 
     let globalI = 0
 
-    const toggleLoop = setInterval(() => {
+    let toggleLoop = null
 
-        globalI = (globalI + 1) % 3
+    startLoop = () => {
 
         toggleChart(globalI)
+        
+        console.log('starting loop ...')
 
-    }, 5000)
+        toggleLoop = setInterval(() => {
+
+            globalI = (globalI + 1) % 3
+            toggleChart(globalI)
+    
+        }, 5000)
+
+    }
 
     buttons.forEach((el, i) => {
 
@@ -448,6 +515,16 @@ function buildView(data) {
 
         const listItemsInView = [listItems[0]].concat(listItems.filter( element => isInView(element)))
         const lastElementInView = listItemsInView.slice(-1)[0]
+
+        const chartEl = $('.gren-chart')
+
+        if(chartEl) {
+            const chartInView = chartEl.getBoundingClientRect().top < window.innerHeight*0.8
+            if(chartInView && !kickedOff) {
+                kickedOff = true
+                startLoop()
+            }
+        }
 
         listItems.forEach( element => {
             if(element !== lastElementInView) {
@@ -625,6 +702,7 @@ function floorsAni() {
         el.style.animationDelay = delay;
 
     })
+
 
     finalEl.addEventListener('animationend', function(event) {
        listAni();
