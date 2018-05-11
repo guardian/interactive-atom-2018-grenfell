@@ -160,15 +160,12 @@ body {
 }
 
 .gren-chart {
+
+    margin-top: 36px;
     width: 100%;
     max-width: 620px;
     height: 460px;
     margin-bottom: 40px;
-    //border: 1px solid rgba(255, 255, 255, 0.05);
-
-    // @include mq($until: desktop) {
-    //     height: 460px;
-    // }
 
 }
 
@@ -195,9 +192,14 @@ body {
 h2 {
   color: $neutral-100;
   line-height: 24px;
+
+  font-family: 'Guardian Egyptian Web', Georgia, serif;
 }
 
 .section-header {
+
+    margin-left: 10px;
+
   margin-bottom: 12px;
   @include mq(tablet) {
       position: absolute;

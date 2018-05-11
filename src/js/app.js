@@ -18,7 +18,7 @@ let startLoop = () => true
 
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
-const columns = isMobile ? [3, 4, 4] : [5, 5, 5]
+const columns = isMobile ? [2, 4, 4] : [2, 5, 4]
 
 var previousShortList, previousLongList, previousListName, initAni, prevScroll, expandedBiogs = false;
 
@@ -79,6 +79,7 @@ const drawChart = (data) => {
         if (/months/ig.test(str)) {
             return '0'
         }
+        if(/two/ig.test(str)) { return '2' }
         if (/three/ig.test(str)) { return '3' }
         if (/five/ig.test(str)) { return '5' }
         if (/six/ig.test(str)) { return '6' }
@@ -144,6 +145,8 @@ const drawChart = (data) => {
             })
     }
 
+    console.log(data.map(o => o.Age))
+
     const offset = (circle, i, cols, vertSpacing = 160, arr, topSpacing = 160) => {
 
         const n = arr.length
@@ -200,9 +203,9 @@ const drawChart = (data) => {
         ])
 
     const grouped3 = data.reduce(floorBrackets, {})
-    const arr3 = ['10', '11', '14', '16', '17', '18', '19', '20', '21', '22', '23', 'Non-resident', 'Unknown'].map(k => [k, grouped3[k]])
+    const arr3 = ['10', '11', '14', '16', '17', '18', '19', '20', '21', '22', '23', 'Non-resident'].map(k => [k, grouped3[k]])
 
-    const ageLabels = ['0–18 years', '19–35', '35–50', '51–82', 'Unknown']
+    const ageLabels = ['0–18 years', '19–35', '35–50', '51–84']
 
 
     const natLabels = arr2.map(o => o[0])
@@ -212,8 +215,8 @@ const drawChart = (data) => {
     const flatten = (agg, cur, i) => i === 0 ? cur : agg.concat(cur)
 
 
-    const verts = isMobile ? [110, 87, 110] : [110, 112, 151]
-    const tops = isMobile ? [340, 155, 160] : [360, 155, 160]
+    const verts = isMobile ? [180, 87, 130] : [200, 112, 151]
+    const tops = isMobile ? [260, 130, 180] : [260, 160, 170]
 
     const allCircles = arr.map((d, i, arr) => {
 
@@ -256,7 +259,7 @@ const drawChart = (data) => {
             .force('charge', d3.forceManyBody().strength(30))
             .force('center', d3.forceCenter(0, 0))
             .force('collision', d3.forceCollide().radius(radius + 1.5))
-            .force('y', d3.forceY().y(0).strength(1.5))
+            .force('y', d3.forceY().y(0).strength(1.8))
             .force('x', d3.forceX().x(0).strength(0.1))
             .stop()
 
@@ -337,8 +340,8 @@ const drawChart = (data) => {
         .data((d, i, arr) => d.map(x => [x, i, arr]))
         .enter()
         .append('text')
-        .attr('x', (d, i, arr) => offset({ x: 0, y: -40 }, i, columns[d[1]], verts[d[1]], arr, tops[d[1]]).x)
-        .attr('y', (d, i, arr) => offset({ x: 0, y: -40 }, i, columns[d[1]], verts[d[1]], arr, tops[d[1]]).y)
+        .attr('x', (d, i, arr) => offset({ x: 0, y: isMobile ? -40 : -45 }, i, columns[d[1]], verts[d[1]], arr, tops[d[1]]).x)
+        .attr('y', (d, i, arr) => offset({ x: 0, y: isMobile ? -40 : -45 }, i, columns[d[1]], verts[d[1]], arr, tops[d[1]]).y)
         .text(d => d[0])
         .attr('class', 'gren-label')
 
@@ -403,17 +406,6 @@ const drawChart = (data) => {
 
 
         })
-
-        // .transition()
-        // .duration((d, i) => 1000)
-        // .delay(function(d, i) {
-
-
-        // })
-        // .ease(d3.easeQuadInOut)
-
-        // .attr('cx', d => d.x)
-        // .attr('cy', d => d.y)
 
     }
 

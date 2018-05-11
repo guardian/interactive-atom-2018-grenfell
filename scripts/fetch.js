@@ -10,9 +10,23 @@ async function start() {
         json: true
     })).sheets["Duplicate name list for interactive"];
 
+
     const published = masterSheet.filter(d => d["appearing_in_S3_tool"] === "Y");
 
-    const links = published.map(d => d["s3 url"]).filter(d => d !== "");
+    masterSheet.filter(d => d["s3 url"] !== "").forEach(row => {
+        const urlCleaned = row["Link to copy"].replace(/https:\/\/docs.google.com\/document\/d\//g, "").split("/")[0];
+
+        if (row["s3 url"].indexOf(urlCleaned) < 0) {
+            console.log(row["Confirmed victims"], row["s3 url"], urlCleaned)
+        }
+
+
+        row.sheetUrl = `https://interactive.guim.co.uk/docsdata-test/${urlCleaned}.json?page=2`;
+
+      
+    });
+
+    const links = published.map(d => d.sheetUrl).filter(d => d !== "");
 
     const allRequests = links.map(d => rp(d));
 
@@ -20,7 +34,7 @@ async function start() {
 
     const appData = allRequests
 
-    const floorsArr = published.reduce(function (r, a) {
+    const floorsArr = published.reduce(function(r, a) {
         a.floorNum = getFloorNum(a);
         r[a.floorNum] = r[a.floorNum] || [];
         r[a.floorNum].push(a);
@@ -30,20 +44,20 @@ async function start() {
 
     var floorsObjArr = [];
     var num = 0;
-    while(num <= totalFloors) {
-       var tmpOb = {};
-       tmpOb.floorNum = num.toString();
-       tmpOb.count = getFloorCount(num.toString());
-       floorsObjArr.push(tmpOb)
-       num++;
+    while (num <= totalFloors) {
+        var tmpOb = {};
+        tmpOb.floorNum = num.toString();
+        tmpOb.count = getFloorCount(num.toString());
+        floorsObjArr.push(tmpOb)
+        num++;
     }
 
 
-    function getFloorCount(s){
+    function getFloorCount(s) {
         console.log(s)
         var newCount = 0;
-        Object.values(floorsArr).map((d,i) => {
-            if(d[0].floorNum === s){
+        Object.values(floorsArr).map((d, i) => {
+            if (d[0].floorNum === s) {
                 newCount = d.length;
             }
         });
@@ -57,34 +71,36 @@ async function start() {
 
     Promise.all(appData)
         .then(d => {
-            fs.writeFileSync("./src/assets/appData.json", '[' + d + ']');
+            const data = d.map(e => JSON.parse(e));
+            fs.writeFileSync("./src/assets/appData.json", JSON.stringify(data));
+
             console.log("done")
         })
         .catch(err => {
-            console.log("ERROR",err);
+            console.log("ERROR", err);
         });
 
-    Promise.all(firstTen)
-        .then(d => {
-            // var tempArr = []; tempArr doesnt work
-            // tempArr.push(d);
-            // need to wrap resulting file in [ ] for it to work
-            fs.writeFileSync("./src/assets/firstTen.json", '[' + d + ']'); //JSON.stringify(tempArr)
-        })
-        .catch(err => {
-            console.log("ERROR",err);
-        });
+    // Promise.all(firstTen)
+    //     .then(d => {
+    //         // var tempArr = []; tempArr doesnt work
+    //         // tempArr.push(d);
+    //         // need to wrap resulting file in [ ] for it to work
+    //         fs.writeFileSync("./src/assets/firstTen.json", '[' + d + ']'); //JSON.stringify(tempArr)
+    //     })
+    //     .catch(err => {
+    //         console.log("ERROR", err);
+    //     });
 
-    fs.writeFileSync("./src/assets/floorsArr.json", JSON.stringify(floorsObjArr)) ;
+    fs.writeFileSync("./src/assets/floorsArr.json", JSON.stringify(floorsObjArr));
 
 
 }
 
 
-function getFloorNum(a){
+function getFloorNum(a) {
     var n = a["FLOOR NUMBER (* indicates didn\'t die on that floor)"];
 
-    if(n.length > 2 && n!="Non resident"){
+    if (n.length > 2 && n != "Non resident") {
 
         n = n.slice(0, -1);
         a.didNotLiveOnFloor = true;
