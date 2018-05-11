@@ -16,7 +16,7 @@ const floors = 24;
 
 const screenWidth = window.innerWidth;
 const isMobile = screenWidth < 740;
-const columns = isMobile ? 4 : 5
+const columns = isMobile ? [3, 4, 4] : [5, 5, 5]
 
 var previousShortList, previousLongList, previousListName, initAni, prevScroll, expandedBiogs = false;
 
@@ -134,9 +134,27 @@ const drawChart = (data) => {
 
         const n = arr.length
 
+      
+
         const lastFull = n - (n % cols)
 
         let spacing = width / cols
+
+        if(n === 5 && cols === 5) {
+
+            if(i <= 2) { 
+                return {
+                    x : circle.x + (i+1)*spacing + spacing/2,
+                    y : circle.y + topSpacing/2
+                }
+            }
+
+            return {
+                x : circle.x + ((i-3)+1.5)*spacing + spacing/2,
+                y : circle.y + vertSpacing + topSpacing/2
+            }
+
+        }
 
         if(i >= lastFull) {
 
@@ -179,7 +197,7 @@ const drawChart = (data) => {
 
 
     const verts = isMobile ? [ 110, 87, 110 ] : [ 110, 112, 151 ]
-    const tops = isMobile ? [ 420, 160, 160 ] : [ 480, 160, 160 ]
+    const tops = isMobile ? [ 340, 155, 160 ] : [ 360, 155, 160 ]
 
     const allCircles = arr.map((d, i, arr) => {
 
@@ -206,7 +224,7 @@ const drawChart = (data) => {
             simulation.tick();
         }
 
-        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[0], arr, tops[0])))
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns[0],verts[0], arr, tops[0])))
         return x2
 
     }).reduce(flatten, [])
@@ -237,7 +255,7 @@ const drawChart = (data) => {
             simulation.tick();
         }
 
-        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[1], arr, tops[1])))
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns[1],verts[1], arr, tops[1])))
         return x2
 
     }).reduce(flatten, [])
@@ -269,7 +287,7 @@ const drawChart = (data) => {
             simulation.tick();
         }
 
-        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns,verts[2], arr, tops[2])))
+        const x2 = x.map(y => Object.assign({}, y, offset(y, i, columns[2],verts[2], arr, tops[2])))
         return x2
 
     }).reduce(flatten, [])
@@ -303,8 +321,8 @@ const drawChart = (data) => {
         .data((d, i, arr) => d.map(x => [ x, i, arr ]))
         .enter()
         .append('text')
-        .attr('x', (d, i, arr) => offset({ x : 0, y : -40 }, i, columns, verts[d[1]], arr, tops[d[1]]).x )
-        .attr('y', (d, i, arr) => offset({ x : 0, y : -40 }, i, columns, verts[d[1]], arr, tops[d[1]]).y )
+        .attr('x', (d, i, arr) => offset({ x : 0, y : -40 }, i, columns[d[1]], verts[d[1]], arr, tops[d[1]]).x )
+        .attr('y', (d, i, arr) => offset({ x : 0, y : -40 }, i, columns[d[1]], verts[d[1]], arr, tops[d[1]]).y )
         .text(d => d[0])
         .attr('class', 'gren-label')
 
