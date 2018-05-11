@@ -382,7 +382,7 @@ const drawChart = (data) => {
 
                     el.transition()
                         .delay(delay)
-                        .duration( euclidean > 60 && euclidean < 150 && rand ? (500 + Math.random()*500) : 1000 )
+                        .duration( euclidean > 60 && euclidean < 150 && rand ? (800 + Math.random()*400) : 1200 )
                         .ease(t => euclidean > 60 && euclidean < 150 && rand ? d3.easePolyInOut(t, 6) : d3.easePolyInOut(t, 4))
                         .attr('cx', d => d.x)
                         .attr('cy', d => d.y)
