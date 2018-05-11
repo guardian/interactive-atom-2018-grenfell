@@ -13,7 +13,22 @@ async function start() {
 
     const published = masterSheet.filter(d => d["appearing_in_S3_tool"] === "Y");
 
-    const links = published.map(d => d["s3 url"]).filter(d => d !== "");
+    masterSheet.filter(d => d["s3 url"] !== "").forEach(row => {
+        const urlCleaned = row["Link to copy"].replace(/https:\/\/docs.google.com\/document\/d\//g, "").split("/")[0];
+
+        if (row["s3 url"].indexOf(urlCleaned) < 0) {
+            console.log(row["Confirmed victims"], row["s3 url"], urlCleaned)
+        }
+
+
+        row.sheetUrl = `https://interactive.guim.co.uk/docsdata-test/${urlCleaned}.json`;
+
+        if (urlCleaned === "1dFJTYi5n17NUfLBkGLYwulaQWQwm8SZJILCaEqinYD4" || urlCleaned === "1-P87Goh6Y0JYE29TTWtKPPIriJssP3d2DuswF_JTprw" || urlCleaned === "1NJ9GJAjfQhmK8hJ0EJS9qbT9VSC8VV3vK5u-9On8IHM" || urlCleaned === "1MJ9hvQJkNIyXyI9aQF6C7dWa4w_TPjnVJ79EF2HgT3g") {
+            row.sheetUrl = "";
+        }
+    });
+
+    const links = published.map(d => d.sheetUrl).filter(d => d !== "");
 
     const allRequests = links.map(d => rp(d));
 
