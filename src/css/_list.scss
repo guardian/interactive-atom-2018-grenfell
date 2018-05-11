@@ -227,6 +227,12 @@
 }
 
 .gren-list-name, .gren-list-bio-head{
+	font-family: 'Guardian Headline Full', Georgia, serif;
+	font-size: 20px;
+	line-height: 18px;
+	font-weight: 200;
+	font-weight: bold;
+
 	@include mq(tablet){
 		font-size:20px;
 		line-height: 22px;
