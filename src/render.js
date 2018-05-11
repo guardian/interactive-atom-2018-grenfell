@@ -33,7 +33,7 @@ export async function render() {
 		if(isNaN(Number(a.Floor))) { return 1 }
 		if(isNaN(Number(b.Floor))) { return -1 }
 		
-		return Number(a.Floor) - Number(b.Floor)
+		return Number(b.Floor) - Number(a.Floor)
 	})
 	 	.forEach((d,i, arr) => {
 		d.bio = " ";
