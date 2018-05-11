@@ -417,7 +417,7 @@
 	left: 0;
 	bottom: 0px;
 	margin-top: 12px;
-	height: 12px;
+	height: 18px;
 
 	@include mq(desktop){
 		bottom: 0;
@@ -466,6 +466,8 @@
 	display: inline-block;
 	padding-left: 6px;
 	padding-top: 2px;
+	margin-top: 0;
+	margin: 0;
 }
 
 .biog-pic{
