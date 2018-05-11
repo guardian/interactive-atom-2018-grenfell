@@ -73,6 +73,7 @@
 	min-height:66px;
 	visibility: hidden;
 	opacity: 0;
+	display: block;
 
 	.short-bio-expand {
 		opacity: 0;
@@ -226,12 +227,6 @@
 }
 
 .gren-list-name, .gren-list-bio-head{
-	font-family: 'Guardian Headline Full', Georgia, serif;
-	font-size: 20px;
-	line-height: 18px;
-	font-weight: 200;
-	font-weight: bold;
-
 	@include mq(tablet){
 		font-size:20px;
 		line-height: 22px;
@@ -416,7 +411,7 @@
 	left: 0;
 	bottom: 0px;
 	margin-top: 12px;
-	height: 1px;
+	height: 12px;
 
 	@include mq(desktop){
 		bottom: 0;
@@ -459,6 +454,7 @@
 .short-bio-copy {
 	font-family: $f-sans-serif-text;
 	font-size: 12px;
+	line-height: 18px;
 	color: $neutral-100;
 	float: left;
 	display: inline-block;
@@ -493,12 +489,6 @@
 }
 
 .gren-endpiece-blurb {
-	color: $neutral-100;
-}
-
-h3 {
-	font-family: $f-sans-serif-text;
-	font-size: 16px;
 	color: $neutral-100;
 }
 
