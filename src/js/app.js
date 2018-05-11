@@ -145,8 +145,6 @@ const drawChart = (data) => {
             })
     }
 
-    console.log(data.map(o => o.Age))
-
     const offset = (circle, i, cols, vertSpacing = 160, arr, topSpacing = 160) => {
 
         const n = arr.length
@@ -490,8 +488,9 @@ function buildView(data) {
     // function to check whether element is in top area of the screen
 
     const isInView = element => {
-        return element.getBoundingClientRect().top < window.innerHeight * 2 / 3
+        return element.getBoundingClientRect().top < window.innerHeight * 0.6
     }
+
 
     // code we want to run periodically to check all items
 
@@ -650,7 +649,6 @@ function highlightElsInView(a) {
     if (a[0]) {
         a.filter(el => el).forEach((el, i) => {
             var aniDelay = ((i * 0.15) + 0.2) + "s";
-            console.log(aniDelay)
             el.querySelector('.gren-list-name').style.animationDelay = aniDelay;
             el.querySelector('.gren-list-name').classList.remove('neutral-86');
             el.querySelector('.gren-list-name').classList.add('animate-active');
@@ -706,16 +704,15 @@ function standyAni() {
 function listAni() {
     var finalEl;
 
-    document.querySelectorAll(".list-item-short").forEach((el) => {
+    document.querySelectorAll(".list-item-short").forEach((el, i) => {
         var delay = ((el.getAttribute("key-ref")) / 20) + "s";
 
         el.classList.add("animated");
         el.style.animationDelay = delay;
-        finalEl = el;
+        if(i < 10) { finalEl = el; }
     })
 
     finalEl.addEventListener('animationend', function(event) {
-
 
         document.querySelectorAll(".list-item-short").forEach((el) => {
             el.style = "";

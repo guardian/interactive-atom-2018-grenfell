@@ -97,7 +97,7 @@
 	}
 
 	&.animated{
-		opacity: 0.5;
+		//opacity: 0.5;
 		visibility:visible;
 		 -webkit-animation-name: opacity-5-1; /* Safari 4.0 - 8.0 */
 		 -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
@@ -126,23 +126,6 @@
 				transition: opacity 3s;
 			}
 
-		// 	.gren-list-name {
-		// 	border-top: 1px solid white;
-		// 	width: 120px;
-		// 	margin-left: -10px;
-		// }
-
-
-			// .list-item-short-name, .short-biog-insert {
-			// 	-webkit-animation-name: name-fade; /* Safari 4.0 - 8.0 */
-			//  	-webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
-			//  	-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-			// 	animation-name: name-fade;
-			// 	animation-duration: 0.5s;
-			// 	animation-fill-mode: forwards;
-			// 	color: #ffffff;
-			// }
-
 			.short-bio-expand {
 				-webkit-animation-name: opacity-0-1; /* Safari 4.0 - 8.0 */
 				-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
@@ -156,6 +139,16 @@
 	&.animation-done:hover {
 		opacity: 1;
 		transition: opacity .5s;
+
+		.short-bio-expand {
+			-webkit-animation-name: opacity-0-1; /* Safari 4.0 - 8.0 */
+			-webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+			-webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+			animation-name: opacity-0-1;
+			animation-duration: 1s;
+			 animation-fill-mode: forwards;
+		}
+
 	}
 
 	&.gren-list-item--expanded {
