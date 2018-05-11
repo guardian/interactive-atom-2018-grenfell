@@ -350,12 +350,12 @@ const drawChart = (data) => {
                 el2.classList.remove('gren-button--selected')
             }
         })
-
-
         
         const randoms = [0, 1, 2].map(() => Math.floor((Math.random()*positions[i].length)))
 
         let total = 0
+
+        const dists = isMobile ? [ 50, 90 ] : [ 60, 130 ]
 
         smallCircles
             .data(positions[i])
@@ -367,11 +367,11 @@ const drawChart = (data) => {
                 const cy = Number(el.attr('cy'))
                 const euclidean = Math.sqrt(( cx - d.x )**2 + (cy - d.y)**2)
 
-                const rand = Boolean(Math.random() > 0.85 && total < 2)
+                const rand = Boolean(Math.random() > 0.9 && (total < 2))
 
-                if(euclidean > 60 && euclidean < 150 && rand) { total ++ }
+                if(euclidean > dists[0] && euclidean < dists[1] && rand) { total ++ }
 
-                const delay = euclidean > 60 && euclidean < 150 && rand ? Math.random()*1800 : Math.random()*200
+                const delay = euclidean > dists[0] && euclidean < dists[1] && rand ? Math.random()*1800 : Math.random()*200
 
                 // if(euclidean > 60 && euclidean < 150) { 
 
@@ -382,8 +382,8 @@ const drawChart = (data) => {
 
                     el.transition()
                         .delay(delay)
-                        .duration( euclidean > 60 && euclidean < 150 && rand ? (800 + Math.random()*400) : 1200 )
-                        .ease(t => euclidean > 60 && euclidean < 150 && rand ? d3.easePolyInOut(t, 6) : d3.easePolyInOut(t, 4))
+                        .duration( euclidean > dists[0] && euclidean < dists[1] && rand ? (800 + Math.random()*400) : 1200 )
+                        .ease(t => euclidean > dists[0] && euclidean < dists[1] && rand ? d3.easePolyInOut(t, 3) : d3.easePolyInOut(t, 4))
                         .attr('cx', d => d.x)
                         .attr('cy', d => d.y)
 
