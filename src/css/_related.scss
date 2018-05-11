@@ -7,26 +7,13 @@
 .related-card__container {
 	display: block;
 	position: relative;
-
-	// margin: 0 20px;
-	width: 100%; // padding: 0 10px 20px 10px;
-
-	@include mq(phablet) {
-			// margin: 0 20px;
-	}
-
+	width: 100%;
 	@include mq(tablet) {
 			width: 600px;
-			// margin: 0 180px;
 	}
 
 	@include mq(leftCol) {
 			width: 1300px;
-			// margin: 0 0 0 180px;
-	}
-
-	@include mq(wide) {
-			// margin: 0 0 0 260px;
 	}
 }
 
@@ -34,10 +21,14 @@
 	border-top: 1px solid white;
 	float: left;
 	position: relative;
-	width: 220px;
+	width: 48%;
 	height: 100%;
-	margin-left: 10px;
+	margin-left: 3%;
 	margin-bottom: 52px;
+	@include mq(tablet) {
+		width: 220px;
+		margin-left: 10px;
+	}
 
 	a:hover {
 		text-decoration: none;
@@ -45,8 +36,20 @@
 }
 
 .related-card-main {
-	width: 460px;
+	width: 100%;
 	margin-left: 0px;
+
+	@include mq(tablet) {
+		width: 460px;
+	}
+}
+
+.related-card-minor {
+	margin-left: 0px;
+
+	@include mq(leftCol) {
+		margin-left: 10px;
+	}
 }
 
 .related__one,.related__two, .related__three  {
