@@ -108,31 +108,63 @@ body {
     color: $neutral-60;
 }
 
+.gren-chart-wrapper.gv-main-column {
+  max-width: 800px;
+}
+
 .gren-chart-container {
     margin-bottom: 24px;
     position: relative;
     max-width: 620px;
+    border-top: 1px solid white;
 
-    @include mq($until: tablet) {
-        margin-left: 0;
-    }
+    &::before {
+  			content: '';
+  			display: block;
+  			height: 1000px;
+  			width: 0;
+  			position: absolute;
+  			z-index: 1000;
+  			border-left: 1px solid $neutral-20;
+  			left: 10px;
+        top: -200px;
+  			@include mq(tablet) {
+  					left: 170px;
+  			}
+  			@include mq(leftCol) {
+  					// top: 0px;
+  			}
+  			@include mq(wide) {
+  				left: 250px;
 
-    @include mq($from: desktop) {
-        margin-left: 50px;
-    }
+  			}
+  	}
 
-    @include mq($from: leftCol) {
-        margin-left: 170px;
-    }
-    @include mq($from: wide) {
-        margin-left: 250px;
-    }
+    // @include mq($until: tablet) {
+    //     margin-left: 0;
+    // }
+    //
+    // @include mq($from: desktop) {
+    //     margin-left: 50px;
+    // }
+    //
+    // @include mq($from: leftCol) {
+    //     margin-left: 170px;
+    // }
+    // @include mq($from: wide) {
+    //     margin-left: 250px;
+    // }
 }
 
+// .gren-chart-wrapper {
+//
+// }
+
 .gren-buttons {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+    // position: absolute;
+    // bottom: 10px;
+    // left: 10px;
+    margin-top: -72px;
 }
 
 .gren-button {
