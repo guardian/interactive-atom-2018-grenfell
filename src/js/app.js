@@ -388,7 +388,7 @@ const drawChart = (data) => {
 
             const delay = euclidean > dists[0] && euclidean < dists[1] && rand ? Math.random() * 1800 : Math.random() * 200
 
-            // if(euclidean > 60 && euclidean < 150) { 
+            // if(euclidean > 60 && euclidean < 150) {
 
             //     return Math.random() > 0.9 ? Math.random()*1600 : Math.random()*200
 
@@ -679,9 +679,9 @@ var isInViewport = function(elem) {
 function floorsAni() {
     var finalEl = document.querySelector(".floor-6");
     document.querySelectorAll(".gren-floor").forEach((el) => {
-        var delay = ((floors - el.getAttribute("floor-ref")) / 30) + "s";
+        //var delay = ((floors - el.getAttribute("floor-ref")) / ) + "s";
         el.classList.add("floor-ani");
-        el.style.animationDelay = delay;
+        //el.style.animationDelay = delay;
 
     })
 
@@ -704,24 +704,30 @@ function standyAni() {
 function listAni() {
     var finalEl;
 
-    document.querySelectorAll(".list-item-short").forEach((el, i) => {
-        var delay = ((el.getAttribute("key-ref")) / 20) + "s";
+    // document.querySelectorAll(".list-item-short").forEach((el, i) => {
+    //     var delay = ((el.getAttribute("key-ref")) / 20) + "s";
+    //
+    //     //el.classList.add("animated");
+    //     el.style.animationDelay = delay;
+    //     if(i < 10) { finalEl = el; }
+    // })
+    //
+    // finalEl.addEventListener('animationend', function(event) {
+    //
+    //     document.querySelectorAll(".list-item-short").forEach((el) => {
+    //         // el.style = "";
+    //         // el.classList.remove("animated");
+    //         el.classList.add("animation-done");
+    //     })
+    //
+    //
+    // }, false);
 
-        el.classList.add("animated");
-        el.style.animationDelay = delay;
-        if(i < 10) { finalEl = el; }
+    document.querySelectorAll(".list-item-short").forEach((el) => {
+        // el.style = "";
+        // el.classList.remove("animated");
+        el.classList.add("animation-done");
     })
-
-    finalEl.addEventListener('animationend', function(event) {
-
-        document.querySelectorAll(".list-item-short").forEach((el) => {
-            el.style = "";
-            el.classList.remove("animated");
-            el.classList.add("animation-done");
-        })
-
-
-    }, false);
 }
 
 function expandAllBiogs() {
