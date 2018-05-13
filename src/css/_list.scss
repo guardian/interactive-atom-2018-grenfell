@@ -503,6 +503,22 @@
 	color: $neutral-100;
 }
 
+.gren-list-wrapper.gv-page-width.gren-endpiece-blurb_wrapper {
+	min-height: inherit;
+}
+
+.gren-credit {
+	@include fs-textSans(3);
+	color: $neutral-46;
+	padding-top: 12px;
+	padding-bottom: 48px;
+
+	a {
+		font-weight: bold;
+		color: $neutral-100;
+	}
+}
+
 .atom--snippet__handle, .atom--snippet__feedback .atom__button {
     background: #121212;
     color: #ffffff;
