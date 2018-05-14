@@ -677,7 +677,7 @@ var isInViewport = function(elem) {
 }
 
 function floorsAni() {
-    var finalEl = document.querySelector(".floor-6");
+  //  var finalEl = document.querySelector(".floor-6");
     document.querySelectorAll(".gren-floor").forEach((el) => {
         //var delay = ((floors - el.getAttribute("floor-ref")) / ) + "s";
         el.classList.add("floor-ani");
@@ -685,10 +685,10 @@ function floorsAni() {
 
     })
 
-
-    finalEl.addEventListener('animationend', function(event) {
-        listAni();
-    }, false);
+listAni();
+    // finalEl.addEventListener('animationend', function(event) {
+    //     listAni();
+    // }, false);
 }
 
 function standyAni() {
