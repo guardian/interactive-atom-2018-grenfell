@@ -177,7 +177,12 @@ body {
     // position: absolute;
     // bottom: 10px;
     // left: 10px;
+
     margin-top: -72px;
+
+    @include mq($from: desktop) {
+        margin-top: -60px;
+    }
 }
 
 .gren-button {
