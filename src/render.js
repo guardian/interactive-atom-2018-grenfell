@@ -30,6 +30,13 @@ export async function render() {
 
     }
 
+    const getAgeText = age => {
+      if(age.indexOf('months') >= 0) {
+        return age
+      }
+      return age + ' years'
+    }
+
     shortData.sort((a, b) => {
 
             if (isNaN(Number(a.Floor))) { return 1 }
@@ -47,6 +54,7 @@ export async function render() {
             const cleaned = clean(d.Floor)
 
             d.floorStr = cleaned == clean((arr[i - 1] || {}).Floor) ? '' : cleaned
+            d.AgeText = getAgeText(d.Age)
 
             // if (d["Long-biog"]) {
             //     d.bio = d["Long-biog"].split('\n').map(par => `<p>${par}</p>`).join('')
