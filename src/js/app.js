@@ -226,7 +226,7 @@ const drawChart = (data) => {
             .force('charge', d3.forceManyBody().strength(30))
             .force('center', d3.forceCenter(0, 0))
             .force('collision', d3.forceCollide().radius(radius + 1.5))
-            .force('y', d3.forceY().y(0).strength(1.5))
+            .force('y', d3.forceY().y(0).strength(1.4))
             .force('x', d3.forceX().x(0).strength(0.1))
             .stop()
 
