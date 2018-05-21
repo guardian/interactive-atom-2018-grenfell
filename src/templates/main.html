@@ -7,61 +7,125 @@
       {{/each}}
     </div>
     <div class="gren-header-txt">
+      <h1 class="ghost-h1">The lives of Grenfell Tower</h1>
       <div class="gren-headline show-mobile" id="mobileHeadEl"></div>
       <div class="gren-headline show-desktop"></div>
       <div class="gren-standy" id="grenStandy">
-        A memorial to the people killed in the Grenfell tower fire.
+        Portraits of all 72 people who died in Grenfell Tower, based on exclusive, moving testimony from family and friends.
       </div>
+    </div>
+    <div class="header-share-container gv-desktop-show">
+      <button class="interactive-share" data-network="facebook" data-shareurl="{{shareurl}}"></button>
+      <button class="interactive-share" data-network="twitter" data-shareurl="{{shareurl}}"></button>
+      <button class="interactive-share" data-network="email" data-shareurl="{{shareurl}}"></button>
     </div>
   </div>
 
 
   <div class="gren-list-wrapper gv-page-width">
     {{#each shortData}}
-    <div class="gren-list-item gv-main-column list-item-short" key-ref="{{@key}}" data-name="{{name}}" >
+
+    <div class='gren-itemwrapper' data-floor="{{floorStr}}" >
+
+    <div class="gren-list-item gv-main-column list-item-short" key-ref="{{@key}}" data-name="{{name}}">
+
       <div class="gv-inner-block">
+        <hr></hr>
+        <button class='gren-collapse-button'><div class="gren-collapse-icon"></div></button>
         <div class="gren-list-name list-item-short-name" key-ref="{{@key}}">{{{name}}}</div>
         <div class="gren-list-biog short-biog" key-ref="{{@key}}">
-
-          {{{shortBio}}}
-
-          <div class="short-bio-expand">
-            <div class="short-bio-expand-btn" key-ref="{{@key}}">
-
-              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px" height="18px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve">
-                    <g id="Page-1">
-                        <polygon id="More" fill="#FFFFFF" points="8.236,9.764 8.507,16 9.477,16 9.764,9.764 16,9.478 16,8.507 9.764,8.236 9.477,2
-                            8.507,2 8.236,8.236 2,8.507 2,9.478     "/>
-                    </g>
-                    </svg>
+          <div class="short-biog-insert">{{{shortBio}}}</div>
+            <div class="short-bio-expand">
+              <div class="short-bio-expand-btn" key-ref="{{@key}}">
+                <div class="short-bio-plus"></div>
+              </div>
+              <p class="short-bio-copy">Full extract</p>
             </div>
-            <p class="short-bio-copy">Full extract</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="gren-list-item gv-main-column list-item-long hide" key-ref="{{@key}}" data-name="{{name}}">
-      <div class="gren-card__wrapper">
-        <div class="gren-card__container">
-          <div class="gren-list-name" key-ref="{{@key}}">{{{name}}}</div>
+
 
           <div class="gren-long-biog-wrapper">
 
-              <div class="gren-list-biog long-biog" key-ref="{{@key}}">
-                <div class="biog-meta">
-                  <div class="biog-age">{{{Age}}} years old</div>
-                  <div class="biog-nationality">{{{Nationality}}}</div>
-                </div>
-                <div class="biog-pic"><img src="{{{grid_photo}}}" /></div>
-                <div class='gren-longbio'>{{{bio}}}</div>
+            <div class="gren-list-biog long-biog" key-ref="{{@key}}">
+              <div class="biog-meta">
+                <div class="biog-age">{{{AgeText}}} old</div>
+                <div class="biog-nationality">{{{Nationality}}}</div>
+              </div>
+              <div class="biog-pic"><img src="{{{grid_photo}}}" /></div>
+              <div class='gren-longbio'>{{{bio}}}</div>
+              <div class="biog-credit">{{{Credit}}}</div>
             </div>
           </div>
+
+
         </div>
       </div>
     </div>
+  </div>
     {{/each}}
+  </div>
+
+  <div class='gren-chart-container gv-page-width'>
+    <div class="section-header"><h2>All lives of Grenfell</h2></div>
+    <div class="gren-chart-wrapper gv-main-column">
+    <svg class='gren-chart'></svg>
+
+    <div class='gren-buttons'>
+      <div class='gren-button' data-id='0'>Age</div>
+      <div class='gren-button' id='gren-button--1' data-id='1'>Nationality</div>
+      <div class='gren-button gren-button--selected' id='gren-button--2'data-id='2'>Floor</div>
+    </div>
+  </div>
 
   </div>
+
+
+  <div class="gren-list-wrapper gv-page-width gren-endpiece-blurb_wrapper">
+    <div class="gren-endpiece-blurb gv-main-column">
+      <p>The portraits of the Grenfell victims were elaborated over a period of eight months, primarily through interviews with friends and relatives who knew them well.</p>
+      <p>Conscious of the anger of the Grenfell community at press coverage and the sensitivity of writing about people caught up in such a tragedy, we made careful approaches to the families of those involved. Some understandably did not wish to speak. In those cases, we have acknowledged the reluctance and kept our portraits short and factual.</p>
+      <p>In most cases, families did want to speak fondly about their loved ones. These life stories are the result of those conversations.</p>
+    </div>
+    <div class="gren-credit gv-main-column">
+      Design and production by <a href="https://www.theguardian.com/profile/frank-hulley-jones">Frank Hulley-Jones</a> and <a href="https://www.theguardian.com/profile/niko-kommenda">Niko Kommenda</a><br>
+      Editor: <a href="https://www.theguardian.com/profile/mark-rice-oxley">Mark Rice-Oxley</a><br>
+      Assistant Editors: Andrew Halley and <a href="https://www.theguardian.com/profile/paultorpey">Paul Torpey</a><br>
+    </div>
+  </div>
+
+  <div class="gren-related-wrapper gv-page-width">
+    <div class="gv-main-column">
+        <div class="section-header"><h2>Related content</h2></div>
+        <div class="related-card__container">
+        <div class="related-card related-card-main">
+            <div class="related__one">
+              <a href="{{related.url1}}">
+                <div class="related__image"><img src="{{related.image1}}"/></div>
+                <h3>{{related.headline1}}</h3>
+              </a>
+            </div>
+        </div>
+        <div class="related-card related-card-minor">
+            <div class="related__two">
+              <a href="{{related.url2}}">
+                <div class="related__image"><img src="{{related.image2}}"/></div>
+                <h4>{{related.headline2}}</h4>
+              </a>
+            </div>
+        </div>
+        <div class="related-card">
+            <div class="related__three">
+              <a href="{{related.url3}}">
+                <div class="related__image"><img src="{{related.image3}}"/></div>
+                <h4>{{related.headline3}}</h4>
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="related-2">{{related.headline2}} {related.image1}} {{related.url1}}</div>
+    <div class="related-3">{{related.headline3}} {related.image1}} {{related.url1}}</div> -->
+  </div>
+
 </div>
 
 <div class="bio-expand-all hide" id="expandAll"><span class="inline-plus inline-icon ">

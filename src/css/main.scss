@@ -4,6 +4,7 @@
 @import "ani";
 @import "header";
 @import "list";
+@import "related";
 // Uncomment for embeds
 //@import "embed";
 // Uncomment for full screen (including immersive article main media)
@@ -42,18 +43,24 @@ body {
   }
 
   .gv-main-column {
-    margin: 0 10px;
-    max-width: 790px; // padding: 0 10px 20px 10px;
-    @include mq(mobileLandscape) {
-        margin: 0 10px;
+    margin: 0 20px;
+    max-width: 400px; // padding: 0 10px 20px 10px;
+
+    .gren-chart-wrapper & {
+      margin: 0;
+
+      @include mq(phablet) {
+        margin: 0 20px;
+      }
     }
 
     @include mq(phablet) {
-        margin: 0 10px;
+        margin: 0 20px;
     }
 
     @include mq(tablet) {
-        margin: 0 10px;
+        max-width: 640px;
+        margin: 0 180px;
     }
 
     @include mq(leftCol) {
@@ -79,7 +86,11 @@ body {
     }
 }
 
-
+.ghost-h1 {
+    position: fixed;
+    top: 3000px;
+    left: -2000px;
+}
 
 .show-mobile {
     display: block;
@@ -96,11 +107,163 @@ body {
 }
 
 .neutral-86 {
-    fill: $neutral-86 !important;
-    color: $neutral-86 !important;
+    fill: $neutral-86;
+    color: $neutral-86;
 }
 
 .neutral-60 {
-    fill: $neutral-60 !important;
-    color: $neutral-60 !important;
+    fill: $neutral-60;
+    color: $neutral-60;
+}
+
+.gren-chart-wrapper.gv-main-column {
+  position: relative;
+  // margin: 0;
+  // padding-left: 20px;
+  @include mq(mobileMedium){
+		// margin: 0 20px;
+	}
+}
+
+
+
+
+.gren-chart-container {
+    margin-bottom: 24px;
+    position: relative;
+  	width: 100%;
+    border-top: 1px solid $neutral-20;
+
+    &::before {
+  			content: '';
+  			display: block;
+  			height: 1000px;
+  			width: 0;
+  			position: absolute;
+  			z-index: 1000;
+  			border-left: 1px solid $neutral-20;
+  			left: 10px;
+        top: -200px;
+  			@include mq(tablet) {
+  					left: 170px;
+  			}
+  			@include mq(leftCol) {
+  					// top: 0px;
+  			}
+  			@include mq(wide) {
+  				left: 250px;
+
+  			}
+  	}
+
+    svg {
+      overflow: visible;
+    }
+
+    .section-header {
+      margin-top: 6px;
+      margin-left: 20px;
+
+      @include mq(tablet){
+        margin-top: 0px;
+        margin-left: 0px;
+      }
+    }
+
+}
+
+
+.gren-buttons {
+    // position: absolute;
+    // bottom: 10px;
+    // left: 10px;
+
+    margin-top: -72px;
+
+    @include mq($from: desktop) {
+        margin-top: -60px;
+    }
+}
+
+.gren-button {
+    @include fs-textSans(3);
+    color: white;
+    padding: 6px 10px;
+    border: 2px solid white;
+    margin: 0 2.5px;
+    display: inline-block;
+    border-radius: 24px;
+    cursor: pointer;
+
+    font-weight: bold;
+
+    &.gren-button--selected {
+        background: white;
+        color: #333;
+    }
+}
+
+.gren-label {
+    @include fs-textSans(3);
+    fill: white;
+    text-anchor: middle;
+}
+
+.gren-chart {
+
+    width: 100%;
+    max-width: 620px;
+    height: 460px;
+    margin-bottom: 40px;
+      // width: 280px;
+      @include mq(tablet){
+        // margin-top: 36px;
+      }
+    }
+
+
+.gren-label-layer {
+
+    pointer-events: none;
+    user-select: none;
+    stroke-width: 3;
+
+    opacity: 0;
+
+    transition: opacity 0.6s;
+
+    &.gren-label-layer--shown {
+        opacity: 1;
+        //transition: opacity: 0.6s;
+    }
+}
+
+.gren-circle {
+    fill: white;
+}
+
+h2 {
+  color: $neutral-100;
+  line-height: 24px;
+
+  font-family: 'Guardian Egyptian Web', Georgia, serif;
+}
+
+.section-header {
+
+    // margin-left: 10px;
+
+  margin-bottom: 12px;
+  @include mq(tablet) {
+      position: absolute;
+      left: 0px;
+      top: 6px;
+      max-width: 180px;
+  }
+  @include mq(leftCol) {
+    max-width: 180px;
+  }
+  @include mq(wide) {
+    max-width: 400px;
+  }
 }

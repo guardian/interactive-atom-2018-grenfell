@@ -1,0 +1,88 @@
+.gren-related-wrapper {
+	position: relative;
+	border-top: 1px solid $neutral-20;
+	padding-top: 6px;
+}
+
+.related-card__container {
+	display: block;
+	position: relative;
+	width: 100%;
+	@include mq(tablet) {
+			width: 600px;
+	}
+
+	@include mq(leftCol) {
+			width: 1300px;
+	}
+}
+
+.related-card {
+	border-top: 1px solid white;
+	float: left;
+	position: relative;
+	width: 48%;
+	height: 100%;
+	margin-left: 3%;
+	margin-bottom: 52px;
+	@include mq(tablet) {
+		width: 220px;
+		margin-left: 10px;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+.related-card-main {
+	width: 100%;
+	margin-left: 0px;
+
+	@include mq(tablet) {
+		width: 460px;
+	}
+}
+
+.related-card-minor {
+	margin-left: 0px;
+
+	@include mq(leftCol) {
+		margin-left: 10px;
+	}
+}
+
+.related__one,.related__two, .related__three  {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+
+	img{
+		width:100%;
+		height: 100%;
+	}
+
+	&:hover {
+		-webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+	    filter: grayscale(0%);
+	}
+}
+
+h3 {
+	font-family: 'Guardian Headline Full', Georgia, serif;
+	font-size: 24px;
+	line-height: 28px;
+	font-weight: 400;
+	color: $neutral-100;
+}
+
+h4 {
+	font-family: 'Guardian Headline Full', Georgia, serif;
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 400;
+	color: $neutral-100;
+}
